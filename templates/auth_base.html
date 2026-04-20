@@ -1,0 +1,172 @@
+﻿<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}钃濆績鏅虹 - 璁よ瘉{% endblock %}</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    {# 杩欓噷鍙互娣诲姞浠讳綍璁よ瘉椤甸潰鐗规湁鐨凜SS鎴朖S锛屾垨鑰呭湪瀛愭ā鏉夸腑閫氳繃extra_head鍧楁坊鍔?#}
+    {% block extra_head %}{% endblock %}
+
+    <style>
+        /* 璁よ瘉椤甸潰鐗规湁鐨勮儗鏅牱寮?*/
+        body {
+            background-color: var(--dark-bg); /* 浣滀负澶囩敤鑳屾櫙鑹?*/
+            color: var(--text-color);
+            overflow: auto; /* 鍏佽婊氬姩 */
+            display: flex; /* 浣跨敤 flexbox 灞呬腑鍐呭 */
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh; /* 纭繚鍗犳嵁鏁翠釜瑙嗗彛楂樺害 */
+            padding: 20px;
+            font-size: 14px;
+        }
+
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url('{{ url_for('static', filename='images/yejing.jpg') }}'); /* 鐧诲綍/娉ㄥ唽椤甸潰鐨勮儗鏅?*/
+            background-size: cover;
+            background-position: center;
+            filter: brightness(0.7); /* 璋冩暣浜害浠ヤ娇鍐呭鏇寸獊鍑?*/
+            z-index: -1;
+        }
+
+        /* 瑕嗙洊涓€浜涘彲鑳芥潵鑷?style.css 鐨勫叏灞€褰卞搷锛岀‘淇濈櫥褰曟灞呬腑涓旀病鏈変华琛ㄧ洏闈㈡澘 */
+        .dashboard-container, .dashboard, .panel, .panel-left, .panel-center, .panel-right {
+            all: unset; /* 绉婚櫎鎵€鏈夌户鎵跨殑鏍峰紡 */
+            display: block; /* 鎭㈠涓哄潡绾у厓绱狅紝濡傛灉闇€瑕?*/
+        }
+
+        /* 閽堝鐧诲綍/娉ㄥ唽瀹瑰櫒鐨勬牱寮?*/
+        .auth-container {
+            width: 100%;
+            max-width: 500px; /* 闄愬埗鏈€澶у搴?*/
+            margin: 0 auto; /* 姘村钩灞呬腑 */
+            background-color: var(--card-bg); /* 浣跨敤鎮ㄧ殑鍗＄墖鑳屾櫙鑹?*/
+            border-radius: 20px;
+            box-shadow: 0 0 30px var(--shadow-color-light);
+            padding: 30px;
+            color: var(--text-color);
+            border: 1px solid var(--border-color-light);
+            z-index: 10; /* 纭繚鍦ㄨ儗鏅浘涔嬩笂 */
+            position: relative; /* 纭繚 z-index 鐢熸晥 */
+        }
+
+        .auth-header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .auth-title {
+            font-size: 2.2em; /* 璋冩暣鏍囬澶у皬 */
+            color: var(--primary-color);
+            text-shadow: 0 0 10px rgba(0, 123, 255, 0.7);
+            margin-bottom: 10px;
+            font-weight: bold;
+        }
+
+        .auth-subtitle {
+            font-size: 1.1em;
+            color: var(--accent-color);
+            text-shadow: 0 0 5px rgba(0, 212, 255, 0.5);
+            font-weight: 500;
+        }
+
+        /* 纭繚琛ㄥ崟鍜屾寜閽牱寮忎笌鎮ㄧ殑 style.css 涓€鑷?*/
+        .form-group {
+            margin-bottom: 18px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-size: 15px;
+            color: var(--accent-color);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        label i {
+            color: var(--secondary-color);
+        }
+
+        input[type="text"], input[type="password"], select, textarea {
+            width: 100%;
+            padding: 12px;
+            background-color: rgba(0, 0, 0, 0.4);
+            border: 1px solid var(--secondary-color);
+            border-radius: 8px;
+            color: var(--text-color);
+            font-size: 15px;
+            transition: all 0.3s ease;
+        }
+
+        input[type="text"]:focus, input[type="password"]:focus, select:focus, textarea:focus {
+            border-color: var(--primary-color);
+            box-shadow: 0 0 10px rgba(0, 123, 255, 0.5);
+            outline: none;
+        }
+
+        .btn {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            border: none;
+            padding: 14px 25px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: 600;
+            width: 100%;
+            transition: all 0.3s ease;
+            margin-top: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .btn:hover {
+            box-shadow: 0 0 20px var(--shadow-color-hover);
+            transform: translateY(-3px);
+        }
+
+        .btn:disabled {
+            background: linear-gradient(135deg, #666, #999);
+            cursor: not-allowed;
+            box-shadow: none;
+            transform: none;
+        }
+
+        .errors {
+            color: var(--danger-color);
+            font-size: 0.9em;
+            margin-top: 5px;
+            list-style-type: none;
+            padding-left: 0;
+        }
+    </style>
+</head>
+<body>
+    {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+            <div class="flash-messages" style="position: absolute; top: 20px; left: 50%; transform: translateX(-50%); width: 90%; max-width: 600px; z-index: 100;">
+                {% for category, message in messages %}
+                    <div class="alert alert-{{ category }}">{{ message }}</div>
+                {% endfor %}
+            </div>
+        {% endif %}
+    {% endwith %}
+
+    {% block auth_content %}{% endblock %}
+
+    {# 濡傛灉鏈夐€氱敤鐨凧S锛屽彲浠ュ湪杩欓噷寮曞叆 #}
+    {% block extra_js %}{% endblock %}
+</body>
+</html>

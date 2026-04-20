@@ -1,0 +1,77 @@
+﻿{% extends "base.html" %}
+
+{% block title %}钃濆績鏅烘煡 - 绋庡彿寮€绁ㄤ俊鎭瘂% endblock %}
+
+{% block center_content %}
+    <div class="qichacha-container">
+        <div class="qichacha-header">
+            <div class="qichacha-title">钃濆績鏅烘煡 - 绋庡彿寮€绁ㄤ俊鎭?/div>
+            <div class="qichacha-subtitle">鏌ヨ浼佷笟鐨勭◣鍔＄櫥璁板彿銆佺撼绋庝汉璇嗗埆鍙枫€佷紒涓氬悕绉般€佷紒涓氱被鍨嬨€佸湴鍧€銆佽仈绯荤數璇濄€佸紑鎴疯銆佸紑鎴疯璐﹀彿绛変俊鎭紝骞剁粨鍚圓I杩涜璐㈠姟涓庡悎瑙勯闄╁垎鏋愩€?/div>
+        </div>
+
+        <div class="card">
+            <div class="panel-title">
+                <i class="fas fa-file-invoice-dollar"></i> 寮€绁ㄤ俊鎭煡璇?
+            </div>
+            <div class="card-content">
+                <div class="form-group">
+                    <label for="taxIdInvoiceKey"><i class="fas fa-building"></i> 鏌ヨ鍏抽敭瀛楋紙鍏徃鍚嶇О锛?/label>
+                    <input type="text" id="taxIdInvoiceKey" placeholder="杈撳叆鍏徃鍚嶇О">
+                </div>
+                <button id="taxIdInvoiceAnalyzeBtn" class="btn">
+                    <i class="fas fa-search"></i> 鏌ヨ骞禔I鍒嗘瀽
+                </button>
+            </div>
+        </div>
+
+        <!-- 淇敼杩欓噷锛氭坊鍔?ID 鍜屽垵濮嬮殣钘忔牱寮?-->
+        <div class="card" id="taxIdInvoiceResultCard" style="display: none;">
+            <div class="panel-title">
+                <i class="fas fa-info-circle"></i> 鏌ヨ缁撴灉
+            </div>
+            <div class="card-content" id="taxIdInvoiceResultDisplay">
+                <p style="text-align: center; color: #a3c3ff;">璇疯緭鍏ュ叧閿瘝杩涜鏌ヨ...</p>
+            </div>
+        </div>
+
+        <div class="card" id="taxIdInvoiceRiskFactorsCard" style="display: none;">
+            <div class="panel-title">
+                <i class="fas fa-exclamation-triangle"></i> AI椋庨櫓鍒嗘瀽
+            </div>
+            <div class="card-content ai-analysis-output" id="taxIdInvoiceRiskFactors">
+                <p style="text-align: center; color: #a3c3ff;">AI鍒嗘瀽缁撴灉灏嗗湪姝ゅ鏄剧ず...</p>
+            </div>
+        </div>
+
+        <div class="card" id="taxIdInvoiceSuggestionsCard" style="display: none;">
+            <div class="panel-title">
+                <i class="fas fa-lightbulb"></i> AI鏀硅繘寤鸿
+            </div>
+            <div class="card-content ai-analysis-output" id="taxIdInvoiceSuggestions">
+                <p style="text-align: center; color: #a3c3ff;">AI鏀硅繘寤鸿灏嗗湪姝ゅ鏄剧ず...</p>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block right_panel_content %}
+    {% include '_history_panel.html' %}
+{% endblock %}
+
+{% block extra_js %}
+    <script src="{{ url_for('static', filename='js/qichacha.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/history_panel.js') }}"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            document.getElementById('taxIdInvoiceResultCard').style.display = 'none';
+            document.getElementById('taxIdInvoiceRiskFactorsCard').style.display = 'none';
+            document.getElementById('taxIdInvoiceSuggestionsCard').style.display = 'none';
+            // Set history type for this page
+            const historyTableBody = document.getElementById('historyRecordsTableBody');
+            if (historyTableBody) {
+                historyTableBody.dataset.historyType = 'q1_shuihaokaipiao';
+                updateHistoryAssessmentsTable(); // Load history for this specific page
+            }
+        });
+    </script>
+{% endblock %}

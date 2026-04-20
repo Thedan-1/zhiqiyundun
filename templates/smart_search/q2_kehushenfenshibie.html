@@ -1,0 +1,77 @@
+﻿{% extends "base.html" %}
+
+{% block title %}钃濆績鏅烘煡 - 瀹㈡埛韬唤璇嗗埆 (KYC){% endblock %}
+
+{% block center_content %}
+    <div class="qichacha-container">
+        <div class="qichacha-header">
+            <div class="qichacha-title">钃濆績鏅烘煡 - 瀹㈡埛韬唤璇嗗埆 (KYC)</div>
+            <div class="qichacha-subtitle">瀵规爣鍚勭被鍨嬮噾铻嶆満鏋勭殑瀵瑰叕瀹㈡埛灏借亴璋冩煡涓氬姟鍦烘櫙锛屾牳楠屽鎴疯韩浠戒俊鎭殑涓€鑷存€т笌鏈夋晥鎬э紝鍔╁姏瀹㈡埛鍏ㄧ敓鍛藉懆鏈熺鐞嗭紝骞剁粨鍚圓I杩涜椋庨櫓鍒嗘瀽銆?/div>
+        </div>
+
+        <div class="card">
+            <div class="panel-title">
+                <i class="fas fa-id-card"></i> 瀹㈡埛韬唤淇℃伅鏌ヨ
+            </div>
+            <div class="card-content">
+                <div class="form-group">
+                    <label for="kycSearchKey"><i class="fas fa-building"></i> 鎼滅储鍏抽敭璇嶏紙浼佷笟鍚嶇О鎴栫粺涓€绀句細淇＄敤浠ｇ爜锛?/label>
+                    <input type="text" id="kycSearchKey" placeholder="杈撳叆浼佷笟鍚嶇О鎴栦唬鐮?>
+                </div>
+                <button id="kycAnalyzeBtn" class="btn">
+                    <i class="fas fa-search"></i> 鏌ヨ骞禔I鍒嗘瀽
+                </button>
+            </div>
+        </div>
+
+        <!-- 淇敼杩欓噷锛氭坊鍔?ID 鍜屽垵濮嬮殣钘忔牱寮?-->
+        <div class="card" id="kycResultCard" style="display: none;">
+            <div class="panel-title">
+                <i class="fas fa-info-circle"></i> 鏌ヨ缁撴灉
+            </div>
+            <div class="card-content" id="kycResultDisplay">
+                <p style="text-align: center; color: #a3c3ff;">璇疯緭鍏ュ叧閿瘝杩涜鏌ヨ...</p>
+            </div>
+        </div>
+
+        <div class="card" id="kycRiskFactorsCard" style="display: none;">
+            <div class="panel-title">
+                <i class="fas fa-exclamation-triangle"></i> AI椋庨櫓鍒嗘瀽
+            </div>
+            <div class="card-content ai-analysis-output" id="kycRiskFactors">
+                <p style="text-align: center; color: #a3c3ff;">AI鍒嗘瀽缁撴灉灏嗗湪姝ゅ鏄剧ず...</p>
+            </div>
+        </div>
+
+        <div class="card" id="kycSuggestionsCard" style="display: none;">
+            <div class="panel-title">
+                <i class="fas fa-lightbulb"></i> AI鏀硅繘寤鸿
+            </div>
+            <div class="card-content ai-analysis-output" id="kycSuggestions">
+                <p style="text-align: center; color: #a3c3ff;">AI鏀硅繘寤鸿灏嗗湪姝ゅ鏄剧ず...</p>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block right_panel_content %}
+    {% include '_history_panel.html' %}
+{% endblock %}
+
+{% block extra_js %}
+    <script src="{{ url_for('static', filename='js/qichacha.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/history_panel.js') }}"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            document.getElementById('kycResultCard').style.display = 'none';
+            document.getElementById('kycRiskFactorsCard').style.display = 'none';
+            document.getElementById('kycSuggestionsCard').style.display = 'none';
+            // Set history type for this page
+            const historyTableBody = document.getElementById('historyRecordsTableBody');
+            if (historyTableBody) {
+                historyTableBody.dataset.historyType = 'q2_kehushenfenshibie';
+                updateHistoryAssessmentsTable(); // Load history for this specific page
+            }
+        });
+    </script>
+{% endblock %}

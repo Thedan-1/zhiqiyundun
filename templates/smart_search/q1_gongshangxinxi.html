@@ -1,0 +1,77 @@
+﻿{% extends "base.html" %}
+
+{% block title %}钃濆績鏅烘煡 - 浼佷笟宸ュ晢淇℃伅{% endblock %}
+
+{% block center_content %}
+    <div class="qichacha-container">
+        <div class="qichacha-header">
+            <div class="qichacha-title">钃濆績鏅烘煡 - 浼佷笟宸ュ晢淇℃伅</div>
+            <div class="qichacha-subtitle">瀹炴椂鏌ヨ浼佷笟宸ュ晢淇℃伅锛岃繑鍥炰紒涓氬悕绉般€佷紒涓氱被鍨嬨€佹敞鍐岃祫鏈€佺粺涓€绀句細淇＄敤浠ｇ爜銆佺粡钀ヨ寖鍥淬€佽惀涓氭湡闄愩€佷笂甯傜姸鎬佺瓑淇℃伅锛屽苟缁撳悎AI杩涜椋庨櫓鍒嗘瀽銆?/div>
+        </div>
+
+        <div class="card">
+            <div class="panel-title">
+                <i class="fas fa-search"></i> 宸ュ晢淇℃伅鏌ヨ
+            </div>
+            <div class="card-content">
+                <div class="form-group">
+                    <label for="companyNameIndustrial"><i class="fas fa-building"></i> 鎼滅储鍏抽敭璇嶏紙浼佷笟鍚嶇О鎴栫粺涓€绀句細淇＄敤浠ｇ爜锛?/label>
+                    <input type="text" id="companyNameIndustrial" placeholder="杈撳叆浼佷笟鍚嶇О鎴栦唬鐮?>
+                </div>
+                <button id="industrialInfoAnalyzeBtn" class="btn">
+                    <i class="fas fa-search"></i> 鏌ヨ骞禔I鍒嗘瀽
+                </button>
+            </div>
+        </div>
+
+        <!-- 淇敼杩欓噷锛氭坊鍔?ID 鍜屽垵濮嬮殣钘忔牱寮?-->
+        <div class="card" id="industrialInfoResultCard" style="display: none;">
+            <div class="panel-title">
+                <i class="fas fa-info-circle"></i> 鏌ヨ缁撴灉
+            </div>
+            <div class="card-content" id="industrialInfoResultDisplay">
+                <p style="text-align: center; color: #a3c3ff;">璇疯緭鍏ュ叧閿瘝杩涜鏌ヨ...</p>
+            </div>
+        </div>
+
+        <div class="card" id="industrialInfoRiskFactorsCard" style="display: none;">
+            <div class="panel-title">
+                <i class="fas fa-exclamation-triangle"></i> AI椋庨櫓鍒嗘瀽
+            </div>
+            <div class="card-content ai-analysis-output" id="industrialInfoRiskFactors">
+                <p style="text-align: center; color: #a3c3ff;">AI鍒嗘瀽缁撴灉灏嗗湪姝ゅ鏄剧ず...</p>
+            </div>
+        </div>
+
+        <div class="card" id="industrialInfoSuggestionsCard" style="display: none;">
+            <div class="panel-title">
+                <i class="fas fa-lightbulb"></i> AI鏀硅繘寤鸿
+            </div>
+            <div class="card-content ai-analysis-output" id="industrialInfoSuggestions">
+                <p style="text-align: center; color: #a3c3ff;">AI鏀硅繘寤鸿灏嗗湪姝ゅ鏄剧ず...</p>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block right_panel_content %}
+    {% include '_history_panel.html' %}
+{% endblock %}
+
+{% block extra_js %}
+    <script src="{{ url_for('static', filename='js/qichacha.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/history_panel.js') }}"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            document.getElementById('industrialInfoResultCard').style.display = 'none';
+            document.getElementById('industrialInfoRiskFactorsCard').style.display = 'none';
+            document.getElementById('industrialInfoSuggestionsCard').style.display = 'none';
+            // Set history type for this page
+            const historyTableBody = document.getElementById('historyRecordsTableBody');
+            if (historyTableBody) {
+                historyTableBody.dataset.historyType = 'q1_gongshangxinxi';
+                updateHistoryAssessmentsTable(); // Load history for this specific page
+            }
+        });
+    </script>
+{% endblock %}

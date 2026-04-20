@@ -1,0 +1,49 @@
+﻿{% extends "auth_base.html" %} {# <-- 淇敼杩欓噷锛岀户鎵?auth_base.html #}
+{% block title %}鐧诲綍 - 钃濆績鏅虹{% endblock %}
+
+{% block auth_content %} {# <-- 淇敼杩欓噷锛屼娇鐢?auth_content 鍧?#}
+<div class="auth-container"> {# <-- 浣跨敤鏂扮殑 auth-container 绫?#}
+    <div class="auth-header"> {# <-- 浣跨敤鏂扮殑 auth-header 绫?#}
+        <div class="auth-title">鐢ㄦ埛鐧诲綍</div> {# <-- 浣跨敤鏂扮殑 auth-title 绫?#}
+        <div class="auth-subtitle">璁块棶骞冲彴鍔熻兘闇€瑕佺櫥褰?/div> {# <-- 浣跨敤鏂扮殑 auth-subtitle 绫?#}
+    </div>
+
+    <div class="card" style="background-color: transparent; box-shadow: none; border: none; padding: 0;"> {# 绉婚櫎 card 鐨勮儗鏅拰闃村奖锛屽洜涓?auth-container 宸茬粡鏈変簡 #}
+        <div class="card-content" style="padding: 0;"> {# 绉婚櫎 card-content 鐨勫唴杈硅窛 #}
+            <form method="POST" action="{{ url_for('login') }}">
+                {{ form.hidden_tag() }}
+                <div class="form-group">
+                    {{ form.username.label }}
+                    {{ form.username(class="form-control", placeholder="璇疯緭鍏ョ敤鎴峰悕") }}
+                    {% if form.username.errors %}
+                        <ul class="errors">
+                            {% for error in form.username.errors %}
+                                <li style="color: var(--danger-color); font-size: 0.9em;">{{ error }}</li>
+                            {% endfor %}
+                        </ul>
+                    {% endif %}
+                </div>
+                <div class="form-group">
+                    {{ form.password.label }}
+                    {{ form.password(class="form-control", placeholder="璇疯緭鍏ュ瘑鐮?) }}
+                    {% if form.password.errors %}
+                        <ul class="errors">
+                            {% for error in form.password.errors %}
+                                <li style="color: var(--danger-color); font-size: 0.9em;">{{ error }}</li>
+                            {% endfor %}
+                        </ul>
+                    {% endif %}
+                </div>
+                <div class="form-group" style="display: flex; align-items: center; gap: 10px;">
+                    {{ form.remember(style="width: auto; margin-right: 5px;") }}
+                    {{ form.remember.label }}
+                </div>
+                {{ form.submit(class="btn") }}
+            </form>
+            <p style="text-align: center; margin-top: 20px; color: #a3c3ff;">
+                杩樻病鏈夎处鎴凤紵 <a href="{{ url_for('register') }}" style="color: var(--accent-color); text-decoration: none;">绔嬪嵆娉ㄥ唽</a>
+            </p>
+        </div>
+    </div>
+</div>
+{% endblock %}

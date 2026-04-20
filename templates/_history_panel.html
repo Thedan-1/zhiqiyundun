@@ -1,0 +1,25 @@
+﻿<div class="card">
+    <div class="panel-title">
+        <i class="fas fa-history"></i> 鍘嗗彶璁板綍
+    </div>
+    <div class="card-content">
+        <div class="form-group">
+            <label for="historySearchInput"><i class="fas fa-search"></i> 鎼滅储鍏徃鍚嶇О</label>
+            <input type="text" id="historySearchInput" placeholder="杈撳叆鍏徃鍚嶇О">
+        </div>
+        <table class="table risk-table">
+            <thead>
+                <tr>
+                    <th>鍏徃鍚嶇О</th>
+                    <th>椋庨櫓绛夌骇</th>
+                    <th>璇勪及鏃堕棿</th>
+                    <th>鎿嶄綔</th>
+                </tr>
+            </thead>
+            <tbody id="historyRecordsTableBody" data-history-type="{{ request.endpoint }}">
+                <!-- History records will be loaded here by JavaScript -->
+                <tr><td colspan="4" style="text-align: center; color: #a3c3ff;">鏆傛棤鍘嗗彶璁板綍</td></tr>
+            </tbody>
+        </table>
+    </div>
+</div>

@@ -1,0 +1,67 @@
+﻿{% extends "auth_base.html" %} {# <-- 淇敼杩欓噷锛岀户鎵?auth_base.html #}
+{% block title %}娉ㄥ唽 - 钃濆績鏅虹{% endblock %}
+
+{% block auth_content %} {# <-- 淇敼杩欓噷锛屼娇鐢?auth_content 鍧?#}
+<div class="auth-container">
+    <div class="auth-header">
+        <div class="auth-title">鐢ㄦ埛娉ㄥ唽</div>
+        <div class="auth-subtitle">鍒涘缓鎮ㄧ殑璐︽埛浠ヨ闂钩鍙?/div>
+    </div>
+
+    <div class="card" style="background-color: transparent; box-shadow: none; border: none; padding: 0;">
+        <div class="card-content" style="padding: 0;">
+            <form method="POST" action="{{ url_for('register') }}">
+                {{ form.hidden_tag() }}
+                <div class="form-group">
+                    {{ form.username.label }}
+                    {{ form.username(class="form-control", placeholder="璇疯緭鍏ョ敤鎴峰悕") }}
+                    {% if form.username.errors %}
+                        <ul class="errors">
+                            {% for error in form.username.errors %}
+                                <li style="color: var(--danger-color); font-size: 0.9em;">{{ error }}</li>
+                            {% endfor %}
+                        </ul>
+                    {% endif %}
+                </div>
+                <div class="form-group">
+                    {{ form.email.label }}
+                    {{ form.email(class="form-control", placeholder="璇疯緭鍏ラ偖绠?) }}
+                    {% if form.email.errors %}
+                        <ul class="errors">
+                            {% for error in form.email.errors %}
+                                <li style="color: var(--danger-color); font-size: 0.9em;">{{ error }}</li>
+                            {% endfor %}
+                        </ul>
+                    {% endif %}
+                </div>
+                <div class="form-group">
+                    {{ form.password.label }}
+                    {{ form.password(class="form-control", placeholder="璇疯緭鍏ュ瘑鐮?) }}
+                    {% if form.password.errors %}
+                        <ul class="errors">
+                            {% for error in form.password.errors %}
+                                <li style="color: var(--danger-color); font-size: 0.9em;">{{ error }}</li>
+                            {% endfor %}
+                        </ul>
+                    {% endif %}
+                </div>
+                <div class="form-group">
+                    {{ form.confirm_password.label }}
+                    {{ form.confirm_password(class="form-control", placeholder="璇风‘璁ゅ瘑鐮?) }}
+                    {% if form.confirm_password.errors %}
+                        <ul class="errors">
+                            {% for error in form.confirm_password.errors %}
+                                <li style="color: var(--danger-color); font-size: 0.9em;">{{ error }}</li>
+                            {% endfor %}
+                        </ul>
+                    {% endif %}
+                </div>
+                {{ form.submit(class="btn") }}
+            </form>
+            <p style="text-align: center; margin-top: 20px; color: #a3c3ff;">
+                宸茬粡鏈夎处鎴蜂簡锛?<a href="{{ url_for('login') }}" style="color: var(--accent-color); text-decoration: none;">绔嬪嵆鐧诲綍</a>
+            </p>
+        </div>
+    </div>
+</div>
+{% endblock %}

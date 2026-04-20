@@ -1,0 +1,81 @@
+﻿{% extends "base.html" %}
+
+{% block title %}钃濆績鏅烘煡 - 涓ラ噸杩濇硶鏍告煡{% endblock %}
+
+{% block center_content %}
+    <div class="qichacha-container">
+        <div class="qichacha-header">
+            <div class="qichacha-title">钃濆績鏅烘煡 - 涓ラ噸杩濇硶鏍告煡</div>
+            <div class="qichacha-subtitle">鏈姛鑳藉皢鏌ヨ浼佷笟鏄惁琚垪鍏ヤ弗閲嶈繚娉曞け淇′紒涓氬悕鍗曪紝骞跺埄鐢ㄨ摑蹇冨ぇ妯″瀷杩涜椋庨櫓鍒嗘瀽銆?/div>
+        </div>
+
+        <div class="card">
+            <div class="panel-title">
+                <i class="fas fa-exclamation-triangle"></i> 涓ラ噸杩濇硶鏍告煡
+            </div>
+            <div class="card-content">
+                <div class="form-group">
+                    <label for="seriousIllegalSearchKey"><i class="fas fa-building"></i> 浼佷笟鍚嶇О鎴栫粺涓€绀句細淇＄敤浠ｇ爜</label>
+                    <input type="text" id="seriousIllegalSearchKey" placeholder="璇疯緭鍏ヤ紒涓氬悕绉版垨缁熶竴绀句細淇＄敤浠ｇ爜">
+                </div>
+                <div class="form-group">
+                    <label for="seriousIllegalCompanyNameForBlueLM"><i class="fas fa-tag"></i> 鐢ㄤ簬AI鍒嗘瀽鐨勫叕鍙稿悕绉?(鍙€夛紝榛樿涓烘煡璇㈠叧閿瘝)</label>
+                    <input type="text" id="seriousIllegalCompanyNameForBlueLM" placeholder="渚嬪: 鏌愭煇绉戞妧鍏徃">
+                    <small class="form-text text-muted">姝ゅ悕绉板皢浣滀负AI鍒嗘瀽鎶ュ憡涓殑涓讳綋鍏徃鍚嶇О銆?/small>
+                </div>
+                <button id="seriousIllegalAnalyzeBtn" class="btn">
+                    <i class="fas fa-magic"></i> 鏌ヨ骞禔I鍒嗘瀽
+                </button>
+            </div>
+        </div>
+
+        <div class="card" id="seriousIllegalResultCard" style="display: none;">
+            <div class="panel-title">
+                <i class="fas fa-info-circle"></i> 浼佹煡鏌ヤ弗閲嶈繚娉曟牳鏌ョ粨鏋?
+            </div>
+            <div class="card-content" id="seriousIllegalResultDisplay">
+                <p class="suggestion-item">鏌ヨ缁撴灉灏嗗湪姝ゅ鏄剧ず銆?/p>
+            </div>
+        </div>
+
+        <div class="card" id="seriousIllegalRiskFactorsCard" style="display: none;">
+            <div class="panel-title">
+                <i class="fas fa-exclamation-triangle"></i> AI 椋庨櫓鍒嗘瀽鎶ュ憡
+            </div>
+            <div class="card-content ai-analysis-output" id="seriousIllegalRiskFactors">
+                <p class="suggestion-item">AI 椋庨櫓鍒嗘瀽鎶ュ憡灏嗗湪姝ゅ鏄剧ず銆?/p>
+            </div>
+        </div>
+
+        <div class="card" id="seriousIllegalSuggestionsCard" style="display: none;">
+            <div class="panel-title">
+                <i class="fas fa-lightbulb"></i> AI 鏀硅繘寤鸿
+            </div>
+            <div class="card-content ai-analysis-output" id="seriousIllegalSuggestions">
+                <p class="suggestion-item">AI 鏀硅繘寤鸿灏嗗湪姝ゅ鏄剧ず銆?/p>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block right_panel_content %}
+    {% include '_history_panel.html' %}
+{% endblock %}
+
+{% block extra_js %}
+    <script src="{{ url_for('static', filename='js/qichacha.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/history_panel.js') }}"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            document.getElementById('seriousIllegalResultCard').style.display = 'none';
+            document.getElementById('seriousIllegalRiskFactorsCard').style.display = 'none';
+            document.getElementById('seriousIllegalSuggestionsCard').style.display = 'none';
+            // Set history type for this page
+            const historyTableBody = document.getElementById('historyRecordsTableBody');
+            if (historyTableBody) {
+                historyTableBody.dataset.historyType = 'q3_yanzhongweifahecha';
+                updateHistoryAssessmentsTable(); // Load history for this specific page
+            }
+        });
+    </script>
+{% endblock %}

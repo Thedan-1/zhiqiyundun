@@ -1,0 +1,77 @@
+﻿{% extends "base.html" %}
+
+{% block title %}钃濆績鏅烘煡 - 涓撳埄鏌ヨ{% endblock %}
+
+{% block center_content %}
+    <div class="qichacha-container">
+        <div class="qichacha-header">
+            <div class="qichacha-title">钃濆績鏅烘煡 - 涓撳埄鏌ヨ</div>
+            <div class="qichacha-subtitle">鏀寔鏌ヨ浼佷笟鎴栨煇鎶€鏈殑涓撳埄锛屼娇鐢ㄦ埛鎺屾彙鐩稿悓鎶€鏈鍩熺殑鍙戝睍鐘跺喌锛岃閬夸粬浜虹煡璇嗕骇鏉冨拰璋冩暣鐮斿彂鏂瑰悜鎻愪緵鍙傝€冿紝骞剁粨鍚圓I杩涜椋庨櫓鍒嗘瀽銆?/div>
+        </div>
+
+        <div class="card">
+            <div class="panel-title">
+                <i class="fas fa-lightbulb"></i> 涓撳埄淇℃伅鏌ヨ
+            </div>
+            <div class="card-content">
+                <div class="form-group">
+                    <label for="patentSearchKey"><i class="fas fa-keyboard"></i> 鏌ヨ鍏抽敭瀛楋紙鍏徃鍚嶇О銆佷笓鍒╁悕绉般€佺敵璇峰彿绛夛級</label>
+                    <input type="text" id="patentSearchKey" placeholder="杈撳叆鍏徃鍚嶇О鎴栦笓鍒╁悕绉?>
+                </div>
+                <button id="patentAnalyzeBtn" class="btn">
+                    <i class="fas fa-search"></i> 鏌ヨ骞禔I鍒嗘瀽
+                </button>
+            </div>
+        </div>
+
+        <!-- 淇敼杩欓噷锛氭坊鍔?ID 鍜屽垵濮嬮殣钘忔牱寮?-->
+        <div class="card" id="patentResultCard" style="display: none;">
+            <div class="panel-title">
+                <i class="fas fa-info-circle"></i> 鏌ヨ缁撴灉
+            </div>
+            <div class="card-content" id="patentResultDisplay">
+                <p style="text-align: center; color: #a3c3ff;">璇疯緭鍏ュ叧閿瘝杩涜鏌ヨ...</p>
+            </div>
+        </div>
+
+        <div class="card" id="patentRiskFactorsCard" style="display: none;">
+            <div class="panel-title">
+                <i class="fas fa-exclamation-triangle"></i> AI椋庨櫓鍒嗘瀽
+            </div>
+            <div class="card-content ai-analysis-output" id="patentRiskFactors">
+                <p style="text-align: center; color: #a3c3ff;">AI鍒嗘瀽缁撴灉灏嗗湪姝ゅ鏄剧ず...</p>
+            </div>
+        </div>
+
+        <div class="card" id="patentSuggestionsCard" style="display: none;">
+            <div class="panel-title">
+                <i class="fas fa-lightbulb"></i> AI鏀硅繘寤鸿
+            </div>
+            <div class="card-content ai-analysis-output" id="patentSuggestions">
+                <p style="text-align: center; color: #a3c3ff;">AI鏀硅繘寤鸿灏嗗湪姝ゅ鏄剧ず...</p>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block right_panel_content %}
+    {% include '_history_panel.html' %}
+{% endblock %}
+
+{% block extra_js %}
+    <script src="{{ url_for('static', filename='js/qichacha.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/history_panel.js') }}"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            document.getElementById('patentResultCard').style.display = 'none';
+            document.getElementById('patentRiskFactorsCard').style.display = 'none';
+            document.getElementById('patentSuggestionsCard').style.display = 'none';
+            // Set history type for this page
+            const historyTableBody = document.getElementById('historyRecordsTableBody');
+            if (historyTableBody) {
+                historyTableBody.dataset.historyType = 'q2_zhuanlichaxun';
+                updateHistoryAssessmentsTable(); // Load history for this specific page
+            }
+        });
+    </script>
+{% endblock %}

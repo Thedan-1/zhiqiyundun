@@ -1,0 +1,16 @@
+.env
+.venv/
+__pycache__/
+*.pyc
+*.pyo
+*.db
+*.sqlite3
+*.log
+*.pcap
+shell.php
+instance/
+processed_images/
+*.tmp
+*.swp
+.DS_Store
+Thumbs.db

@@ -1,0 +1,72 @@
+﻿{% extends "base.html" %}
+{% block title %}绠＄悊瑙掕壊鏉冮檺 - 钃濆績鏅虹{% endblock %}
+
+{% block center_content %}
+<div class="qichacha-container" style="max-width: 700px; margin: 50px auto; padding: 30px;">
+    <div class="qichacha-header">
+        <div class="qichacha-title">绠＄悊瑙掕壊 "{{ role.name }}" 鐨勬潈闄?/div>
+        <div class="qichacha-subtitle">鍕鹃€夋瑙掕壊鎷ユ湁鐨勬潈闄?/div>
+    </div>
+
+    <div class="card">
+        <div class="card-content">
+            <form method="POST" action="{{ url_for('admin_role_permissions', role_id=role.id) }}">
+                {{ form.hidden_tag() if form else '' }} {# Flask-WTF form might not be passed, so check #}
+                <div class="form-group">
+                    <label><strong>鍙敤鏉冮檺鍒楄〃锛?/strong></label>
+                    <div class="permission-list-grid">
+                        {% for perm in all_permissions %}
+                            <label class="checkbox-container">
+                                <input type="checkbox" name="permissions" value="{{ perm.id }}" {% if perm.id in role_permission_ids %}checked{% endif %}>
+                                <span class="checkmark"></span>
+                                {{ perm.name }} ({{ perm.description }})
+                            </label>
+                        {% endfor %}
+                    </div>
+                </div>
+                <button type="submit" class="btn"><i class="fas fa-save"></i> 淇濆瓨鏉冮檺</button>
+            </form>
+            <p style="text-align: center; margin-top: 20px; color: #a3c3ff;">
+                <a href="{{ url_for('admin_roles') }}" style="color: var(--accent-color); text-decoration: none;"><i class="fas fa-arrow-left"></i> 杩斿洖瑙掕壊鍒楄〃</a>
+            </p>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block right_panel_content %}
+    <div class="one-stop-platform-container">
+        {% if categorized_links %}
+            {% for category_name, links in categorized_links.items() %}
+                <div class="platform-category">
+                    <div class="platform-category-title">
+                        <i class="fas fa-{{ category_icons.get(category_name, 'th-large') }}"></i>
+                        {{ category_name }}
+                    </div>
+                    <div class="platform-items-grid">
+                        {% for link in links %}
+                            <div class="platform-item">
+                                {% if link.icon and link.icon.startswith('fas') %}
+                                    <i class="{{ link.icon }}" style="font-size: 40px; color: var(--accent-color);"></i>
+                                {% elif link.icon %}
+                                    <img src="{{ url_for('static', filename='icons/' + link.icon) }}" alt="{{ link.name }}鍥炬爣">
+                                {% else %}
+                                    <i class="fas fa-link" style="font-size: 40px; color: var(--text-color-light);"></i>
+                                {% endif %}
+
+                                <a href="{{ link.url }}" target="_blank" style="text-decoration: none; display: flex; flex-direction: column; align-items: center; width: 100%; color: inherit;">
+                                    <div class="platform-item-name">{{ link.name }}</div>
+                                    {% if link.description %}
+                                        <div class="platform-item-description">{{ link.description | truncate(15, True, '...') }}</div>
+                                    {% endif %}
+                                </a>
+                            </div>
+                        {% endfor %}
+                    </div>
+                </div>
+            {% endfor %}
+        {% else %}
+            <p class="no-content-message">鏆傛棤澶栭儴骞冲彴閾炬帴銆?/p>
+        {% endif %}
+    </div>
+{% endblock %}
