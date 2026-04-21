@@ -1,4 +1,4 @@
-﻿# app.py
+# app.py
 # -*- coding: utf-8 -*-
 from flask import Flask, request, jsonify, render_template, url_for, redirect, flash, session, abort, send_file
 import requests
@@ -3942,4 +3942,3 @@ if __name__ == '__main__':
             print("External links already exist, skipping initial population.")
 
         app.run(debug=True, host='0.0.0.0', port=5013)
-

@@ -1,54 +1,54 @@
-﻿{% extends "base.html" %}
+{% extends "base.html" %}
 
-{% block title %}钃濆績鏅烘煡 - 瀹㈡埛韬唤璇嗗埆 (KYC){% endblock %}
+{% block title %}蓝心智查 - 客户身份识别 (KYC){% endblock %}
 
 {% block center_content %}
     <div class="qichacha-container">
         <div class="qichacha-header">
-            <div class="qichacha-title">钃濆績鏅烘煡 - 瀹㈡埛韬唤璇嗗埆 (KYC)</div>
-            <div class="qichacha-subtitle">瀵规爣鍚勭被鍨嬮噾铻嶆満鏋勭殑瀵瑰叕瀹㈡埛灏借亴璋冩煡涓氬姟鍦烘櫙锛屾牳楠屽鎴疯韩浠戒俊鎭殑涓€鑷存€т笌鏈夋晥鎬э紝鍔╁姏瀹㈡埛鍏ㄧ敓鍛藉懆鏈熺鐞嗭紝骞剁粨鍚圓I杩涜椋庨櫓鍒嗘瀽銆?/div>
+            <div class="qichacha-title">蓝心智查 - 客户身份识别 (KYC)</div>
+            <div class="qichacha-subtitle">对标各类型金融机构的对公客户尽职调查业务场景，核验客户身份信息的一致性与有效性，助力客户全生命周期管理，并结合AI进行风险分析。</div>
         </div>
 
         <div class="card">
             <div class="panel-title">
-                <i class="fas fa-id-card"></i> 瀹㈡埛韬唤淇℃伅鏌ヨ
+                <i class="fas fa-id-card"></i> 客户身份信息查询
             </div>
             <div class="card-content">
                 <div class="form-group">
-                    <label for="kycSearchKey"><i class="fas fa-building"></i> 鎼滅储鍏抽敭璇嶏紙浼佷笟鍚嶇О鎴栫粺涓€绀句細淇＄敤浠ｇ爜锛?/label>
-                    <input type="text" id="kycSearchKey" placeholder="杈撳叆浼佷笟鍚嶇О鎴栦唬鐮?>
+                    <label for="kycSearchKey"><i class="fas fa-building"></i> 搜索关键词（企业名称或统一社会信用代码）</label>
+                    <input type="text" id="kycSearchKey" placeholder="输入企业名称或代码">
                 </div>
                 <button id="kycAnalyzeBtn" class="btn">
-                    <i class="fas fa-search"></i> 鏌ヨ骞禔I鍒嗘瀽
+                    <i class="fas fa-search"></i> 查询并AI分析
                 </button>
             </div>
         </div>
 
-        <!-- 淇敼杩欓噷锛氭坊鍔?ID 鍜屽垵濮嬮殣钘忔牱寮?-->
+        <!-- 修改这里：添加 ID 和初始隐藏样式 -->
         <div class="card" id="kycResultCard" style="display: none;">
             <div class="panel-title">
-                <i class="fas fa-info-circle"></i> 鏌ヨ缁撴灉
+                <i class="fas fa-info-circle"></i> 查询结果
             </div>
             <div class="card-content" id="kycResultDisplay">
-                <p style="text-align: center; color: #a3c3ff;">璇疯緭鍏ュ叧閿瘝杩涜鏌ヨ...</p>
+                <p style="text-align: center; color: #a3c3ff;">请输入关键词进行查询...</p>
             </div>
         </div>
 
         <div class="card" id="kycRiskFactorsCard" style="display: none;">
             <div class="panel-title">
-                <i class="fas fa-exclamation-triangle"></i> AI椋庨櫓鍒嗘瀽
+                <i class="fas fa-exclamation-triangle"></i> AI风险分析
             </div>
             <div class="card-content ai-analysis-output" id="kycRiskFactors">
-                <p style="text-align: center; color: #a3c3ff;">AI鍒嗘瀽缁撴灉灏嗗湪姝ゅ鏄剧ず...</p>
+                <p style="text-align: center; color: #a3c3ff;">AI分析结果将在此处显示...</p>
             </div>
         </div>
 
         <div class="card" id="kycSuggestionsCard" style="display: none;">
             <div class="panel-title">
-                <i class="fas fa-lightbulb"></i> AI鏀硅繘寤鸿
+                <i class="fas fa-lightbulb"></i> AI改进建议
             </div>
             <div class="card-content ai-analysis-output" id="kycSuggestions">
-                <p style="text-align: center; color: #a3c3ff;">AI鏀硅繘寤鸿灏嗗湪姝ゅ鏄剧ず...</p>
+                <p style="text-align: center; color: #a3c3ff;">AI改进建议将在此处显示...</p>
             </div>
         </div>
     </div>

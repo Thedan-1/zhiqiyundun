@@ -1,23 +1,23 @@
-﻿{% extends "base.html" %}
-{% block title %}绯荤粺璁剧疆 - 钃濆績鏅虹{% endblock %}
+{% extends "base.html" %}
+{% block title %}系统设置 - 智企云盾{% endblock %}
 
 {% block center_content %}
 <div class="qichacha-container">
     <div class="qichacha-header">
-        <div class="qichacha-title">绯荤粺璁剧疆</div>
-        <div class="qichacha-subtitle">绠＄悊绯荤粺鍚勯」閰嶇疆</div>
+        <div class="qichacha-title">系统设置</div>
+        <div class="qichacha-subtitle">管理系统各项配置</div>
     </div>
 
     <div class="card">
         <div class="panel-title">
-            <i class="fas fa-plus-circle"></i> 娣诲姞鏂拌缃」
+            <i class="fas fa-plus-circle"></i> 添加新设置项
         </div>
         <div class="card-content">
             <form method="POST" action="{{ url_for('admin_settings') }}">
                 {{ form.hidden_tag() }}
                 <div class="form-group">
                     {{ form.key.label }}
-                    {{ form.key(class="form-control", placeholder="璇疯緭鍏ヨ缃敭锛屼緥濡傦細BLUE_LM_APP_ID") }}
+                    {{ form.key(class="form-control", placeholder="请输入设置键，例如：BLUE_LM_APP_ID") }}
                     {% if form.key.errors %}
                         <ul class="errors">
                             {% for error in form.key.errors %}
@@ -28,7 +28,7 @@
                 </div>
                 <div class="form-group">
                     {{ form.value.label }}
-                    {{ form.value(class="form-control", rows="3", placeholder="璇疯緭鍏ヨ缃€?) }}
+                    {{ form.value(class="form-control", rows="3", placeholder="请输入设置值") }}
                     {% if form.value.errors %}
                         <ul class="errors">
                             {% for error in form.value.errors %}
@@ -39,7 +39,7 @@
                 </div>
                 <div class="form-group">
                     {{ form.description.label }}
-                    {{ form.description(class="form-control", rows="2", placeholder="璇疯緭鍏ヨ缃弿杩?) }}
+                    {{ form.description(class="form-control", rows="2", placeholder="请输入设置描述") }}
                     {% if form.description.errors %}
                         <ul class="errors">
                             {% for error in form.description.errors %}
@@ -55,7 +55,7 @@
 
     <div class="card" style="margin-top: 30px;">
         <div class="panel-title">
-            <i class="fas fa-cogs"></i> 鐜版湁璁剧疆椤?
+            <i class="fas fa-cogs"></i> 现有设置项
         </div>
         <div class="card-content">
             <div class="table-responsive">
@@ -63,11 +63,11 @@
                     <thead>
                         <tr>
                             <th>ID</th>
-                            <th>璁剧疆閿?/th>
-                            <th>璁剧疆鍊?/th>
-                            <th>鎻忚堪</th>
-                            <th>鏈€鍚庢洿鏂?/th>
-                            <th>鎿嶄綔</th>
+                            <th>设置键</th>
+                            <th>设置值</th>
+                            <th>描述</th>
+                            <th>最后更新</th>
+                            <th>操作</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -76,12 +76,12 @@
                             <td>{{ setting.id }}</td>
                             <td>{{ setting.key }}</td>
                             <td>{{ setting.value }}</td>
-                            <td>{{ setting.description if setting.description else '鏃? }}</td>
+                            <td>{{ setting.description if setting.description else '无' }}</td>
                             <td>{{ setting.last_updated.strftime('%Y-%m-%d %H:%M') }}</td>
                             <td>
-                                <a href="{{ url_for('admin_edit_setting', setting_id=setting.id) }}" class="case-link" style="margin-right: 10px;">缂栬緫</a>
+                                <a href="{{ url_for('admin_edit_setting', setting_id=setting.id) }}" class="case-link" style="margin-right: 10px;">编辑</a>
                                 <form action="{{ url_for('admin_delete_setting', setting_id=setting.id) }}" method="POST" style="display: inline;">
-                                    <button type="submit" class="case-link" style="background: none; border: none; color: var(--danger-color); cursor: pointer;">鍒犻櫎</button>
+                                    <button type="submit" class="case-link" style="background: none; border: none; color: var(--danger-color); cursor: pointer;">删除</button>
                                 </form>
                             </td>
                         </tr>
@@ -109,7 +109,7 @@
                                 {% if link.icon and link.icon.startswith('fas') %}
                                     <i class="{{ link.icon }}" style="font-size: 40px; color: var(--accent-color);"></i>
                                 {% elif link.icon %}
-                                    <img src="{{ url_for('static', filename='icons/' + link.icon) }}" alt="{{ link.name }}鍥炬爣">
+                                    <img src="{{ url_for('static', filename='icons/' + link.icon) }}" alt="{{ link.name }}图标">
                                 {% else %}
                                     <i class="fas fa-link" style="font-size: 40px; color: var(--text-color-light);"></i>
                                 {% endif %}
@@ -126,7 +126,7 @@
                 </div>
             {% endfor %}
         {% else %}
-            <p class="no-content-message">鏆傛棤澶栭儴骞冲彴閾炬帴銆?/p>
+            <p class="no-content-message">暂无外部平台链接。</p>
         {% endif %}
     </div>
 {% endblock %}

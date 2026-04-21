@@ -1,25 +1,25 @@
-﻿{% extends "base.html" %}
+{% extends "base.html" %}
 
-{% block title %}钃濆績鏅虹 - 璇︾粏鎶ュ憡{% endblock %}
+{% block title %}智企云盾 - 详细报告{% endblock %}
 
 {% block center_content %}
     <div class="report-container">
         <div class="report-header">
-            <div class="report-title">璇︾粏鎶ュ憡</div>
-            <div class="report-subtitle">浼佷笟鍚嶇О: {{ record.company_name }}</div>
-            <div class="report-subtitle">璇勪及鏃堕棿: {{ record.timestamp.strftime('%Y-%m-%d %H:%M:%S') }}</div>
+            <div class="report-title">详细报告</div>
+            <div class="report-subtitle">企业名称: {{ record.company_name }}</div>
+            <div class="report-subtitle">评估时间: {{ record.timestamp.strftime('%Y-%m-%d %H:%M:%S') }}</div>
             {% if report_type == 'assessment' %}
-                <div class="report-subtitle">鎬婚闄╄瘎鍒? <span class="risk-score {% if record.preliminary_risk.total >= 70 %}risk-high{% elif record.preliminary_risk.total >= 40 %}risk-medium{% else %}risk-low{% endif %}">{{ record.preliminary_risk.total }}</span></div>
-                <div class="report-subtitle">椋庨櫓绛夌骇: <span class="risk-level {% if record.preliminary_risk.total >= 70 %}level-high{% elif record.preliminary_risk.total >= 40 %}level-medium{% else %}level-low{% endif %}">{{ record.risk_level_text }}</span></div>
+                <div class="report-subtitle">总风险评分: <span class="risk-score {% if record.preliminary_risk.total >= 70 %}risk-high{% elif record.preliminary_risk.total >= 40 %}risk-medium{% else %}risk-low{% endif %}">{{ record.preliminary_risk.total }}</span></div>
+                <div class="report-subtitle">风险等级: <span class="risk-level {% if record.preliminary_risk.total >= 70 %}level-high{% elif record.preliminary_risk.total >= 40 %}level-medium{% else %}level-low{% endif %}">{{ record.risk_level_text }}</span></div>
             {% else %}
-                <div class="report-subtitle">鏌ヨ绫诲瀷: 鏅烘収鎼滄煡 - {{ report_type | replace('_', ' ') | title }}</div> {# Format type for display #}
+                <div class="report-subtitle">查询类型: 智慧搜查 - {{ report_type | replace('_', ' ') | title }}</div> {# Format type for display #}
             {% endif %}
         </div>
 
         {% if report_type == 'assessment' %}
             <div class="card">
                 <div class="panel-title">
-                    <i class="fas fa-chart-line"></i> 璇勪及杈撳叆鏁版嵁
+                    <i class="fas fa-chart-line"></i> 评估输入数据
                 </div>
                 <div class="card-content two-column-form">
                     {% for key, value in record.input_data.items() %}
@@ -33,23 +33,23 @@
 
             <div class="card">
                 <div class="panel-title">
-                    <i class="fas fa-exclamation-triangle"></i> 鍒濇椋庨櫓璇勪及寰楀垎
+                    <i class="fas fa-exclamation-triangle"></i> 初步风险评估得分
                 </div>
                 <div class="card-content two-column-form">
                     <div class="form-group">
-                        <label><strong>璐㈠姟椋庨櫓:</strong></label>
+                        <label><strong>财务风险:</strong></label>
                         <span>{{ record.preliminary_risk.financial }}</span>
                     </div>
                     <div class="form-group">
-                        <label><strong>甯傚満椋庨櫓:</strong></label>
+                        <label><strong>市场风险:</strong></label>
                         <span>{{ record.preliminary_risk.market }}</span>
                     </div>
                     <div class="form-group">
-                        <label><strong>绠＄悊椋庨櫓:</strong></label>
+                        <label><strong>管理风险:</strong></label>
                         <span>{{ record.preliminary_risk.management }}</span>
                     </div>
                     <div class="form-group">
-                        <label><strong>澶栭儴椋庨櫓:</strong></label>
+                        <label><strong>外部风险:</strong></label>
                         <span>{{ record.preliminary_risk.external }}</span>
                     </div>
                 </div>
@@ -57,7 +57,7 @@
         {% elif report_type == 'qcc_verify' %}
             <div class="card">
                 <div class="panel-title">
-                    <i class="fas fa-building"></i> 浼佹煡鏌ユ牳楠屽師濮嬫暟鎹?
+                    <i class="fas fa-building"></i> 企查查核验原始数据
                 </div>
                 <div class="card-content">
                     <pre>{{ record.qcc_data | tojson(indent=2) }}</pre>
@@ -66,7 +66,7 @@
         {% elif report_type == 'industrial_info' %}
             <div class="card">
                 <div class="panel-title">
-                    <i class="fas fa-industry"></i> 浼佷笟宸ュ晢淇℃伅鍘熷鏁版嵁
+                    <i class="fas fa-industry"></i> 企业工商信息原始数据
                 </div>
                 <div class="card-content">
                     <pre>{{ record.qcc_data | tojson(indent=2) }}</pre>
@@ -75,7 +75,7 @@
         {% elif report_type == 'fuzzy_search' %}
             <div class="card">
                 <div class="panel-title">
-                    <i class="fas fa-search-plus"></i> 浼佷笟妯＄硦鎼滅储鍘熷鏁版嵁
+                    <i class="fas fa-search-plus"></i> 企业模糊搜索原始数据
                 </div>
                 <div class="card-content">
                     <pre>{{ record.qcc_data_list | tojson(indent=2) }}</pre>
@@ -84,7 +84,7 @@
         {% elif report_type == 'tax_invoice' %}
             <div class="card">
                 <div class="panel-title">
-                    <i class="fas fa-file-invoice-dollar"></i> 绋庡彿寮€绁ㄤ俊鎭師濮嬫暟鎹?
+                    <i class="fas fa-file-invoice-dollar"></i> 税号开票信息原始数据
                 </div>
                 <div class="card-content">
                     <pre>{{ record.qcc_data | tojson(indent=2) }}</pre>
@@ -93,7 +93,7 @@
         {% elif report_type == 'kyc_verify' %}
             <div class="card">
                 <div class="panel-title">
-                    <i class="fas fa-id-card"></i> 瀹㈡埛韬唤璇嗗埆鍘熷鏁版嵁
+                    <i class="fas fa-id-card"></i> 客户身份识别原始数据
                 </div>
                 <div class="card-content">
                     <pre>{{ record.kyc_data | tojson(indent=2) }}</pre>
@@ -102,7 +102,7 @@
         {% elif report_type == 'certification' %}
             <div class="card">
                 <div class="panel-title">
-                    <i class="fas fa-award"></i> 璧勮川璇佷功鍘熷鏁版嵁
+                    <i class="fas fa-award"></i> 资质证书原始数据
                 </div>
                 <div class="card-content">
                     <pre>{{ record.certification_data_list | tojson(indent=2) }}</pre>
@@ -111,7 +111,7 @@
         {% elif report_type == 'trademark' %}
             <div class="card">
                 <div class="panel-title">
-                    <i class="fas fa-trademark"></i> 鍏ㄥ浗鍟嗘爣鏌ヨ鍘熷鏁版嵁
+                    <i class="fas fa-trademark"></i> 全国商标查询原始数据
                 </div>
                 <div class="card-content">
                     <pre>{{ record.trademark_data_list | tojson(indent=2) }}</pre>
@@ -120,7 +120,7 @@
         {% elif report_type == 'patent' %}
             <div class="card">
                 <div class="panel-title">
-                    <i class="fas fa-lightbulb"></i> 涓撳埄鏌ヨ鍘熷鏁版嵁
+                    <i class="fas fa-lightbulb"></i> 专利查询原始数据
                 </div>
                 <div class="card-content">
                     <pre>{{ record.patent_data_list | tojson(indent=2) }}</pre>
@@ -129,7 +129,7 @@
         {% elif report_type == 'annual_report' %}
             <div class="card">
                 <div class="panel-title">
-                    <i class="fas fa-file-alt"></i> 浼佷笟骞存姤淇℃伅鍘熷鏁版嵁
+                    <i class="fas fa-file-alt"></i> 企业年报信息原始数据
                 </div>
                 <div class="card-content">
                     <pre>{{ record.annual_report_data_list | tojson(indent=2) }}</pre>
@@ -138,7 +138,7 @@
         {% elif report_type == 'comprehensive_risk' %}
             <div class="card">
                 <div class="panel-title">
-                    <i class="fas fa-shield-alt"></i> 缁煎悎椋庨櫓鎺掓煡鍘熷鏁版嵁
+                    <i class="fas fa-shield-alt"></i> 综合风险排查原始数据
                 </div>
                 <div class="card-content">
                     <pre>{{ record.qcc_data | tojson(indent=2) }}</pre>
@@ -147,7 +147,7 @@
         {% elif report_type == 'shixin_check' %}
             <div class="card">
                 <div class="panel-title">
-                    <i class="fas fa-user-times"></i> 澶变俊鏍告煡鍘熷鏁版嵁
+                    <i class="fas fa-user-times"></i> 失信核查原始数据
                 </div>
                 <div class="card-content">
                     <pre>{{ record.shixin_data_list | tojson(indent=2) }}</pre>
@@ -156,7 +156,7 @@
         {% elif report_type == 'exception_check' %}
             <div class="card">
                 <div class="panel-title">
-                    <i class="fas fa-exclamation-circle"></i> 缁忚惀寮傚父鏍告煡鍘熷鏁版嵁
+                    <i class="fas fa-exclamation-circle"></i> 经营异常核查原始数据
                 </div>
                 <div class="card-content">
                     <pre>{{ record.exception_data_list | tojson(indent=2) }}</pre>
@@ -165,7 +165,7 @@
         {% elif report_type == 'zhixing_check' %}
             <div class="card">
                 <div class="panel-title">
-                    <i class="fas fa-gavel"></i> 琚墽琛屼汉鏍告煡鍘熷鏁版嵁
+                    <i class="fas fa-gavel"></i> 被执行人核查原始数据
                 </div>
                 <div class="card-content">
                     <pre>{{ record.zhixing_data_list | tojson(indent=2) }}</pre>
@@ -174,7 +174,7 @@
         {% elif report_type == 'serious_illegal_check' %}
             <div class="card">
                 <div class="panel-title">
-                    <i class="fas fa-exclamation-triangle"></i> 涓ラ噸杩濇硶鏍告煡鍘熷鏁版嵁
+                    <i class="fas fa-exclamation-triangle"></i> 严重违法核查原始数据
                 </div>
                 <div class="card-content">
                     <pre>{{ record.serious_illegal_data_list | tojson(indent=2) }}</pre>
@@ -183,7 +183,7 @@
         {% elif report_type == 'judgment_doc_check' %}
             <div class="card">
                 <div class="panel-title">
-                    <i class="fas fa-file-contract"></i> 瑁佸喅鏂囦功鏍告煡鍘熷鏁版嵁
+                    <i class="fas fa-file-contract"></i> 裁决文书核查原始数据
                 </div>
                 <div class="card-content">
                     <pre>{{ record.judgment_doc_list | tojson(indent=2) }}</pre>
@@ -193,26 +193,26 @@
 
         <div class="card">
             <div class="panel-title">
-                <i class="fas fa-info-circle"></i> AI椋庨櫓鍒嗘瀽
+                <i class="fas fa-info-circle"></i> AI风险分析
             </div>
             <div class="card-content ai-analysis-output">
                 {% if record.risk_factors_html %}
                     {{ record.risk_factors_html|safe }}
                 {% else %}
-                    <p class="suggestion-item">鏈幏鍙栧埌AI椋庨櫓鍒嗘瀽缁撴灉銆?/p>
+                    <p class="suggestion-item">未获取到AI风险分析结果。</p>
                 {% endif %}
             </div>
         </div>
 
         <div class="card">
             <div class="panel-title">
-                <i class="fas fa-lightbulb"></i> AI鏀硅繘寤鸿
+                <i class="fas fa-lightbulb"></i> AI改进建议
             </div>
             <div class="card-content ai-analysis-output">
                 {% if record.suggestions_html %}
                     {{ record.suggestions_html|safe }}
                 {% else %}
-                    <p class="suggestion-item">鏈幏鍙栧埌AI鏀硅繘寤鸿銆?/p>
+                    <p class="suggestion-item">未获取到AI改进建议。</p>
                 {% endif %}
             </div>
         </div>
@@ -223,7 +223,7 @@
         <input type="hidden" id="reportCompanyName" value="{{ record.company_name | e }}">
 
 
-        <a href="{{ url_for('index') }}" class="back-link"><i class="fas fa-arrow-left"></i> 杩斿洖椋庨櫓璇勪及浠〃鐩?/a>
+        <a href="{{ url_for('index') }}" class="back-link"><i class="fas fa-arrow-left"></i> 返回风险评估仪表盘</a>
     </div>
 {% endblock %}
 

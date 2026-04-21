@@ -1,6 +1,6 @@
-﻿{% extends "base.html" %}
+{% extends "base.html" %}
 
-{% block title %}澶栭儴閾炬帴绠＄悊 - 钃濆績鏅虹{% endblock %}
+{% block title %}外部链接管理 - 智企云盾{% endblock %}
 
 {% block extra_head %}
 <style>
@@ -9,33 +9,33 @@
         padding: 20px;
         max-width: 800px; /* Adjust as needed */
         margin: auto;
-        /* === 鏂板鎴栦慨鏀逛互涓嬭 === */
-        height: 100%; /* 纭繚瀹瑰櫒鍗犳嵁鍙敤楂樺害 */
-        overflow-y: auto; /* 鍏佽鍨傜洿婊氬姩 */
-        /* === 缁撴潫鏂板鎴栦慨鏀?=== */
+        /* === 新增或修改以下行 === */
+        height: 100%; /* 确保容器占据可用高度 */
+        overflow-y: auto; /* 允许垂直滚动 */
+        /* === 结束新增或修改 === */
     }
 
-    /* ... 鍏朵粬鏍峰紡淇濇寔涓嶅彉 ... */
+    /* ... 其他样式保持不变 ... */
 </style>
 {% endblock %}
 
 {% block center_content %}
 <div class="external-links-admin-container">
     <div class="qichacha-header">
-        <div class="qichacha-title">澶栭儴閾炬帴绠＄悊</div>
-        <div class="qichacha-subtitle">绠＄悊涓€绔欏紡骞冲彴涓殑澶栭儴宸ュ叿鍜屽钩鍙?/div>
+        <div class="qichacha-title">外部链接管理</div>
+        <div class="qichacha-subtitle">管理一站式平台中的外部工具和平台</div>
     </div>
 
     <div class="card">
         <div class="panel-title">
-            <i class="fas fa-plus-circle"></i> 娣诲姞鏂伴摼鎺?
+            <i class="fas fa-plus-circle"></i> 添加新链接
         </div>
         <div class="card-content">
             <form method="POST" action="{{ url_for('admin_external_links') }}">
                 {{ form.hidden_tag() }}
                 <div class="form-group">
                     {{ form.name.label }}
-                    {{ form.name(class="form-control", placeholder="渚嬪锛歅ingCode") }}
+                    {{ form.name(class="form-control", placeholder="例如：PingCode") }}
                     {% if form.name.errors %}
                         <ul class="errors">
                             {% for error in form.name.errors %}
@@ -46,7 +46,7 @@
                 </div>
                 <div class="form-group">
                     {{ form.description.label }}
-                    {{ form.description(class="form-control", rows="2", placeholder="渚嬪锛氳蒋浠跺紑鍙戝拰鐮斿彂椤圭洰绠＄悊") }}
+                    {{ form.description(class="form-control", rows="2", placeholder="例如：软件开发和研发项目管理") }}
                     {% if form.description.errors %}
                         <ul class="errors">
                             {% for error in form.description.errors %}
@@ -57,7 +57,7 @@
                 </div>
                 <div class="form-group">
                     {{ form.url.label }}
-                    {{ form.url(class="form-control", placeholder="渚嬪锛歨ttps://pingcode.com") }}
+                    {{ form.url(class="form-control", placeholder="例如：https://pingcode.com") }}
                     {% if form.url.errors %}
                         <ul class="errors">
                             {% for error in form.url.errors %}
@@ -79,10 +79,10 @@
                 </div>
                 <div class="form-group">
                     {{ form.icon.label }}
-                    {{ form.icon(class="form-control", placeholder="渚嬪锛?.png 鎴?fas fa-project-diagram") }}
+                    {{ form.icon(class="form-control", placeholder="例如：1.png 或 fas fa-project-diagram") }}
                     <small style="color: var(--text-color-light);">
-                        鍙互鏄湰鍦板浘鏍囨枃浠跺悕 (濡? `1.png`) 鎴?FontAwesome 鍥炬爣绫?(濡? `fas fa-project-diagram`)銆?
-                        鏈湴鍥炬爣璇风‘淇濆凡涓婁紶鑷?`static/icons/` 鐩綍銆?
+                        可以是本地图标文件名 (如: `1.png`) 或 FontAwesome 图标类 (如: `fas fa-project-diagram`)。
+                        本地图标请确保已上传至 `static/icons/` 目录。
                     </small>
                     {% if form.icon.errors %}
                         <ul class="errors">
@@ -103,19 +103,19 @@
 
     <div class="card" style="margin-top: 30px;">
         <div class="panel-title">
-            <i class="fas fa-link"></i> 鐜版湁澶栭儴閾炬帴
+            <i class="fas fa-link"></i> 现有外部链接
         </div>
         <div class="card-content">
             <div class="table-responsive">
                 <table class="table">
                     <thead>
                         <tr>
-                            <th>鍥炬爣</th>
-                            <th>鍚嶇О</th>
-                            <th>鍒嗙被</th> {# Added Category column #}
+                            <th>图标</th>
+                            <th>名称</th>
+                            <th>分类</th> {# Added Category column #}
                             <th>URL</th>
-                            <th>娲昏穬</th>
-                            <th>鎿嶄綔</th>
+                            <th>活跃</th>
+                            <th>操作</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -125,7 +125,7 @@
                                 {% if link.icon and link.icon.startswith('fas') %}
                                     <i class="{{ link.icon }}" style="font-size: 24px; color: var(--accent-color);"></i>
                                 {% elif link.icon %}
-                                    <img src="{{ url_for('static', filename='icons/' + link.icon) }}" alt="{{ link.name }}鍥炬爣">
+                                    <img src="{{ url_for('static', filename='icons/' + link.icon) }}" alt="{{ link.name }}图标">
                                 {% else %}
                                     <i class="fas fa-link" style="font-size: 24px; color: var(--text-color-light);"></i>
                                 {% endif %}
@@ -135,15 +135,15 @@
                             <td><a href="{{ link.url }}" target="_blank" class="case-link">{{ link.url | truncate(30) }}</a></td>
                             <td>
                                 {% if link.is_active %}
-                                    <span style="color: var(--success-color);"><i class="fas fa-check-circle"></i> 鏄?/span>
+                                    <span style="color: var(--success-color);"><i class="fas fa-check-circle"></i> 是</span>
                                 {% else %}
-                                    <span style="color: var(--danger-color);"><i class="fas fa-times-circle"></i> 鍚?/span>
+                                    <span style="color: var(--danger-color);"><i class="fas fa-times-circle"></i> 否</span>
                                 {% endif %}
                             </td>
                             <td>
-                                <a href="{{ url_for('admin_edit_external_link', link_id=link.id) }}" class="case-link" style="margin-right: 10px;">缂栬緫</a>
+                                <a href="{{ url_for('admin_edit_external_link', link_id=link.id) }}" class="case-link" style="margin-right: 10px;">编辑</a>
                                 <form action="{{ url_for('admin_delete_external_link', link_id=link.id) }}" method="POST" style="display: inline;">
-                                    <button type="submit" class="case-link delete-btn" onclick="return confirm('纭畾瑕佸垹闄ゆ閾炬帴鍚楋紵');">鍒犻櫎</button>
+                                    <button type="submit" class="case-link delete-btn" onclick="return confirm('确定要删除此链接吗？');">删除</button>
                                 </form>
                             </td>
                         </tr>
@@ -172,7 +172,7 @@
                                 {% if link.icon and link.icon.startswith('fas') %}
                                     <i class="{{ link.icon }}" style="font-size: 40px; color: var(--accent-color);"></i>
                                 {% elif link.icon %}
-                                    <img src="{{ url_for('static', filename='icons/' + link.icon) }}" alt="{{ link.name }}鍥炬爣">
+                                    <img src="{{ url_for('static', filename='icons/' + link.icon) }}" alt="{{ link.name }}图标">
                                 {% else %}
                                     <i class="fas fa-link" style="font-size: 40px; color: var(--text-color-light);"></i>
                                 {% endif %}
@@ -189,7 +189,7 @@
                 </div>
             {% endfor %}
         {% else %}
-            <p class="no-content-message">鏆傛棤澶栭儴骞冲彴閾炬帴銆?/p>
+            <p class="no-content-message">暂无外部平台链接。</p>
         {% endif %}
     </div>
 {% endblock %}

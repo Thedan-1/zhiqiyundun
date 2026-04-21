@@ -1,60 +1,60 @@
-﻿{% extends "base.html" %}
+{% extends "base.html" %}
 
-{% block title %}钃濆績鏅虹 - 椋庨櫓璇勪及浠〃鐩榹% endblock %}
+{% block title %}智企云盾 - 风险评估仪表盘{% endblock %}
 
 {% block center_content %}
     <div class="panel-content">
         <div class="dashboard-header">
-            <div class="dashboard-title">钃濆績鏅虹</div>
-            <div class="dashboard-subtitle">涓皬浼佷笟椋庨櫓璇勪及涓庢櫤鑳界鐞嗗钩鍙?/div>
+            <div class="dashboard-title">智企云盾</div>
+            <div class="dashboard-subtitle">中小企业风险评估与智能管理平台</div>
         </div>
 
         <div class="world-map" id="map">
             <div class="map-placeholder">
-                涓栫晫鍦板浘鏄剧ず
+                世界地图显示
             </div>
         </div>
 
         <div class="dashboard-controls">
             <div class="control-row">
                 <div class="control-item">
-                    <div class="control-title">浠婃棩璇勪及</div>
+                    <div class="control-title">今日评估</div>
                     <div class="control-value" id="controlTodayAssessments">--</div>
                 </div>
                 <div class="control-item">
-                    <div class="control-title">楂橀闄╀紒涓?/div>
+                    <div class="control-title">高风险企业</div>
                     <div class="control-value" id="controlHighRiskCount">--</div>
                 </div>
                 <div class="control-item">
-                    <div class="control-title">绯荤粺璇勫垎</div>
+                    <div class="control-title">系统评分</div>
                     <div class="control-value" id="controlAvgTotalRisk">--</div>
                 </div>
             </div>
             <div class="control-row">
                 <div class="control-item">
-                    <div class="control-title">璐㈠姟椋庨櫓</div>
+                    <div class="control-title">财务风险</div>
                     <div class="control-value">32%</div>
                 </div>
                 <div class="control-item">
-                    <div class="control-title">甯傚満椋庨櫓</div>
+                    <div class="control-title">市场风险</div>
                     <div class="control-value">28%</div>
                 </div>
                 <div class="control-item">
-                    <div class="control-title">绠＄悊椋庨櫓</div>
+                    <div class="control-title">管理风险</div>
                     <div class="control-value">17%</div>
                 </div>
             </div>
             <div class="control-row">
                 <div class="control-item">
-                    <div class="control-title">澶栭儴椋庨櫓</div>
+                    <div class="control-title">外部风险</div>
                     <div class="control-value">15%</div>
                 </div>
                 <div class="control-item">
-                    <div class="control-title">鍚堣椋庨櫓</div>
+                    <div class="control-title">合规风险</div>
                     <div class="control-value">8%</div>
                 </div>
                 <div class="control-item">
-                    <div class="control-title">鍏朵粬椋庨櫓</div>
+                    <div class="control-title">其他风险</div>
                     <div class="control-value">5%</div>
                 </div>
             </div>
@@ -62,16 +62,16 @@
 
         <div class="card">
             <div class="panel-title">
-                <i class="fas fa-filter"></i> 绛涢€夋潯浠?
+                <i class="fas fa-filter"></i> 筛选条件
             </div>
             <div class="card-content">
                 <div class="form-group">
-                    <label for="riskFilter"><i class="fas fa-exclamation-triangle"></i> 椋庨櫓绛夌骇</label>
+                    <label for="riskFilter"><i class="fas fa-exclamation-triangle"></i> 风险等级</label>
                     <select id="riskFilter">
-                        <option value="all">鍏ㄩ儴</option>
-                        <option value="high">楂橀闄?/option>
-                        <option value="medium">涓闄?/option>
-                        <option value="low">浣庨闄?/option>
+                        <option value="all">全部</option>
+                        <option value="high">高风险</option>
+                        <option value="medium">中风险</option>
+                        <option value="low">低风险</option>
                     </select>
                 </div>
             </div>
@@ -79,120 +79,120 @@
 
         <div class="search-container card">
             <div class="card-header">
-                <i class="fas fa-search"></i> 鍦板浘鎼滅储
+                <i class="fas fa-search"></i> 地图搜索
             </div>
             <div class="card-content">
                 <div class="form-group">
-                    <label for="searchInput"><i class="fas fa-search"></i> 鎼滅储鍏徃鎴栧煄甯?/label>
-                    <input type="text" id="searchInput" placeholder="杈撳叆鍏徃鍚嶇О鎴栧煄甯?>
+                    <label for="searchInput"><i class="fas fa-search"></i> 搜索公司或城市</label>
+                    <input type="text" id="searchInput" placeholder="输入公司名称或城市">
                 </div>
             </div>
         </div>
 
         <div class="stats-container">
             <div class="stat-card">
-                <div class="stat-label">浠婃棩璇勪及</div>
+                <div class="stat-label">今日评估</div>
                 <div class="stat-value" id="statTodayAssessments">--</div>
-                <div class="stat-label">杈冩槰鏃?+<span id="todayIncrease">0</span></div>
+                <div class="stat-label">较昨日 +<span id="todayIncrease">0</span></div>
             </div>
             <div class="stat-card">
-                <div class="stat-label">楂橀闄╀紒涓?/div>
+                <div class="stat-label">高风险企业</div>
                 <div class="stat-value" id="statHighRiskCount">--</div>
-                <div class="stat-label">鍗犳瘮 <span id="highRiskPercentage">0</span>%</div>
+                <div class="stat-label">占比 <span id="highRiskPercentage">0</span>%</div>
             </div>
             <div class="stat-card">
-                <div class="stat-label">绯荤粺璇勫垎</div>
+                <div class="stat-label">系统评分</div>
                 <div class="stat-value" id="statAvgTotalRisk">--</div>
-                <div class="stat-label">鎬ц兘鑹ソ</div>
+                <div class="stat-label">性能良好</div>
             </div>
         </div>
 
         <div class="card">
             <div class="panel-title">
-                <i class="fas fa-chart-line"></i> 椋庨櫓璇勪及琛ㄥ崟
+                <i class="fas fa-chart-line"></i> 风险评估表单
             </div>
             <div class="card-content">
                 <div class="two-column-form">
                     <div class="form-group">
-                        <label for="companyName"><i class="fas fa-building"></i> 鍏徃鍚嶇О</label>
-                        <input type="text" id="companyName" placeholder="渚嬪锛氭煇鏌愮鎶€鏈夐檺鍏徃">
+                        <label for="companyName"><i class="fas fa-building"></i> 公司名称</label>
+                        <input type="text" id="companyName" placeholder="例如：某某科技有限公司">
                     </div>
                     <div class="form-group">
-                        <label for="revenue"><i class="fas fa-money-bill-wave"></i> 骞存敹鍏ワ紙涓囧厓锛?/label>
-                        <input type="number" id="revenue" placeholder="渚嬪锛?00">
+                        <label for="revenue"><i class="fas fa-money-bill-wave"></i> 年收入（万元）</label>
+                        <input type="number" id="revenue" placeholder="例如：500">
                     </div>
                     <div class="form-group">
-                        <label for="profitMargin"><i class="fas fa-percent"></i> 鍒╂鼎鐜囷紙%锛?/label>
-                        <input type="number" id="profitMargin" placeholder="渚嬪锛?5">
+                        <label for="profitMargin"><i class="fas fa-percent"></i> 利润率（%）</label>
+                        <input type="number" id="profitMargin" placeholder="例如：15">
                     </div>
                     <div class="form-group">
-                        <label for="debtRatio"><i class="fas fa-chart-pie"></i> 璐熷€虹巼锛?锛?/label>
-                        <input type="number" id="debtRatio" placeholder="渚嬪锛?0">
+                        <label for="debtRatio"><i class="fas fa-chart-pie"></i> 负债率（%）</label>
+                        <input type="number" id="debtRatio" placeholder="例如：40">
                     </div>
                     <div class="form-group">
-                        <label for="cashFlow"><i class="fas fa-exchange-alt"></i> 鐜伴噾娴佺姸鍐?/label>
+                        <label for="cashFlow"><i class="fas fa-exchange-alt"></i> 现金流状况</label>
                         <select id="cashFlow">
-                            <option value="positive">姝?/option>
-                            <option value="negative">璐?/option>
+                            <option value="positive">正</option>
+                            <option value="negative">负</option>
                         </select>
                     </div>
                     <div class="form-group">
-                        <label for="marketShare"><i class="fas fa-chart-area"></i> 甯傚満浠介锛?锛?/label>
-                        <input type="number" id="marketShare" placeholder="渚嬪锛?0">
+                        <label for="marketShare"><i class="fas fa-chart-area"></i> 市场份额（%）</label>
+                        <input type="number" id="marketShare" placeholder="例如：10">
                     </div>
                     <div class="form-group">
-                        <label for="competitors"><i class="fas fa-users"></i> 绔炰簤瀵规墜鏁伴噺</label>
-                        <input type="number" id="competitors" placeholder="渚嬪锛?">
+                        <label for="competitors"><i class="fas fa-users"></i> 竞争对手数量</label>
+                        <input type="number" id="competitors" placeholder="例如：5">
                     </div>
                     <div class="form-group">
-                        <label for="customerChurn"><i class="fas fa-user-times"></i> 瀹㈡埛娴佸け鐜囷紙%锛?/label>
-                        <input type="number" id="customerChurn" placeholder="渚嬪锛?">
+                        <label for="customerChurn"><i class="fas fa-user-times"></i> 客户流失率（%）</label>
+                        <input type="number" id="customerChurn" placeholder="例如：8">
                     </div>
                     <div class="form-group">
-                        <label for="employeeTurnover"><i class="fas fa-user-minus"></i> 鍛樺伐娴佸姩鐜囷紙%锛?/label>
-                        <input type="number" id="employeeTurnover" placeholder="渚嬪锛?2">
+                        <label for="employeeTurnover"><i class="fas fa-user-minus"></i> 员工流动率（%）</label>
+                        <input type="number" id="employeeTurnover" placeholder="例如：12">
                     </div>
                     <div class="form-group">
-                        <label for="managementStability"><i class="fas fa-shield-alt"></i> 绠＄悊灞傜ǔ瀹氭€?/label>
+                        <label for="managementStability"><i class="fas fa-shield-alt"></i> 管理层稳定性</label>
                         <select id="managementStability">
-                            <option value="high">楂?/option>
-                            <option value="medium">涓?/option>
-                            <option value="low">浣?/option>
+                            <option value="high">高</option>
+                            <option value="medium">中</option>
+                            <option value="low">低</option>
                         </select>
                     </div>
                     <div class="form-group">
-                        <label for="innovationAbility"><i class="fas fa-lightbulb"></i> 鍒涙柊鑳藉姏</label>
+                        <label for="innovationAbility"><i class="fas fa-lightbulb"></i> 创新能力</label>
                         <select id="innovationAbility">
-                            <option value="high">楂?/option>
-                            <option value="medium">涓?/option>
-                            <option value="low">浣?/option>
+                            <option value="high">高</option>
+                            <option value="medium">中</option>
+                            <option value="low">低</option>
                         </select>
                     </div>
                     <div class="form-group">
-                        <label for="industryRisk"><i class="fas fa-industry"></i> 琛屼笟椋庨櫓</label>
+                        <label for="industryRisk"><i class="fas fa-industry"></i> 行业风险</label>
                         <select id="industryRisk">
-                            <option value="high">楂?/option>
-                            <option value="medium">涓?/option>
-                            <option value="low">浣?/option>
+                            <option value="high">高</option>
+                            <option value="medium">中</option>
+                            <option value="low">低</option>
                         </select>
                     </div>
                     <div class="form-group">
-                        <label for="policySupport"><i class="fas fa-hand-holding-usd"></i> 鏀跨瓥鏀寔</label>
+                        <label for="policySupport"><i class="fas fa-hand-holding-usd"></i> 政策支持</label>
                         <select id="policySupport">
-                            <option value="yes">鏈?/option>
-                            <option value="no">鏃?/option>
+                            <option value="yes">有</option>
+                            <option value="no">无</option>
                         </select>
                     </div>
                 </div>
                 <button id="analyzeBtn" class="btn" style="margin-top: 15px;">
-                    <i class="fas fa-calculator"></i> 璇勪及椋庨櫓
+                    <i class="fas fa-calculator"></i> 评估风险
                 </button>
             </div>
         </div>
 
         <div class="card initial-hidden-result" id="riskAnalysisResultCard">
             <div class="panel-title">
-                <i class="fas fa-exclamation-triangle"></i> 椋庨櫓鍒嗘瀽缁撴灉
+                <i class="fas fa-exclamation-triangle"></i> 风险分析结果
             </div>
             <div class="card-content">
                 <div class="risk-score" id="riskScore">--</div>
@@ -203,19 +203,19 @@
 
         <div class="card initial-hidden-result" id="riskFactorsCard">
             <div class="panel-title">
-                <i class="fas fa-info-circle"></i> 椋庨櫓鍥犵礌
+                <i class="fas fa-info-circle"></i> 风险因素
             </div>
             <div class="card-content" id="riskFactors">
-                <p class="suggestion-item">璇峰～鍐欒〃鍗曞苟鐐瑰嚮鈥滆瘎浼伴闄┾€濇寜閽幏鍙栬缁嗛闄╁洜绱犮€?/p>
+                <p class="suggestion-item">请填写表单并点击“评估风险”按钮获取详细风险因素。</p>
             </div>
         </div>
 
         <div class="card initial-hidden-result" id="suggestionsCard">
             <div class="panel-title">
-                <i class="fas fa-lightbulb"></i> 鏀硅繘寤鸿
+                <i class="fas fa-lightbulb"></i> 改进建议
             </div>
             <div class="card-content" id="suggestions">
-                <p class="suggestion-item">璇峰～鍐欒〃鍗曞苟鐐瑰嚮鈥滆瘎浼伴闄┾€濇寜閽幏鍙栨敼杩涘缓璁€?/p>
+                <p class="suggestion-item">请填写表单并点击“评估风险”按钮获取改进建议。</p>
             </div>
         </div>
     </div>
@@ -224,7 +224,7 @@
 {% block right_panel_content %}
     <div class="card">
         <div class="panel-title">
-            <i class="fas fa-chart-pie"></i> 椋庨櫓鍒嗗竷
+            <i class="fas fa-chart-pie"></i> 风险分布
         </div>
         <div class="card-content">
             <div class="pie-chart">
@@ -235,20 +235,20 @@
 
     <div class="card">
         <div class="panel-title">
-            <i class="fas fa-table"></i> 鏈€杩戣瘎浼?
+            <i class="fas fa-table"></i> 最近评估
         </div>
         <div class="card-content">
             <table class="table">
                 <thead>
                     <tr>
-                        <th>浼佷笟鍚嶇О</th>
-                        <th>椋庨櫓绛夌骇</th>
-                        <th>鏃堕棿</th>
-                        <th>鎿嶄綔</th>
+                        <th>企业名称</th>
+                        <th>风险等级</th>
+                        <th>时间</th>
+                        <th>操作</th>
                     </tr>
                 </thead>
                 <tbody id="recentAssessmentsTableBody">
-                    <tr><td colspan="4" style="text-align: center;">鏆傛棤璇勪及璁板綍</td></tr>
+                    <tr><td colspan="4" style="text-align: center;">暂无评估记录</td></tr>
                 </tbody>
             </table>
         </div>

@@ -1,54 +1,54 @@
-﻿{% extends "base.html" %}
+{% extends "base.html" %}
 
-{% block title %}钃濆績鏅烘煡 - 浼佷笟宸ュ晢淇℃伅{% endblock %}
+{% block title %}蓝心智查 - 企业工商信息{% endblock %}
 
 {% block center_content %}
     <div class="qichacha-container">
         <div class="qichacha-header">
-            <div class="qichacha-title">钃濆績鏅烘煡 - 浼佷笟宸ュ晢淇℃伅</div>
-            <div class="qichacha-subtitle">瀹炴椂鏌ヨ浼佷笟宸ュ晢淇℃伅锛岃繑鍥炰紒涓氬悕绉般€佷紒涓氱被鍨嬨€佹敞鍐岃祫鏈€佺粺涓€绀句細淇＄敤浠ｇ爜銆佺粡钀ヨ寖鍥淬€佽惀涓氭湡闄愩€佷笂甯傜姸鎬佺瓑淇℃伅锛屽苟缁撳悎AI杩涜椋庨櫓鍒嗘瀽銆?/div>
+            <div class="qichacha-title">蓝心智查 - 企业工商信息</div>
+            <div class="qichacha-subtitle">实时查询企业工商信息，返回企业名称、企业类型、注册资本、统一社会信用代码、经营范围、营业期限、上市状态等信息，并结合AI进行风险分析。</div>
         </div>
 
         <div class="card">
             <div class="panel-title">
-                <i class="fas fa-search"></i> 宸ュ晢淇℃伅鏌ヨ
+                <i class="fas fa-search"></i> 工商信息查询
             </div>
             <div class="card-content">
                 <div class="form-group">
-                    <label for="companyNameIndustrial"><i class="fas fa-building"></i> 鎼滅储鍏抽敭璇嶏紙浼佷笟鍚嶇О鎴栫粺涓€绀句細淇＄敤浠ｇ爜锛?/label>
-                    <input type="text" id="companyNameIndustrial" placeholder="杈撳叆浼佷笟鍚嶇О鎴栦唬鐮?>
+                    <label for="companyNameIndustrial"><i class="fas fa-building"></i> 搜索关键词（企业名称或统一社会信用代码）</label>
+                    <input type="text" id="companyNameIndustrial" placeholder="输入企业名称或代码">
                 </div>
                 <button id="industrialInfoAnalyzeBtn" class="btn">
-                    <i class="fas fa-search"></i> 鏌ヨ骞禔I鍒嗘瀽
+                    <i class="fas fa-search"></i> 查询并AI分析
                 </button>
             </div>
         </div>
 
-        <!-- 淇敼杩欓噷锛氭坊鍔?ID 鍜屽垵濮嬮殣钘忔牱寮?-->
+        <!-- 修改这里：添加 ID 和初始隐藏样式 -->
         <div class="card" id="industrialInfoResultCard" style="display: none;">
             <div class="panel-title">
-                <i class="fas fa-info-circle"></i> 鏌ヨ缁撴灉
+                <i class="fas fa-info-circle"></i> 查询结果
             </div>
             <div class="card-content" id="industrialInfoResultDisplay">
-                <p style="text-align: center; color: #a3c3ff;">璇疯緭鍏ュ叧閿瘝杩涜鏌ヨ...</p>
+                <p style="text-align: center; color: #a3c3ff;">请输入关键词进行查询...</p>
             </div>
         </div>
 
         <div class="card" id="industrialInfoRiskFactorsCard" style="display: none;">
             <div class="panel-title">
-                <i class="fas fa-exclamation-triangle"></i> AI椋庨櫓鍒嗘瀽
+                <i class="fas fa-exclamation-triangle"></i> AI风险分析
             </div>
             <div class="card-content ai-analysis-output" id="industrialInfoRiskFactors">
-                <p style="text-align: center; color: #a3c3ff;">AI鍒嗘瀽缁撴灉灏嗗湪姝ゅ鏄剧ず...</p>
+                <p style="text-align: center; color: #a3c3ff;">AI分析结果将在此处显示...</p>
             </div>
         </div>
 
         <div class="card" id="industrialInfoSuggestionsCard" style="display: none;">
             <div class="panel-title">
-                <i class="fas fa-lightbulb"></i> AI鏀硅繘寤鸿
+                <i class="fas fa-lightbulb"></i> AI改进建议
             </div>
             <div class="card-content ai-analysis-output" id="industrialInfoSuggestions">
-                <p style="text-align: center; color: #a3c3ff;">AI鏀硅繘寤鸿灏嗗湪姝ゅ鏄剧ず...</p>
+                <p style="text-align: center; color: #a3c3ff;">AI改进建议将在此处显示...</p>
             </div>
         </div>
     </div>

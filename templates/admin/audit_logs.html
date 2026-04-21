@@ -1,16 +1,16 @@
-﻿{% extends "base.html" %}
-{% block title %}瀹¤鏃ュ織 - 钃濆績鏅虹{% endblock %}
+{% extends "base.html" %}
+{% block title %}审计日志 - 智企云盾{% endblock %}
 
 {% block center_content %}
 <div class="qichacha-container">
     <div class="qichacha-header">
-        <div class="qichacha-title">瀹¤鏃ュ織</div>
-        <div class="qichacha-subtitle">鏌ョ湅绯荤粺鎿嶄綔璁板綍</div>
+        <div class="qichacha-title">审计日志</div>
+        <div class="qichacha-subtitle">查看系统操作记录</div>
     </div>
 
     <div class="card">
         <div class="panel-title">
-            <i class="fas fa-clipboard-list"></i> 鎿嶄綔璁板綍
+            <i class="fas fa-clipboard-list"></i> 操作记录
         </div>
         <div class="card-content">
             <div class="table-responsive">
@@ -18,11 +18,11 @@
                     <thead>
                         <tr>
                             <th>ID</th>
-                            <th>鏃堕棿</th>
-                            <th>鐢ㄦ埛</th>
-                            <th>鍔ㄤ綔</th>
-                            <th>璇︽儏</th>
-                            <th>IP鍦板潃</th>
+                            <th>时间</th>
+                            <th>用户</th>
+                            <th>动作</th>
+                            <th>详情</th>
+                            <th>IP地址</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -30,7 +30,7 @@
                         <tr>
                             <td>{{ log.id }}</td>
                             <td>{{ log.timestamp.strftime('%Y-%m-%d %H:%M:%S') }}</td>
-                            <td>{{ log.user.username if log.user else '鍖垮悕' }}</td>
+                            <td>{{ log.user.username if log.user else '匿名' }}</td>
                             <td>{{ log.action }}</td>
                             <td style="max-width: 300px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">{{ log.details }}</td>
                             <td>{{ log.ip_address }}</td>
@@ -59,7 +59,7 @@
                                 {% if link.icon and link.icon.startswith('fas') %}
                                     <i class="{{ link.icon }}" style="font-size: 40px; color: var(--accent-color);"></i>
                                 {% elif link.icon %}
-                                    <img src="{{ url_for('static', filename='icons/' + link.icon) }}" alt="{{ link.name }}鍥炬爣">
+                                    <img src="{{ url_for('static', filename='icons/' + link.icon) }}" alt="{{ link.name }}图标">
                                 {% else %}
                                     <i class="fas fa-link" style="font-size: 40px; color: var(--text-color-light);"></i>
                                 {% endif %}
@@ -76,7 +76,7 @@
                 </div>
             {% endfor %}
         {% else %}
-            <p class="no-content-message">鏆傛棤澶栭儴骞冲彴閾炬帴銆?/p>
+            <p class="no-content-message">暂无外部平台链接。</p>
         {% endif %}
     </div>
 {% endblock %}

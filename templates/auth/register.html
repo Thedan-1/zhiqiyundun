@@ -1,11 +1,11 @@
-﻿{% extends "auth_base.html" %} {# <-- 淇敼杩欓噷锛岀户鎵?auth_base.html #}
-{% block title %}娉ㄥ唽 - 钃濆績鏅虹{% endblock %}
+{% extends "auth_base.html" %} {# <-- 修改这里，继承 auth_base.html #}
+{% block title %}注册 - 智企云盾{% endblock %}
 
-{% block auth_content %} {# <-- 淇敼杩欓噷锛屼娇鐢?auth_content 鍧?#}
+{% block auth_content %} {# <-- 修改这里，使用 auth_content 块 #}
 <div class="auth-container">
     <div class="auth-header">
-        <div class="auth-title">鐢ㄦ埛娉ㄥ唽</div>
-        <div class="auth-subtitle">鍒涘缓鎮ㄧ殑璐︽埛浠ヨ闂钩鍙?/div>
+        <div class="auth-title">用户注册</div>
+        <div class="auth-subtitle">创建您的账户以访问平台</div>
     </div>
 
     <div class="card" style="background-color: transparent; box-shadow: none; border: none; padding: 0;">
@@ -14,7 +14,7 @@
                 {{ form.hidden_tag() }}
                 <div class="form-group">
                     {{ form.username.label }}
-                    {{ form.username(class="form-control", placeholder="璇疯緭鍏ョ敤鎴峰悕") }}
+                    {{ form.username(class="form-control", placeholder="请输入用户名") }}
                     {% if form.username.errors %}
                         <ul class="errors">
                             {% for error in form.username.errors %}
@@ -25,7 +25,7 @@
                 </div>
                 <div class="form-group">
                     {{ form.email.label }}
-                    {{ form.email(class="form-control", placeholder="璇疯緭鍏ラ偖绠?) }}
+                    {{ form.email(class="form-control", placeholder="请输入邮箱") }}
                     {% if form.email.errors %}
                         <ul class="errors">
                             {% for error in form.email.errors %}
@@ -36,7 +36,7 @@
                 </div>
                 <div class="form-group">
                     {{ form.password.label }}
-                    {{ form.password(class="form-control", placeholder="璇疯緭鍏ュ瘑鐮?) }}
+                    {{ form.password(class="form-control", placeholder="请输入密码") }}
                     {% if form.password.errors %}
                         <ul class="errors">
                             {% for error in form.password.errors %}
@@ -47,7 +47,7 @@
                 </div>
                 <div class="form-group">
                     {{ form.confirm_password.label }}
-                    {{ form.confirm_password(class="form-control", placeholder="璇风‘璁ゅ瘑鐮?) }}
+                    {{ form.confirm_password(class="form-control", placeholder="请确认密码") }}
                     {% if form.confirm_password.errors %}
                         <ul class="errors">
                             {% for error in form.confirm_password.errors %}
@@ -59,7 +59,7 @@
                 {{ form.submit(class="btn") }}
             </form>
             <p style="text-align: center; margin-top: 20px; color: #a3c3ff;">
-                宸茬粡鏈夎处鎴蜂簡锛?<a href="{{ url_for('login') }}" style="color: var(--accent-color); text-decoration: none;">绔嬪嵆鐧诲綍</a>
+                已经有账户了？ <a href="{{ url_for('login') }}" style="color: var(--accent-color); text-decoration: none;">立即登录</a>
             </p>
         </div>
     </div>

@@ -1,11 +1,11 @@
-﻿{% extends "base.html" %}
-{% block title %}绠＄悊瑙掕壊鏉冮檺 - 钃濆績鏅虹{% endblock %}
+{% extends "base.html" %}
+{% block title %}管理角色权限 - 智企云盾{% endblock %}
 
 {% block center_content %}
 <div class="qichacha-container" style="max-width: 700px; margin: 50px auto; padding: 30px;">
     <div class="qichacha-header">
-        <div class="qichacha-title">绠＄悊瑙掕壊 "{{ role.name }}" 鐨勬潈闄?/div>
-        <div class="qichacha-subtitle">鍕鹃€夋瑙掕壊鎷ユ湁鐨勬潈闄?/div>
+        <div class="qichacha-title">管理角色 "{{ role.name }}" 的权限</div>
+        <div class="qichacha-subtitle">勾选此角色拥有的权限</div>
     </div>
 
     <div class="card">
@@ -13,7 +13,7 @@
             <form method="POST" action="{{ url_for('admin_role_permissions', role_id=role.id) }}">
                 {{ form.hidden_tag() if form else '' }} {# Flask-WTF form might not be passed, so check #}
                 <div class="form-group">
-                    <label><strong>鍙敤鏉冮檺鍒楄〃锛?/strong></label>
+                    <label><strong>可用权限列表：</strong></label>
                     <div class="permission-list-grid">
                         {% for perm in all_permissions %}
                             <label class="checkbox-container">
@@ -24,10 +24,10 @@
                         {% endfor %}
                     </div>
                 </div>
-                <button type="submit" class="btn"><i class="fas fa-save"></i> 淇濆瓨鏉冮檺</button>
+                <button type="submit" class="btn"><i class="fas fa-save"></i> 保存权限</button>
             </form>
             <p style="text-align: center; margin-top: 20px; color: #a3c3ff;">
-                <a href="{{ url_for('admin_roles') }}" style="color: var(--accent-color); text-decoration: none;"><i class="fas fa-arrow-left"></i> 杩斿洖瑙掕壊鍒楄〃</a>
+                <a href="{{ url_for('admin_roles') }}" style="color: var(--accent-color); text-decoration: none;"><i class="fas fa-arrow-left"></i> 返回角色列表</a>
             </p>
         </div>
     </div>
@@ -49,7 +49,7 @@
                                 {% if link.icon and link.icon.startswith('fas') %}
                                     <i class="{{ link.icon }}" style="font-size: 40px; color: var(--accent-color);"></i>
                                 {% elif link.icon %}
-                                    <img src="{{ url_for('static', filename='icons/' + link.icon) }}" alt="{{ link.name }}鍥炬爣">
+                                    <img src="{{ url_for('static', filename='icons/' + link.icon) }}" alt="{{ link.name }}图标">
                                 {% else %}
                                     <i class="fas fa-link" style="font-size: 40px; color: var(--text-color-light);"></i>
                                 {% endif %}
@@ -66,7 +66,7 @@
                 </div>
             {% endfor %}
         {% else %}
-            <p class="no-content-message">鏆傛棤澶栭儴骞冲彴閾炬帴銆?/p>
+            <p class="no-content-message">暂无外部平台链接。</p>
         {% endif %}
     </div>
 {% endblock %}

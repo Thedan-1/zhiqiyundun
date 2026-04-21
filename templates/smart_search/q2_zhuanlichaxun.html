@@ -1,54 +1,54 @@
-﻿{% extends "base.html" %}
+{% extends "base.html" %}
 
-{% block title %}钃濆績鏅烘煡 - 涓撳埄鏌ヨ{% endblock %}
+{% block title %}蓝心智查 - 专利查询{% endblock %}
 
 {% block center_content %}
     <div class="qichacha-container">
         <div class="qichacha-header">
-            <div class="qichacha-title">钃濆績鏅烘煡 - 涓撳埄鏌ヨ</div>
-            <div class="qichacha-subtitle">鏀寔鏌ヨ浼佷笟鎴栨煇鎶€鏈殑涓撳埄锛屼娇鐢ㄦ埛鎺屾彙鐩稿悓鎶€鏈鍩熺殑鍙戝睍鐘跺喌锛岃閬夸粬浜虹煡璇嗕骇鏉冨拰璋冩暣鐮斿彂鏂瑰悜鎻愪緵鍙傝€冿紝骞剁粨鍚圓I杩涜椋庨櫓鍒嗘瀽銆?/div>
+            <div class="qichacha-title">蓝心智查 - 专利查询</div>
+            <div class="qichacha-subtitle">支持查询企业或某技术的专利，使用户掌握相同技术领域的发展状况，规避他人知识产权和调整研发方向提供参考，并结合AI进行风险分析。</div>
         </div>
 
         <div class="card">
             <div class="panel-title">
-                <i class="fas fa-lightbulb"></i> 涓撳埄淇℃伅鏌ヨ
+                <i class="fas fa-lightbulb"></i> 专利信息查询
             </div>
             <div class="card-content">
                 <div class="form-group">
-                    <label for="patentSearchKey"><i class="fas fa-keyboard"></i> 鏌ヨ鍏抽敭瀛楋紙鍏徃鍚嶇О銆佷笓鍒╁悕绉般€佺敵璇峰彿绛夛級</label>
-                    <input type="text" id="patentSearchKey" placeholder="杈撳叆鍏徃鍚嶇О鎴栦笓鍒╁悕绉?>
+                    <label for="patentSearchKey"><i class="fas fa-keyboard"></i> 查询关键字（公司名称、专利名称、申请号等）</label>
+                    <input type="text" id="patentSearchKey" placeholder="输入公司名称或专利名称">
                 </div>
                 <button id="patentAnalyzeBtn" class="btn">
-                    <i class="fas fa-search"></i> 鏌ヨ骞禔I鍒嗘瀽
+                    <i class="fas fa-search"></i> 查询并AI分析
                 </button>
             </div>
         </div>
 
-        <!-- 淇敼杩欓噷锛氭坊鍔?ID 鍜屽垵濮嬮殣钘忔牱寮?-->
+        <!-- 修改这里：添加 ID 和初始隐藏样式 -->
         <div class="card" id="patentResultCard" style="display: none;">
             <div class="panel-title">
-                <i class="fas fa-info-circle"></i> 鏌ヨ缁撴灉
+                <i class="fas fa-info-circle"></i> 查询结果
             </div>
             <div class="card-content" id="patentResultDisplay">
-                <p style="text-align: center; color: #a3c3ff;">璇疯緭鍏ュ叧閿瘝杩涜鏌ヨ...</p>
+                <p style="text-align: center; color: #a3c3ff;">请输入关键词进行查询...</p>
             </div>
         </div>
 
         <div class="card" id="patentRiskFactorsCard" style="display: none;">
             <div class="panel-title">
-                <i class="fas fa-exclamation-triangle"></i> AI椋庨櫓鍒嗘瀽
+                <i class="fas fa-exclamation-triangle"></i> AI风险分析
             </div>
             <div class="card-content ai-analysis-output" id="patentRiskFactors">
-                <p style="text-align: center; color: #a3c3ff;">AI鍒嗘瀽缁撴灉灏嗗湪姝ゅ鏄剧ず...</p>
+                <p style="text-align: center; color: #a3c3ff;">AI分析结果将在此处显示...</p>
             </div>
         </div>
 
         <div class="card" id="patentSuggestionsCard" style="display: none;">
             <div class="panel-title">
-                <i class="fas fa-lightbulb"></i> AI鏀硅繘寤鸿
+                <i class="fas fa-lightbulb"></i> AI改进建议
             </div>
             <div class="card-content ai-analysis-output" id="patentSuggestions">
-                <p style="text-align: center; color: #a3c3ff;">AI鏀硅繘寤鸿灏嗗湪姝ゅ鏄剧ず...</p>
+                <p style="text-align: center; color: #a3c3ff;">AI改进建议将在此处显示...</p>
             </div>
         </div>
     </div>

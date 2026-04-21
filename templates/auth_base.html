@@ -1,24 +1,24 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="zh-CN">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{% block title %}钃濆績鏅虹 - 璁よ瘉{% endblock %}</title>
+    <title>{% block title %}智企云盾 - 认证{% endblock %}</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
-    {# 杩欓噷鍙互娣诲姞浠讳綍璁よ瘉椤甸潰鐗规湁鐨凜SS鎴朖S锛屾垨鑰呭湪瀛愭ā鏉夸腑閫氳繃extra_head鍧楁坊鍔?#}
+    {# 这里可以添加任何认证页面特有的CSS或JS，或者在子模板中通过extra_head块添加 #}
     {% block extra_head %}{% endblock %}
 
     <style>
-        /* 璁よ瘉椤甸潰鐗规湁鐨勮儗鏅牱寮?*/
+        /* 认证页面特有的背景样式 */
         body {
-            background-color: var(--dark-bg); /* 浣滀负澶囩敤鑳屾櫙鑹?*/
+            background-color: var(--dark-bg); /* 作为备用背景色 */
             color: var(--text-color);
-            overflow: auto; /* 鍏佽婊氬姩 */
-            display: flex; /* 浣跨敤 flexbox 灞呬腑鍐呭 */
+            overflow: auto; /* 允许滚动 */
+            display: flex; /* 使用 flexbox 居中内容 */
             justify-content: center;
             align-items: center;
-            min-height: 100vh; /* 纭繚鍗犳嵁鏁翠釜瑙嗗彛楂樺害 */
+            min-height: 100vh; /* 确保占据整个视口高度 */
             padding: 20px;
             font-size: 14px;
         }
@@ -30,32 +30,32 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background-image: url('{{ url_for('static', filename='images/yejing.jpg') }}'); /* 鐧诲綍/娉ㄥ唽椤甸潰鐨勮儗鏅?*/
+            background-image: url('{{ url_for('static', filename='images/yejing.jpg') }}'); /* 登录/注册页面的背景 */
             background-size: cover;
             background-position: center;
-            filter: brightness(0.7); /* 璋冩暣浜害浠ヤ娇鍐呭鏇寸獊鍑?*/
+            filter: brightness(0.7); /* 调整亮度以使内容更突出 */
             z-index: -1;
         }
 
-        /* 瑕嗙洊涓€浜涘彲鑳芥潵鑷?style.css 鐨勫叏灞€褰卞搷锛岀‘淇濈櫥褰曟灞呬腑涓旀病鏈変华琛ㄧ洏闈㈡澘 */
+        /* 覆盖一些可能来自 style.css 的全局影响，确保登录框居中且没有仪表盘面板 */
         .dashboard-container, .dashboard, .panel, .panel-left, .panel-center, .panel-right {
-            all: unset; /* 绉婚櫎鎵€鏈夌户鎵跨殑鏍峰紡 */
-            display: block; /* 鎭㈠涓哄潡绾у厓绱狅紝濡傛灉闇€瑕?*/
+            all: unset; /* 移除所有继承的样式 */
+            display: block; /* 恢复为块级元素，如果需要 */
         }
 
-        /* 閽堝鐧诲綍/娉ㄥ唽瀹瑰櫒鐨勬牱寮?*/
+        /* 针对登录/注册容器的样式 */
         .auth-container {
             width: 100%;
-            max-width: 500px; /* 闄愬埗鏈€澶у搴?*/
-            margin: 0 auto; /* 姘村钩灞呬腑 */
-            background-color: var(--card-bg); /* 浣跨敤鎮ㄧ殑鍗＄墖鑳屾櫙鑹?*/
+            max-width: 500px; /* 限制最大宽度 */
+            margin: 0 auto; /* 水平居中 */
+            background-color: var(--card-bg); /* 使用您的卡片背景色 */
             border-radius: 20px;
             box-shadow: 0 0 30px var(--shadow-color-light);
             padding: 30px;
             color: var(--text-color);
             border: 1px solid var(--border-color-light);
-            z-index: 10; /* 纭繚鍦ㄨ儗鏅浘涔嬩笂 */
-            position: relative; /* 纭繚 z-index 鐢熸晥 */
+            z-index: 10; /* 确保在背景图之上 */
+            position: relative; /* 确保 z-index 生效 */
         }
 
         .auth-header {
@@ -64,7 +64,7 @@
         }
 
         .auth-title {
-            font-size: 2.2em; /* 璋冩暣鏍囬澶у皬 */
+            font-size: 2.2em; /* 调整标题大小 */
             color: var(--primary-color);
             text-shadow: 0 0 10px rgba(0, 123, 255, 0.7);
             margin-bottom: 10px;
@@ -78,7 +78,7 @@
             font-weight: 500;
         }
 
-        /* 纭繚琛ㄥ崟鍜屾寜閽牱寮忎笌鎮ㄧ殑 style.css 涓€鑷?*/
+        /* 确保表单和按钮样式与您的 style.css 一致 */
         .form-group {
             margin-bottom: 18px;
         }
@@ -166,7 +166,7 @@
 
     {% block auth_content %}{% endblock %}
 
-    {# 濡傛灉鏈夐€氱敤鐨凧S锛屽彲浠ュ湪杩欓噷寮曞叆 #}
+    {# 如果有通用的JS，可以在这里引入 #}
     {% block extra_js %}{% endblock %}
 </body>
 </html>

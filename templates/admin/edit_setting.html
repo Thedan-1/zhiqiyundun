@@ -1,11 +1,11 @@
-﻿{% extends "base.html" %}
-{% block title %}缂栬緫绯荤粺璁剧疆 - 钃濆績鏅虹{% endblock %}
+{% extends "base.html" %}
+{% block title %}编辑系统设置 - 智企云盾{% endblock %}
 
 {% block center_content %}
 <div class="qichacha-container" style="max-width: 600px; margin: 50px auto; padding: 30px;">
     <div class="qichacha-header">
-        <div class="qichacha-title" style="font-size: 2em;">缂栬緫璁剧疆椤? {{ setting.key }}</div>
-        <div class="qichacha-subtitle" style="font-size: 1em;">淇敼绯荤粺閰嶇疆</div>
+        <div class="qichacha-title" style="font-size: 2em;">编辑设置项: {{ setting.key }}</div>
+        <div class="qichacha-subtitle" style="font-size: 1em;">修改系统配置</div>
     </div>
 
     <div class="card">
@@ -14,7 +14,7 @@
                 {{ form.hidden_tag() }}
                 <div class="form-group">
                     {{ form.key.label }}
-                    {{ form.key(class="form-control", placeholder="璇疯緭鍏ヨ缃敭锛屼緥濡傦細BLUE_LM_APP_ID") }}
+                    {{ form.key(class="form-control", placeholder="请输入设置键，例如：BLUE_LM_APP_ID") }}
                     {% if form.key.errors %}
                         <ul class="errors">
                             {% for error in form.key.errors %}
@@ -25,7 +25,7 @@
                 </div>
                 <div class="form-group">
                     {{ form.value.label }}
-                    {{ form.value(class="form-control", rows="3", placeholder="璇疯緭鍏ヨ缃€?) }}
+                    {{ form.value(class="form-control", rows="3", placeholder="请输入设置值") }}
                     {% if form.value.errors %}
                         <ul class="errors">
                             {% for error in form.value.errors %}
@@ -36,7 +36,7 @@
                 </div>
                 <div class="form-group">
                     {{ form.description.label }}
-                    {{ form.description(class="form-control", rows="2", placeholder="璇疯緭鍏ヨ缃弿杩?) }}
+                    {{ form.description(class="form-control", rows="2", placeholder="请输入设置描述") }}
                     {% if form.description.errors %}
                         <ul class="errors">
                             {% for error in form.description.errors %}
@@ -48,7 +48,7 @@
                 {{ form.submit(class="btn") }}
             </form>
             <p style="text-align: center; margin-top: 20px; color: #a3c3ff;">
-                <a href="{{ url_for('admin_settings') }}" style="color: var(--accent-color); text-decoration: none;"><i class="fas fa-arrow-left"></i> 杩斿洖绯荤粺璁剧疆</a>
+                <a href="{{ url_for('admin_settings') }}" style="color: var(--accent-color); text-decoration: none;"><i class="fas fa-arrow-left"></i> 返回系统设置</a>
             </p>
         </div>
     </div>
@@ -70,7 +70,7 @@
                                 {% if link.icon and link.icon.startswith('fas') %}
                                     <i class="{{ link.icon }}" style="font-size: 40px; color: var(--accent-color);"></i>
                                 {% elif link.icon %}
-                                    <img src="{{ url_for('static', filename='icons/' + link.icon) }}" alt="{{ link.name }}鍥炬爣">
+                                    <img src="{{ url_for('static', filename='icons/' + link.icon) }}" alt="{{ link.name }}图标">
                                 {% else %}
                                     <i class="fas fa-link" style="font-size: 40px; color: var(--text-color-light);"></i>
                                 {% endif %}
@@ -87,7 +87,7 @@
                 </div>
             {% endfor %}
         {% else %}
-            <p class="no-content-message">鏆傛棤澶栭儴骞冲彴閾炬帴銆?/p>
+            <p class="no-content-message">暂无外部平台链接。</p>
         {% endif %}
     </div>
 {% endblock %}

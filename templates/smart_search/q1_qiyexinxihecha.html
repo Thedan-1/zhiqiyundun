@@ -1,59 +1,59 @@
-﻿{% extends "base.html" %}
+{% extends "base.html" %}
 
-{% block title %}钃濆績鏅烘煡 - 浼佷笟淇℃伅鏍搁獙{% endblock %}
+{% block title %}蓝心智查 - 企业信息核验{% endblock %}
 
 {% block center_content %}
     <div class="qichacha-container">
         <div class="qichacha-header">
-            <div class="qichacha-title">钃濆績鏅烘煡 - 浼佷笟淇℃伅鏍搁獙</div>
-            <div class="qichacha-subtitle">鏀寔鍚勭被鍨嬩紒涓氫俊鎭噯纭€ф牎楠岋紝骞挎硾搴旂敤浜庨噾铻嶆湇鍔¤韩浠芥牳瀹炪€佷簰鑱旂綉骞冲彴鍟嗗鍏ラ┗璧勮川瀹℃煡銆佷緵搴旈摼涓婁笅娓镐俊鎭牳瀹炵瓑鍦烘櫙锛岃繑鍥炲寘鎷伐鍟嗙収闈俊鎭€佷笂甯備俊鎭€佹敞閿€鍚婇攢淇℃伅銆佽仈绯讳俊鎭€佷紒涓氬潗鏍囩粡绾害銆佸紑绁ㄤ俊鎭€佸皬寰紒涓氭爣璇嗐€佷紒涓氳妯°€佽嫳鏂囧悕鏉ユ簮銆佷紒鏌ユ煡琛屼笟绛変俊鎭紝骞剁粨鍚圓I杩涜椋庨櫓鍒嗘瀽銆?/div>
+            <div class="qichacha-title">蓝心智查 - 企业信息核验</div>
+            <div class="qichacha-subtitle">支持各类型企业信息准确性校验，广泛应用于金融服务身份核实、互联网平台商家入驻资质审查、供应链上下游信息核实等场景，返回包括工商照面信息、上市信息、注销吊销信息、联系信息、企业坐标经纬度、开票信息、小微企业标识、企业规模、英文名来源、企查查行业等信息，并结合AI进行风险分析。</div>
         </div>
 
         <div class="card">
             <div class="panel-title">
-                <i class="fas fa-search"></i> 浼佷笟淇℃伅鏌ヨ
+                <i class="fas fa-search"></i> 企业信息查询
             </div>
             <div class="card-content">
                 <div class="form-group">
-                    <label for="qccSearchKey"><i class="fas fa-building"></i> 鎼滅储鍏抽敭璇嶏紙浼佷笟鍚嶇О鎴栫粺涓€绀句細淇＄敤浠ｇ爜锛?/label>
-                    <input type="text" id="qccSearchKey" placeholder="渚嬪锛氳吘璁鎶€锛堟繁鍦筹級鏈夐檺鍏徃 鎴?9144030071526828XA">
+                    <label for="qccSearchKey"><i class="fas fa-building"></i> 搜索关键词（企业名称或统一社会信用代码）</label>
+                    <input type="text" id="qccSearchKey" placeholder="例如：腾讯科技（深圳）有限公司 或 9144030071526828XA">
                 </div>
                 <div class="form-group">
-                    <label for="companyNameForBlueLM"><i class="fas fa-tag"></i> 鍏徃鍚嶇О锛堢敤浜嶢I鍒嗘瀽锛屽彲閫夛級</label>
-                    <input type="text" id="companyNameForBlueLM" placeholder="渚嬪锛氳吘璁鎶€">
-                    <small style="color: #a3c3ff; font-size: 0.8em; display: block; margin-top: 5px;">姝ゅ悕绉板皢鐢ㄤ簬AI鍒嗘瀽鐨凱rompt涓紝浣垮垎鏋愮粨鏋滄洿鍏烽拡瀵规€с€?/small>
+                    <label for="companyNameForBlueLM"><i class="fas fa-tag"></i> 公司名称（用于AI分析，可选）</label>
+                    <input type="text" id="companyNameForBlueLM" placeholder="例如：腾讯科技">
+                    <small style="color: #a3c3ff; font-size: 0.8em; display: block; margin-top: 5px;">此名称将用于AI分析的Prompt中，使分析结果更具针对性。</small>
                 </div>
                 <button id="qccAnalyzeBtn" class="btn">
-                    <i class="fas fa-magic"></i> 鏌ヨ骞禔I鍒嗘瀽
+                    <i class="fas fa-magic"></i> 查询并AI分析
                 </button>
             </div>
         </div>
 
-        <!-- 淇敼杩欓噷锛氭坊鍔?ID 鍜屽垵濮嬮殣钘忔牱寮?-->
+        <!-- 修改这里：添加 ID 和初始隐藏样式 -->
         <div class="card" id="qccResultCard" style="display: none;">
             <div class="panel-title">
-                <i class="fas fa-info-circle"></i> 鏌ヨ缁撴灉
+                <i class="fas fa-info-circle"></i> 查询结果
             </div>
             <div class="card-content" id="qccResultDisplay">
-                <p style="text-align: center; color: #a3c3ff;">璇疯緭鍏ュ叧閿瘝杩涜鏌ヨ...</p>
+                <p style="text-align: center; color: #a3c3ff;">请输入关键词进行查询...</p>
             </div>
         </div>
 
         <div class="card" id="qccRiskFactorsCard" style="display: none;">
             <div class="panel-title">
-                <i class="fas fa-exclamation-triangle"></i> AI椋庨櫓鍒嗘瀽
+                <i class="fas fa-exclamation-triangle"></i> AI风险分析
             </div>
             <div class="card-content ai-analysis-output" id="qccRiskFactors">
-                <p style="text-align: center; color: #a3c3ff;">AI鍒嗘瀽缁撴灉灏嗗湪姝ゅ鏄剧ず...</p>
+                <p style="text-align: center; color: #a3c3ff;">AI分析结果将在此处显示...</p>
             </div>
         </div>
 
         <div class="card" id="qccSuggestionsCard" style="display: none;">
             <div class="panel-title">
-                <i class="fas fa-lightbulb"></i> AI鏀硅繘寤鸿
+                <i class="fas fa-lightbulb"></i> AI改进建议
             </div>
             <div class="card-content ai-analysis-output" id="qccSuggestions">
-                <p style="text-align: center; color: #a3c3ff;">AI鏀硅繘寤鸿灏嗗湪姝ゅ鏄剧ず...</p>
+                <p style="text-align: center; color: #a3c3ff;">AI改进建议将在此处显示...</p>
             </div>
         </div>
     </div>

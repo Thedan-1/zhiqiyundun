@@ -1,54 +1,54 @@
-﻿{% extends "base.html" %}
+{% extends "base.html" %}
 
-{% block title %}钃濆績鏅烘煡 - 鍏ㄥ浗鍟嗘爣鏌ヨ{% endblock %}
+{% block title %}蓝心智查 - 全国商标查询{% endblock %}
 
 {% block center_content %}
     <div class="qichacha-container">
         <div class="qichacha-header">
-            <div class="qichacha-title">钃濆績鏅烘煡 - 鍏ㄥ浗鍟嗘爣鏌ヨ</div>
-            <div class="qichacha-subtitle">鎼滅储瀵瑰簲浼佷笟鐨勫晢鏍囦俊鎭紝杩斿洖鍟嗘爣鍚嶇О銆佹敞鍐屽彿銆佸浗鏍囧垎绫汇€佺敵璇蜂汉銆佸晢鏍囩姸鎬併€佺敵璇锋棩鏈熺瓑淇℃伅锛屽苟缁撳悎AI杩涜椋庨櫓鍒嗘瀽銆?/div>
+            <div class="qichacha-title">蓝心智查 - 全国商标查询</div>
+            <div class="qichacha-subtitle">搜索对应企业的商标信息，返回商标名称、注册号、国标分类、申请人、商标状态、申请日期等信息，并结合AI进行风险分析。</div>
         </div>
 
         <div class="card">
             <div class="panel-title">
-                <i class="fas fa-trademark"></i> 鍟嗘爣淇℃伅鏌ヨ
+                <i class="fas fa-trademark"></i> 商标信息查询
             </div>
             <div class="card-content">
                 <div class="form-group">
-                    <label for="trademarkKeyword"><i class="fas fa-building"></i> 鐢宠浜哄悕绉?/label>
-                    <input type="text" id="trademarkKeyword" placeholder="杈撳叆鐢宠浜哄悕绉?>
+                    <label for="trademarkKeyword"><i class="fas fa-building"></i> 申请人名称</label>
+                    <input type="text" id="trademarkKeyword" placeholder="输入申请人名称">
                 </div>
                 <button id="trademarkAnalyzeBtn" class="btn">
-                    <i class="fas fa-search"></i> 鏌ヨ骞禔I鍒嗘瀽
+                    <i class="fas fa-search"></i> 查询并AI分析
                 </button>
             </div>
         </div>
 
-        <!-- 淇敼杩欓噷锛氭坊鍔?ID 鍜屽垵濮嬮殣钘忔牱寮?-->
+        <!-- 修改这里：添加 ID 和初始隐藏样式 -->
         <div class="card" id="trademarkResultCard" style="display: none;">
             <div class="panel-title">
-                <i class="fas fa-info-circle"></i> 鏌ヨ缁撴灉
+                <i class="fas fa-info-circle"></i> 查询结果
             </div>
             <div class="card-content" id="trademarkResultDisplay">
-                <p style="text-align: center; color: #a3c3ff;">璇疯緭鍏ュ叧閿瘝杩涜鏌ヨ...</p>
+                <p style="text-align: center; color: #a3c3ff;">请输入关键词进行查询...</p>
             </div>
         </div>
 
         <div class="card" id="trademarkRiskFactorsCard" style="display: none;">
             <div class="panel-title">
-                <i class="fas fa-exclamation-triangle"></i> AI椋庨櫓鍒嗘瀽
+                <i class="fas fa-exclamation-triangle"></i> AI风险分析
             </div>
             <div class="card-content ai-analysis-output" id="trademarkRiskFactors">
-                <p style="text-align: center; color: #a3c3ff;">AI鍒嗘瀽缁撴灉灏嗗湪姝ゅ鏄剧ず...</p>
+                <p style="text-align: center; color: #a3c3ff;">AI分析结果将在此处显示...</p>
             </div>
         </div>
 
         <div class="card" id="trademarkSuggestionsCard" style="display: none;">
             <div class="panel-title">
-                <i class="fas fa-lightbulb"></i> AI鏀硅繘寤鸿
+                <i class="fas fa-lightbulb"></i> AI改进建议
             </div>
             <div class="card-content ai-analysis-output" id="trademarkSuggestions">
-                <p style="text-align: center; color: #a3c3ff;">AI鏀硅繘寤鸿灏嗗湪姝ゅ鏄剧ず...</p>
+                <p style="text-align: center; color: #a3c3ff;">AI改进建议将在此处显示...</p>
             </div>
         </div>
     </div>

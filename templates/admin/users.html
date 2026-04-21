@@ -1,32 +1,32 @@
-﻿{% extends "base.html" %}
-{% block title %}鐢ㄦ埛绠＄悊 - 钃濆績鏅虹{% endblock %}
+{% extends "base.html" %}
+{% block title %}用户管理 - 智企云盾{% endblock %}
 
 {% block center_content %}
 <div class="qichacha-container">
     <div class="qichacha-header">
-        <div class="qichacha-title">鐢ㄦ埛绠＄悊</div>
-        <div class="qichacha-subtitle">绠＄悊绯荤粺涓殑鐢ㄦ埛璐︽埛</div>
+        <div class="qichacha-title">用户管理</div>
+        <div class="qichacha-subtitle">管理系统中的用户账户</div>
     </div>
 
     <div class="card">
         <div class="panel-title">
-            <i class="fas fa-users"></i> 鐢ㄦ埛鍒楄〃
+            <i class="fas fa-users"></i> 用户列表
         </div>
         <div class="card-content">
             <a href="{{ url_for('admin_add_user') }}" class="btn" style="width: auto; margin-bottom: 20px;">
-                <i class="fas fa-user-plus"></i> 娣诲姞鏂扮敤鎴?
+                <i class="fas fa-user-plus"></i> 添加新用户
             </a>
             <div class="table-responsive">
                 <table class="table">
                     <thead>
                         <tr>
                             <th>ID</th>
-                            <th>鐢ㄦ埛鍚?/th>
-                            <th>閭</th>
-                            <th>瑙掕壊</th>
-                            <th>娲昏穬</th>
-                            <th>鍒涘缓鏃堕棿</th>
-                            <th>鎿嶄綔</th>
+                            <th>用户名</th>
+                            <th>邮箱</th>
+                            <th>角色</th>
+                            <th>活跃</th>
+                            <th>创建时间</th>
+                            <th>操作</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -38,17 +38,17 @@
                             <td>{{ user.role.name if user.role else 'N/A' }}</td>
                             <td>
                                 {% if user.is_active %}
-                                    <span style="color: var(--success-color);"><i class="fas fa-check-circle"></i> 鏄?/span>
+                                    <span style="color: var(--success-color);"><i class="fas fa-check-circle"></i> 是</span>
                                 {% else %}
-                                    <span style="color: var(--danger-color);"><i class="fas fa-times-circle"></i> 鍚?/span>
+                                    <span style="color: var(--danger-color);"><i class="fas fa-times-circle"></i> 否</span>
                                 {% endif %}
                             </td>
                             <td>{{ user.created_at.strftime('%Y-%m-%d %H:%M') }}</td>
                             <td>
-                                <a href="{{ url_for('admin_edit_user', user_id=user.id) }}" class="case-link" style="margin-right: 10px;">缂栬緫</a>
-                                <a href="{{ url_for('admin_reset_password', user_id=user.id) }}" class="case-link" style="margin-right: 10px;">閲嶇疆瀵嗙爜</a>
+                                <a href="{{ url_for('admin_edit_user', user_id=user.id) }}" class="case-link" style="margin-right: 10px;">编辑</a>
+                                <a href="{{ url_for('admin_reset_password', user_id=user.id) }}" class="case-link" style="margin-right: 10px;">重置密码</a>
                                 <form action="{{ url_for('admin_delete_user', user_id=user.id) }}" method="POST" style="display: inline;">
-                                    <button type="submit" class="case-link" style="background: none; border: none; color: var(--danger-color); cursor: pointer;">鍒犻櫎</button>
+                                    <button type="submit" class="case-link" style="background: none; border: none; color: var(--danger-color); cursor: pointer;">删除</button>
                                 </form>
                             </td>
                         </tr>
@@ -76,7 +76,7 @@
                                 {% if link.icon and link.icon.startswith('fas') %}
                                     <i class="{{ link.icon }}" style="font-size: 40px; color: var(--accent-color);"></i>
                                 {% elif link.icon %}
-                                    <img src="{{ url_for('static', filename='icons/' + link.icon) }}" alt="{{ link.name }}鍥炬爣">
+                                    <img src="{{ url_for('static', filename='icons/' + link.icon) }}" alt="{{ link.name }}图标">
                                 {% else %}
                                     <i class="fas fa-link" style="font-size: 40px; color: var(--text-color-light);"></i>
                                 {% endif %}
@@ -93,7 +93,7 @@
                 </div>
             {% endfor %}
         {% else %}
-            <p class="no-content-message">鏆傛棤澶栭儴骞冲彴閾炬帴銆?/p>
+            <p class="no-content-message">暂无外部平台链接。</p>
         {% endif %}
     </div>
 {% endblock %}

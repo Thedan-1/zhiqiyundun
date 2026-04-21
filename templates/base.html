@@ -1,9 +1,9 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="zh-CN">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{% block title %}钃濆績鏅虹{% endblock %}</title>
+    <title>{% block title %}智企云盾{% endblock %}</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
@@ -14,23 +14,23 @@
     <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.4.1/dist/MarkerCluster.Default.css">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
 
-    {# --- 鏂板姝ゅ潡锛岀敤浜庡瓙妯℃澘娉ㄥ叆棰濆鐨勫ご閮ㄥ唴瀹癸紝渚嬪鑷畾涔塁SS --- #}
+    {# --- 新增此块，用于子模板注入额外的头部内容，例如自定义CSS --- #}
     {% block extra_head %}{% endblock %}
     {# ---------------------------------------------------------------- #}
 
     <style>
         /* ---------------------------------------------------------------- */
-        /* 浠呬慨鏀瑰瓧浣撻鑹诧紝涓嶈Е纰拌儗鏅壊鎴栧竷灞€ */
+        /* 仅修改字体颜色，不触碰背景色或布局 */
         /* ---------------------------------------------------------------- */
 
-        /* 纭繚鍏ㄥ眬鏂囨湰棰滆壊鍦ㄦ繁鑹茶儗鏅笅鏄祬鑹?*/
+        /* 确保全局文本颜色在深色背景下是浅色 */
         body {
-            color: var(--text-color); /* 鍋囪 --text-color 鏄祬鑹?*/
+            color: var(--text-color); /* 假设 --text-color 是浅色 */
         }
 
-        /* 宸︿晶闈㈡澘 - 绯荤粺淇℃伅銆佺郴缁熺粺璁?*/
+        /* 左侧面板 - 系统信息、系统统计 */
         .panel-title {
-            color: var(--primary-color); /* 淇濇寔钃濊壊璋冿紝浣嗙‘淇濆叾浜害鍦ㄦ繁鑹茶儗鏅笂鍙 */
+            color: var(--primary-color); /* 保持蓝色调，但确保其亮度在深色背景上可见 */
         }
         .panel-title i {
             color: var(--primary-color);
@@ -39,10 +39,10 @@
             color: var(--text-color);
         }
         .card-content span {
-            color: var(--accent-color); /* 寮鸿皟鑹诧紝渚嬪浜潚鑹叉垨娴呯豢鑹诧紝涓庤摑鑹茶儗鏅姣斿害楂?*/
+            color: var(--accent-color); /* 强调色，例如亮青色或浅绿色，与蓝色背景对比度高 */
         }
 
-        /* 宸︿晶闈㈡澘 - 绯荤粺鍔熻兘 (瀵艰埅閾炬帴) */
+        /* 左侧面板 - 系统功能 (导航链接) */
         .system-function-link {
             color: var(--text-color);
         }
@@ -59,7 +59,7 @@
             color: var(--text-color-light);
         }
 
-        /* 宸︿晶闈㈡澘 - 椋庨櫓妗堜緥搴?*/
+        /* 左侧面板 - 风险案例库 */
         .case-card .case-title {
             color: var(--primary-color);
         }
@@ -76,20 +76,20 @@
             color: var(--primary-color);
         }
 
-        /* 涓棿鍐呭鍖哄煙 - Flash Messages */
+        /* 中间内容区域 - Flash Messages */
         .flash-messages .alert {
             color: var(--text-color);
         }
-        /* 鍏蜂綋鐨?alert 棰滆壊鐢?style.css 鎴栧叾浠栧湴鏂瑰畾涔夛紝杩欓噷涓嶄慨鏀?*/
+        /* 具体的 alert 颜色由 style.css 或其他地方定义，这里不修改 */
 
-        /* 浠〃鐩橀〉闈㈢殑鐗瑰畾鍏冪礌 (濡傛灉瀛樺湪锛岀‘淇濆瓧浣撻鑹插彲瑙? */
+        /* 仪表盘页面的特定元素 (如果存在，确保字体颜色可见) */
         .dashboard-title {
             color: var(--primary-color);
-            /* text-shadow 淇濇寔鍘熸牱锛屾垨璋冩暣涓烘洿浜殑棰滆壊 */
+            /* text-shadow 保持原样，或调整为更亮的颜色 */
         }
         .dashboard-subtitle {
             color: var(--accent-color);
-            /* text-shadow 淇濇寔鍘熸牱锛屾垨璋冩暣涓烘洿浜殑棰滆壊 */
+            /* text-shadow 保持原样，或调整为更亮的颜色 */
         }
         .control-title {
             color: var(--text-color-light);
@@ -122,7 +122,7 @@
             color: var(--accent-color);
         }
 
-        /* 琛ㄦ牸棰滆壊 */
+        /* 表格颜色 */
         .table th {
             color: var(--primary-color);
         }
@@ -144,7 +144,7 @@
             color: var(--text-color-light);
         }
 
-        /* 纭繚鎵€鏈夐摼鎺ョ殑榛樿棰滆壊鍦ㄦ繁鑹茶儗鏅笅鍙 */
+        /* 确保所有链接的默认颜色在深色背景下可见 */
         a {
             color: var(--primary-color);
         }
@@ -153,7 +153,7 @@
         }
 
         /* ---------------------------------------------------------------- */
-        /* 鍙充晶闈㈡澘閫氱敤鏍峰紡 (涓€绔欏紡骞冲彴銆佸巻鍙茶褰曘€侀闄╁垎鏋愮瓑) */
+        /* 右侧面板通用样式 (一站式平台、历史记录、风险分析等) */
         /* ---------------------------------------------------------------- */
         .one-stop-platform-container {
             padding: 10px;
@@ -164,15 +164,15 @@
             gap: 15px;
         }
 
-        .platform-category, .right-panel-section { /* 缁熶竴鍗＄墖鏍峰紡 */
+        .platform-category, .right-panel-section { /* 统一卡片样式 */
             border-radius: 10px;
             box-shadow: var(--card-shadow);
             padding: 10px;
             border: 1px solid var(--border-color-light);
-            background-color: var(--card-bg); /* 纭繚鑳屾櫙鑹蹭竴鑷?*/
+            background-color: var(--card-bg); /* 确保背景色一致 */
         }
 
-        .platform-category-title, .right-panel-section-title { /* 缁熶竴鏍囬鏍峰紡 */
+        .platform-category-title, .right-panel-section-title { /* 统一标题样式 */
             font-size: 1.1em;
             color: var(--primary-color);
             margin-bottom: 10px;
@@ -186,13 +186,13 @@
 
         .platform-items-grid {
     display: grid;
-            /* 浣跨敤 minmax 纭繚姣忎釜椤圭洰鑷冲皯鏈変竴瀹氬搴︼紝骞朵笖鍦ㄤ袱鍒椾腑鍧囧寑鍒嗛厤 */
-            grid-template-columns: repeat(auto-fit, minmax(120px, 1fr)); /* 璋冩暣 minmax 鐨勫€?*/
+            /* 使用 minmax 确保每个项目至少有一定宽度，并且在两列中均匀分配 */
+            grid-template-columns: repeat(auto-fit, minmax(120px, 1fr)); /* 调整 minmax 的值 */
             gap: 10px;
         }
 
         .platform-item {
-            background-color: var(--panel-bg); /* 鍐呴儴椤圭洰浣跨敤鏇存繁鐨勮儗鏅壊 */
+            background-color: var(--panel-bg); /* 内部项目使用更深的背景色 */
             border-radius: 8px;
             padding: 8px;
             text-align: center;
@@ -206,15 +206,15 @@
             align-items: center;
             min-height: 90px;
         }
-        .platform-item a { /* 閽堝鍖呰９鍥炬爣鍜屽悕绉扮殑閾炬帴 */
+        .platform-item a { /* 针对包裹图标和名称的链接 */
             text-decoration: none;
             display: flex;
             flex-direction: column;
             align-items: center;
-            width: 100%; /* 纭繚閾炬帴鍗犳嵁 item 鐨勫叏閮ㄥ搴?*/
+            width: 100%; /* 确保链接占据 item 的全部宽度 */
             color: inherit;
-            /* 澧炲姞涓€涓渶澶у搴︼紝闃叉鍐呭杩囬暱鎾戝紑 */
-            max-width: 100%; /* 纭繚閾炬帴鍐呭涓嶄細瓒呭嚭鐖跺鍣?*/
+            /* 增加一个最大宽度，防止内容过长撑开 */
+            max-width: 100%; /* 确保链接内容不会超出父容器 */
         }
         .platform-item:hover {
             transform: translateY(-3px);
@@ -238,29 +238,29 @@
             white-space: nowrap;
             overflow: hidden;
             text-overflow: ellipsis;
-            width: 100%; /* 纭繚鍚嶇О鍗犳嵁鍙敤瀹藉害鐨?00%骞舵埅鏂?*/
-            text-align: center; /* 纭繚鏂囨湰灞呬腑 */
+            width: 100%; /* 确保名称占据可用宽度的100%并截断 */
+            text-align: center; /* 确保文本居中 */
         }
 
         .platform-item-description {
             font-size: 0.7em;
             color: var(--text-color-light);
             display: -webkit-box;
-            -webkit-line-clamp: 1; /* 闄愬埗涓哄崟琛?*/
+            -webkit-line-clamp: 1; /* 限制为单行 */
             -webkit-box-orient: vertical;
             overflow: hidden;
             text-overflow: ellipsis;
             line-height: 1.2;
-            width: 100%; /* 纭繚鎻忚堪鍗犳嵁鍙敤瀹藉害鐨?00%骞舵埅鏂?*/
-            text-align: center; /* 纭繚鏂囨湰灞呬腑 */
+            width: 100%; /* 确保描述占据可用宽度的100%并截断 */
+            text-align: center; /* 确保文本居中 */
         }
 
-        /* 绉婚櫎鍓嶅線骞冲彴鎸夐挳鐨勬牱寮?(宸插湪 HTML 涓Щ闄ゆ寜閽紝杩欓噷纭繚鏃犳畫鐣欐牱寮忓奖鍝? */
+        /* 移除前往平台按钮的样式 (已在 HTML 中移除按钮，这里确保无残留样式影响) */
         .platform-item-link {
             display: none;
         }
 
-        /* 鍘嗗彶璁板綍鍜岄闄╁垎鏋愬垪琛ㄦ牱寮?*/
+        /* 历史记录和风险分析列表样式 */
         .right-panel-list {
             list-style: none;
             padding: 0;
@@ -272,19 +272,19 @@
             font-size: 0.9em;
             color: var(--text-color);
             display: flex;
-            align-items: flex-start; /* 璋冩暣瀵归綈鏂瑰紡 */
+            align-items: flex-start; /* 调整对齐方式 */
             gap: 8px;
         }
 
         .right-panel-list-item i {
             color: var(--accent-color);
-            margin-top: 2px; /* 寰皟鍥炬爣浣嶇疆 */
+            margin-top: 2px; /* 微调图标位置 */
         }
 
         .right-panel-list-item a {
             color: var(--accent-color);
             text-decoration: none;
-            flex-grow: 1; /* 鍏佽閾炬帴鍗犳嵁鍓╀綑绌洪棿 */
+            flex-grow: 1; /* 允许链接占据剩余空间 */
         }
 
         .right-panel-list-item a:hover {
@@ -302,164 +302,164 @@
 <body>
     <div class="dashboard-container">
         <div class="dashboard">
-            <!-- 宸︿晶闈㈡澘 - 瀵艰埅鏍?(鎸佷箙鍖? -->
+            <!-- 左侧面板 - 导航栏 (持久化) -->
             <div class="panel panel-left">
                 <div class="panel-content">
                     <div class="card">
                         <div class="panel-title">
-                            <i class="fas fa-user-circle"></i> 绯荤粺淇℃伅
+                            <i class="fas fa-user-circle"></i> 系统信息
                         </div>
                         <div class="card-content">
                             {% if current_user.is_authenticated %}
-                                <p>鐢ㄦ埛: {{ current_user.username }} ({{ current_user.role.name if current_user.role else '鏃犺鑹? }})</p>
-                                <p>鐧诲綍鏃堕棿: {{ current_user.created_at.strftime('%Y-%m-%d %H:%M') if current_user.created_at else 'N/A' }}</p>
+                                <p>用户: {{ current_user.username }} ({{ current_user.role.name if current_user.role else '无角色' }})</p>
+                                <p>登录时间: {{ current_user.created_at.strftime('%Y-%m-%d %H:%M') if current_user.created_at else 'N/A' }}</p>
                             {% else %}
-                                <p>鐢ㄦ埛: 鏈櫥褰?/p>
-                                <p>鐘舵€? 璇风櫥褰?/p>
+                                <p>用户: 未登录</p>
+                                <p>状态: 请登录</p>
                             {% endif %}
-                            <p>绯荤粺鐘舵€? 姝ｅ父杩愯</p>
+                            <p>系统状态: 正常运行</p>
                         </div>
                     </div>
 
                     <div class="card">
                         <div class="panel-title">
-                            <i class="fas fa-server"></i> 绯荤粺缁熻
+                            <i class="fas fa-server"></i> 系统统计
                         </div>
                         <div class="card-content">
-                            <p>宸茶瘎浼颁紒涓? <span id="totalAssessments">--</span> 瀹?/p>
-                            <p>楂橀闄╀紒涓? <span id="highRiskCount">--</span> 瀹?/p>
-                            <p>浠婃棩鏂板: <span id="todayAssessments">--</span> 瀹?/p>
+                            <p>已评估企业: <span id="totalAssessments">--</span> 家</p>
+                            <p>高风险企业: <span id="highRiskCount">--</span> 家</p>
+                            <p>今日新增: <span id="todayAssessments">--</span> 家</p>
                         </div>
                     </div>
 
                     <div class="card">
                         <div class="panel-title">
-                            <i class="fas fa-cog"></i> 绯荤粺鍔熻兘
+                            <i class="fas fa-cog"></i> 系统功能
                         </div>
                         <div class="card-content system-functions-nav">
                             <a href="{{ url_for('index') }}" class="system-function-link {% if request.endpoint == 'index' %}active{% endif %}">
-                                <i class="fas fa-chart-bar"></i> 椋庨櫓璇勪及浠〃鐩?
+                                <i class="fas fa-chart-bar"></i> 风险评估仪表盘
                             </a>
 
-                            <!-- 鏅烘収鎼滄煡 - 鐖剁骇鑿滃崟 -->
+                            <!-- 智慧搜查 - 父级菜单 -->
                             <div class="system-function-category">
                                 <a href="#" class="system-function-link toggle-submenu {% if request.endpoint and (request.endpoint.startswith('q1_') or request.endpoint.startswith('q2_') or request.endpoint.startswith('q3_')) %}active{% endif %}" data-target="#smartSearchSubmenu">
-                                    <i class="fas fa-search-dollar"></i> 鏅烘収鎼滄煡 <i class="fas fa-chevron-down submenu-arrow"></i>
+                                    <i class="fas fa-search-dollar"></i> 智慧搜查 <i class="fas fa-chevron-down submenu-arrow"></i>
                                 </a>
                                 <ul class="system-function-submenu {% if request.endpoint and (request.endpoint.startswith('q1_') or request.endpoint.startswith('q2_') or request.endpoint.startswith('q3_')) %}show{% endif %}" id="smartSearchSubmenu">
-                                    <!-- 浼佷笟淇℃伅鏍搁獙 (瀛愮被) -->
+                                    <!-- 企业信息核验 (子类) -->
                                     <li class="submenu-group">
                                         <a href="#" class="system-function-link toggle-submenu {% if request.endpoint and request.endpoint.startswith('q1_') %}active{% endif %}" data-target="#q1SubSubmenu">
-                                            <i class="fas fa-building"></i> 浼佷笟淇℃伅鏍搁獙 <i class="fas fa-chevron-down submenu-arrow"></i>
+                                            <i class="fas fa-building"></i> 企业信息核验 <i class="fas fa-chevron-down submenu-arrow"></i>
                                         </a>
                                         <ul class="system-function-sub-submenu {% if request.endpoint and request.endpoint.startswith('q1_') %}show{% endif %}" id="q1SubSubmenu">
-                                            <li><a href="{{ url_for('q1_qiyexinxihecha') }}" class="system-function-link sub-submenu-item {% if request.endpoint == 'q1_qiyexinxihecha' %}active{% endif %}">浼佷笟淇℃伅鏍搁獙</a></li>
-                                            <li><a href="{{ url_for('q1_gongshangxinxi') }}" class="system-function-link sub-submenu-item {% if request.endpoint == 'q1_gongshangxinxi' %}active{% endif %}">浼佷笟宸ュ晢淇℃伅</a></li>
-                                            <li><a href="{{ url_for('q1_mohusousuo') }}" class="system-function-link sub-submenu-item {% if request.endpoint == 'q1_mohusousuo' %}active{% endif %}">浼佷笟妯＄硦鎼滅储</a></li>
-                                            <li><a href="{{ url_for('q1_shuihaokaipiao') }}" class="system-function-link sub-submenu-item {% if request.endpoint == 'q1_shuihaokaipiao' %}active{% endif %}">绋庡彿寮€绁ㄤ俊鎭?/a></li>
+                                            <li><a href="{{ url_for('q1_qiyexinxihecha') }}" class="system-function-link sub-submenu-item {% if request.endpoint == 'q1_qiyexinxihecha' %}active{% endif %}">企业信息核验</a></li>
+                                            <li><a href="{{ url_for('q1_gongshangxinxi') }}" class="system-function-link sub-submenu-item {% if request.endpoint == 'q1_gongshangxinxi' %}active{% endif %}">企业工商信息</a></li>
+                                            <li><a href="{{ url_for('q1_mohusousuo') }}" class="system-function-link sub-submenu-item {% if request.endpoint == 'q1_mohusousuo' %}active{% endif %}">企业模糊搜索</a></li>
+                                            <li><a href="{{ url_for('q1_shuihaokaipiao') }}" class="system-function-link sub-submenu-item {% if request.endpoint == 'q1_shuihaokaipiao' %}active{% endif %}">税号开票信息</a></li>
                                         </ul>
                                     </li>
-                                    <!-- 瀹㈡埛韬唤璇嗗埆 (瀛愮被) -->
+                                    <!-- 客户身份识别 (子类) -->
                                     <li class="submenu-group">
                                         <a href="#" class="system-function-link toggle-submenu {% if request.endpoint and request.endpoint.startswith('q2_') %}active{% endif %}" data-target="#q2SubSubmenu">
-                                            <i class="fas fa-id-card"></i> 瀹㈡埛韬唤璇嗗埆 <i class="fas fa-chevron-down submenu-arrow"></i>
+                                            <i class="fas fa-id-card"></i> 客户身份识别 <i class="fas fa-chevron-down submenu-arrow"></i>
                                         </a>
                                         <ul class="system-function-sub-submenu {% if request.endpoint and request.endpoint.startswith('q2_') %}show{% endif %}" id="q2SubSubmenu">
-                                            <li><a href="{{ url_for('q2_kehushenfenshibie') }}" class="system-function-link sub-submenu-item {% if request.endpoint == 'q2_kehushenfenshibie' %}active{% endif %}">瀹㈡埛韬唤璇嗗埆 (KYC)</a></li>
-                                            <li><a href="{{ url_for('q2_zizhizhengshu') }}" class="system-function-link sub-submenu-item {% if request.endpoint == 'q2_zizhizhengshu' %}active{% endif %}">璧勮川璇佷功</a></li>
-                                            <li><a href="{{ url_for('q2_shangbiaochaxun') }}" class="system-function-link sub-submenu-item {% if request.endpoint == 'q2_shangbiaochaxun' %}active{% endif %}">鍏ㄥ浗鍟嗘爣鏌ヨ</a></li>
-                                            <li><a href="{{ url_for('q2_zhuanlichaxun') }}" class="system-function-link sub-submenu-item {% if request.endpoint == 'q2_zhuanlichaxun' %}active{% endif %}">涓撳埄鏌ヨ</a></li>
-                                            <li><a href="{{ url_for('q2_nianbaoxinxi') }}" class="system-function-link sub-submenu-item {% if request.endpoint == 'q2_nianbaoxinxi' %}active{% endif %}">浼佷笟骞存姤淇℃伅</a></li>
+                                            <li><a href="{{ url_for('q2_kehushenfenshibie') }}" class="system-function-link sub-submenu-item {% if request.endpoint == 'q2_kehushenfenshibie' %}active{% endif %}">客户身份识别 (KYC)</a></li>
+                                            <li><a href="{{ url_for('q2_zizhizhengshu') }}" class="system-function-link sub-submenu-item {% if request.endpoint == 'q2_zizhizhengshu' %}active{% endif %}">资质证书</a></li>
+                                            <li><a href="{{ url_for('q2_shangbiaochaxun') }}" class="system-function-link sub-submenu-item {% if request.endpoint == 'q2_shangbiaochaxun' %}active{% endif %}">全国商标查询</a></li>
+                                            <li><a href="{{ url_for('q2_zhuanlichaxun') }}" class="system-function-link sub-submenu-item {% if request.endpoint == 'q2_zhuanlichaxun' %}active{% endif %}">专利查询</a></li>
+                                            <li><a href="{{ url_for('q2_nianbaoxinxi') }}" class="system-function-link sub-submenu-item {% if request.endpoint == 'q2_nianbaoxinxi' %}active{% endif %}">企业年报信息</a></li>
                                         </ul>
                                     </li>
-                                    <!-- 鍚堜綔椋庨櫓鎺掓煡 (瀛愮被) -->
+                                    <!-- 合作风险排查 (子类) -->
                                     <li class="submenu-group">
                                         <a href="#" class="system-function-link toggle-submenu {% if request.endpoint and request.endpoint.startswith('q3_') %}active{% endif %}" data-target="#q3SubSubmenu">
-                                            <i class="fas fa-shield-alt"></i> 鍚堜綔椋庨櫓鎺掓煡 <i class="fas fa-chevron-down submenu-arrow"></i>
+                                            <i class="fas fa-shield-alt"></i> 合作风险排查 <i class="fas fa-chevron-down submenu-arrow"></i>
                                         </a>
                                         <ul class="system-function-sub-submenu {% if request.endpoint and request.endpoint.startswith('q3_') %}show{% endif %}" id="q3SubSubmenu">
-                                            <li><a href="{{ url_for('q3_zonghefengxianpaizha') }}" class="system-function-link sub-submenu-item {% if request.endpoint == 'q3_zonghefengxianpaizha' %}active{% endif %}">缁煎悎椋庨櫓鎺掓煡</a></li>
-                                            <li><a href="{{ url_for('q3_shixinhecha') }}" class="system-function-link sub-submenu-item {% if request.endpoint == 'q3_shixinhecha' %}active{% endif %}">澶变俊鏍告煡</a></li>
-                                            <li><a href="{{ url_for('q3_jingyinyichanghecha') }}" class="system-function-link sub-submenu-item {% if request.endpoint == 'q3_jingyinyichanghecha' %}active{% endif %}">缁忚惀寮傚父鏍告煡</a></li>
-                                            <li><a href="{{ url_for('q3_beizhixingrenhecha') }}" class="system-function-link sub-submenu-item {% if request.endpoint == 'q3_beizhixingrenhecha' %}active{% endif %}">琚墽琛屼汉鏍告煡</a></li>
-                                            <li><a href="{{ url_for('q3_yanzhongweifahecha') }}" class="system-function-link sub-submenu-item {% if request.endpoint == 'q3_yanzhongweifahecha' %}active{% endif %}">涓ラ噸杩濇硶鏍告煡</a></li>
-                                            <li><a href="{{ url_for('q3_caipanwenshuhecha') }}" class="system-function-link sub-submenu-item {% if request.endpoint == 'q3_caipanwenshuhecha' %}active{% endif %}">瑁佸垽鏂囦功鏍告煡</a></li>
+                                            <li><a href="{{ url_for('q3_zonghefengxianpaizha') }}" class="system-function-link sub-submenu-item {% if request.endpoint == 'q3_zonghefengxianpaizha' %}active{% endif %}">综合风险排查</a></li>
+                                            <li><a href="{{ url_for('q3_shixinhecha') }}" class="system-function-link sub-submenu-item {% if request.endpoint == 'q3_shixinhecha' %}active{% endif %}">失信核查</a></li>
+                                            <li><a href="{{ url_for('q3_jingyinyichanghecha') }}" class="system-function-link sub-submenu-item {% if request.endpoint == 'q3_jingyinyichanghecha' %}active{% endif %}">经营异常核查</a></li>
+                                            <li><a href="{{ url_for('q3_beizhixingrenhecha') }}" class="system-function-link sub-submenu-item {% if request.endpoint == 'q3_beizhixingrenhecha' %}active{% endif %}">被执行人核查</a></li>
+                                            <li><a href="{{ url_for('q3_yanzhongweifahecha') }}" class="system-function-link sub-submenu-item {% if request.endpoint == 'q3_yanzhongweifahecha' %}active{% endif %}">严重违法核查</a></li>
+                                            <li><a href="{{ url_for('q3_caipanwenshuhecha') }}" class="system-function-link sub-submenu-item {% if request.endpoint == 'q3_caipanwenshuhecha' %}active{% endif %}">裁判文书核查</a></li>
                                         </ul>
                                     </li>
                                 </ul>
                             </div>
 
-                            <!-- 骞冲彴绠＄悊鑿滃崟 -->
+                            <!-- 平台管理菜单 -->
                             {% if current_user.is_authenticated and current_user.role and current_user.role.name == 'Admin' %}
 <div class="system-function-category">
     <a href="#" class="system-function-link toggle-submenu {% if request.endpoint and request.endpoint.startswith('admin_') %}active{% endif %}" data-target="#adminSubmenu">
-        <i class="fas fa-user-cog"></i> 骞冲彴绠＄悊 <i class="fas fa-chevron-down submenu-arrow"></i>
+        <i class="fas fa-user-cog"></i> 平台管理 <i class="fas fa-chevron-down submenu-arrow"></i>
     </a>
     <ul class="system-function-submenu {% if request.endpoint and request.endpoint.startswith('admin_') %}show{% endif %}" id="adminSubmenu">
         {% if current_user.role and current_user.role.permissions|selectattr('name', 'equalto', 'admin_users')|list %}
-        <li><a href="{{ url_for('admin_users') }}" class="system-function-link sub-submenu-item {% if request.endpoint == 'admin_users' %}active{% endif %}">鐢ㄦ埛绠＄悊</a></li>
+        <li><a href="{{ url_for('admin_users') }}" class="system-function-link sub-submenu-item {% if request.endpoint == 'admin_users' %}active{% endif %}">用户管理</a></li>
         {% endif %}
         {% if current_user.role and current_user.role.permissions|selectattr('name', 'equalto', 'admin_roles')|list %}
-        <li><a href="{{ url_for('admin_roles') }}" class="system-function-link sub-submenu-item {% if request.endpoint == 'admin_roles' or request.endpoint == 'admin_edit_role' or request.endpoint == 'admin_role_permissions' %}active{% endif %}">瑙掕壊涓庢潈闄?/a></li> {# 淇锛氬皢鐩稿叧瀛愰〉闈篃鏍囪涓篴ctive #}
+        <li><a href="{{ url_for('admin_roles') }}" class="system-function-link sub-submenu-item {% if request.endpoint == 'admin_roles' or request.endpoint == 'admin_edit_role' or request.endpoint == 'admin_role_permissions' %}active{% endif %}">角色与权限</a></li> {# 修正：将相关子页面也标记为active #}
         {% endif %}
         {% if current_user.role and current_user.role.permissions|selectattr('name', 'equalto', 'admin_settings')|list %}
-        <li><a href="{{ url_for('admin_settings') }}" class="system-function-link sub-submenu-item {% if request.endpoint == 'admin_settings' or request.endpoint == 'admin_edit_setting' %}active{% endif %}">绯荤粺璁剧疆</a></li> {# 淇锛氬皢鐩稿叧瀛愰〉闈篃鏍囪涓篴ctive #}
+        <li><a href="{{ url_for('admin_settings') }}" class="system-function-link sub-submenu-item {% if request.endpoint == 'admin_settings' or request.endpoint == 'admin_edit_setting' %}active{% endif %}">系统设置</a></li> {# 修正：将相关子页面也标记为active #}
         {% endif %}
         {% if current_user.role and current_user.role.permissions|selectattr('name', 'equalto', 'view_audit_logs')|list %}
-        <li><a href="{{ url_for('admin_audit_logs') }}" class="system-function-link sub-submenu-item {% if request.endpoint == 'admin_audit_logs' %}active{% endif %}">瀹¤鏃ュ織</a></li>
+        <li><a href="{{ url_for('admin_audit_logs') }}" class="system-function-link sub-submenu-item {% if request.endpoint == 'admin_audit_logs' %}active{% endif %}">审计日志</a></li>
         {% endif %}
         {% if current_user.role and current_user.role.permissions|selectattr('name', 'equalto', 'manage_external_links')|list %}
-        <li><a href="{{ url_for('admin_external_links') }}" class="system-function-link sub-submenu-item {% if request.endpoint == 'admin_external_links' or request.endpoint == 'admin_edit_external_link' %}active{% endif %}">澶栭儴閾炬帴</a></li> {# 淇锛氬皢鐩稿叧瀛愰〉闈篃鏍囪涓篴ctive #}
+        <li><a href="{{ url_for('admin_external_links') }}" class="system-function-link sub-submenu-item {% if request.endpoint == 'admin_external_links' or request.endpoint == 'admin_edit_external_link' %}active{% endif %}">外部链接</a></li> {# 修正：将相关子页面也标记为active #}
         {% endif %}
     </ul>
 </div>
 {% endif %}
 
-                            <!-- 鐧诲綍/娉ㄥ唽/鐧诲嚭閾炬帴 -->
+                            <!-- 登录/注册/登出链接 -->
                             {% if current_user.is_authenticated %}
                                 <a href="{{ url_for('logout') }}" class="system-function-link">
-                                    <i class="fas fa-sign-out-alt"></i> 鐧诲嚭 ({{ current_user.username }})
+                                    <i class="fas fa-sign-out-alt"></i> 登出 ({{ current_user.username }})
                                 </a>
                             {% else %}
                                 <a href="{{ url_for('login') }}" class="system-function-link {% if request.endpoint == 'login' %}active{% endif %}">
-                                    <i class="fas fa-sign-in-alt"></i> 鐧诲綍
+                                    <i class="fas fa-sign-in-alt"></i> 登录
                                 </a>
                                 <a href="{{ url_for('register') }}" class="system-function-link {% if request.endpoint == 'register' %}active{% endif %}">
-                                    <i class="fas fa-user-plus"></i> 娉ㄥ唽
+                                    <i class="fas fa-user-plus"></i> 注册
                                 </a>
                             {% endif %}
                         </div>
                     </div>
 
-                    <!-- 妗堜緥閮ㄥ垎 (淇濇寔涓嶅彉) -->
+                    <!-- 案例部分 (保持不变) -->
                     <div class="card">
                         <div class="panel-title">
-                            <i class="fas fa-book"></i> 椋庨櫓妗堜緥搴?
+                            <i class="fas fa-book"></i> 风险案例库
                         </div>
                         <div class="card-content">
                             <div class="case-card">
-                                <div class="case-title">涔愰珮锛氫粠婵掍复鐮翠骇鍒板叏鐞冩渶璧氶挶鐜╁叿鍏徃</div>
-                                <div class="case-description">涔愰珮闆嗗洟鍦?0涓栫邯90骞翠唬鍥犵數瀛愮帺鍏峰啿鍑绘繏涓寸牬浜э紝閫氳繃鎴樼暐璋冩暣鍜屽垱鏂扮鐞嗭紝鏈€缁堝疄鐜伴€嗚銆?/div>
-                                <a href="https://www.thepaper.cn/newsDetail_forward_24460122" class="case-link" target="_blank">鏌ョ湅璇︽儏</a>
+                                <div class="case-title">乐高：从濒临破产到全球最赚钱玩具公司</div>
+                                <div class="case-description">乐高集团在20世纪90年代因电子玩具冲击濒临破产，通过战略调整和创新管理，最终实现逆袭。</div>
+                                <a href="https://www.thepaper.cn/newsDetail_forward_24460122" class="case-link" target="_blank">查看详情</a>
                             </div>
 
                             <div class="case-card">
-                                <div class="case-title">鎭掑ぇ闆嗗洟锛?.4涓囦嚎鍊哄姟鍗辨満</div>
-                                <div class="case-description">鎭掑ぇ闆嗗洟鍥犺繃搴︽潬鏉嗗拰鐩茬洰澶氬厓鍖栨墿寮狅紝闄峰叆涓ラ噸鍊哄姟鍗辨満锛屾毚闇插嚭鎴垮湴浜ц涓氶珮鏉犳潌妯″紡鐨勯闄┿€?/div>
-                                <a href="https://news.qq.com/rain/a/20230727A07P65" class="case-link" target="_blank">鏌ョ湅璇︽儏</a>
+                                <div class="case-title">恒大集团：2.4万亿债务危机</div>
+                                <div class="case-description">恒大集团因过度杠杆和盲目多元化扩张，陷入严重债务危机，暴露出房地产行业高杠杆模式的风险。</div>
+                                <a href="https://news.qq.com/rain/a/20230727A07P65" class="case-link" target="_blank">查看详情</a>
                             </div>
 
                             <div class="case-card">
-                                <div class="case-title">宸存灄閾惰锛氬洜浜ゆ槗鍛樿繚瑙勬搷浣滃€掗棴</div>
-                                <div class="case-description">宸存灄閾惰鍥犱氦鏄撳憳灏煎厠路鏉庢．杩濊鎿嶄綔鏃ョ粡鎸囨暟鏈熻揣锛屽鑷磋秴杩?浜胯嫳闀戜簭鎹燂紝鏈€缁堢牬浜с€?/div>
-                                <a href="https://www.financialnews.com.cn/2025-02/28/content_419633.html" class="case-link" target="_blank">鏌ョ湅璇︽儏</a>
+                                <div class="case-title">巴林银行：因交易员违规操作倒闭</div>
+                                <div class="case-description">巴林银行因交易员尼克·李森违规操作日经指数期货，导致超过8亿英镑亏损，最终破产。</div>
+                                <a href="https://www.financialnews.com.cn/2025-02/28/content_419633.html" class="case-link" target="_blank">查看详情</a>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
 
-            <!-- 涓棿鍐呭鍖哄煙 (鐢卞瓙妯℃澘濉厖) -->
+            <!-- 中间内容区域 (由子模板填充) -->
             <div class="panel panel-center">
                 {% with messages = get_flashed_messages(with_categories=true) %}
                     {% if messages %}
@@ -473,18 +473,18 @@
                 {% block center_content %}{% endblock %}
             </div>
 
-            <!-- 鍙充晶闈㈡澘 - 缁熶竴鏄剧ず鍔ㄦ€佸唴瀹?-->
+            <!-- 右侧面板 - 统一显示动态内容 -->
             <div class="panel panel-right">
                 <div class="panel-content">
-                    {# 杩欐槸鏂扮殑鍙充晶闈㈡澘鍐呭鍧楋紝瀛愭ā鏉垮皢瑕嗙洊瀹?#}
+                    {# 这是新的右侧面板内容块，子模板将覆盖它 #}
                     {% block right_panel_content %}
-                        {# 榛樿鍐呭锛屼緥濡傚彲浠ユ斁涓€涓€氱敤鐨勬杩庝俊鎭垨榛樿鐨勫閮ㄥ钩鍙伴摼鎺?#}
+                        {# 默认内容，例如可以放一个通用的欢迎信息或默认的外部平台链接 #}
                         <div class="one-stop-platform-container">
                             <div class="right-panel-section">
                                 <div class="right-panel-section-title">
-                                    <i class="fas fa-info-circle"></i> 娆㈣繋
+                                    <i class="fas fa-info-circle"></i> 欢迎
                                 </div>
-                                <p class="no-content-message">璇烽€夋嫨宸︿晶鍔熻兘鑿滃崟锛屽彸渚у皢鏄剧ず鐩稿叧淇℃伅銆?/p>
+                                <p class="no-content-message">请选择左侧功能菜单，右侧将显示相关信息。</p>
                             </div>
                         </div>
                     {% endblock %}
@@ -494,28 +494,28 @@
         </div>
     </div>
 
-    <!-- AI Chatbot Bubble and Window (鎸佷箙鍖? -->
+    <!-- AI Chatbot Bubble and Window (持久化) -->
     <div class="chat-bubble" id="chatBubble">
         <i class="fas fa-comment-dots"></i>
     </div>
 
     <div class="chat-window" id="chatWindow">
         <div class="chat-header">
-            AI 鏅鸿兘鍔╂墜
+            AI 智能助手
             <button class="close-btn" id="closeChatBtn"><i class="fas fa-times"></i></button>
         </div>
         <div class="chat-messages" id="chatMessages">
             <div class="chat-message ai">
-                <p>鎮ㄥソ锛佹垜鏄偍鐨凙I鏅鸿兘鍔╂墜銆傛垜鍙互鍩轰簬褰撳墠椤甸潰鐨勬暟鎹负鎮ㄦ彁渚涙繁搴﹀垎鏋愩€傝闂偍鏈変粈涔堥棶棰橈紵</p>
+                <p>您好！我是您的AI智能助手。我可以基于当前页面的数据为您提供深度分析。请问您有什么问题？</p>
             </div>
         </div>
         <div class="chat-input-area">
-            <input type="text" id="chatInput" placeholder="杈撳叆鎮ㄧ殑闂...">
+            <input type="text" id="chatInput" placeholder="输入您的问题...">
             <button id="sendChatBtn"><i class="fas fa-paper-plane"></i></button>
         </div>
     </div>
 
-    <!-- 閫氱敤 JavaScript 鏂囦欢 -->
+    <!-- 通用 JavaScript 文件 -->
     <script src="{{ url_for('static', filename='js/nav.js') }}"></script>
     <script src="{{ url_for('static', filename='js/chat.js') }}"></script>
     {% block extra_js %}{% endblock %}

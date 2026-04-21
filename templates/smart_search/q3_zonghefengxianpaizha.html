@@ -1,58 +1,58 @@
-﻿{% extends "base.html" %}
+{% extends "base.html" %}
 
-{% block title %}钃濆績鏅烘煡 - 缁煎悎椋庨櫓鎺掓煡{% endblock %}
+{% block title %}蓝心智查 - 综合风险排查{% endblock %}
 
 {% block center_content %}
     <div class="qichacha-container">
         <div class="qichacha-header">
-            <div class="qichacha-title">钃濆績鏅烘煡 - 缁煎悎椋庨櫓鎺掓煡</div>
-            <div class="qichacha-subtitle">鏈姛鑳藉皢缁煎悎鏌ヨ浼佹煡鏌ュ缁村害浼佷笟椋庨櫓淇℃伅锛屽苟鍒╃敤钃濆績澶фā鍨嬭繘琛屽叏闈㈢殑椋庨櫓鍒嗘瀽鍜屽缓璁€?/div>
+            <div class="qichacha-title">蓝心智查 - 综合风险排查</div>
+            <div class="qichacha-subtitle">本功能将综合查询企查查多维度企业风险信息，并利用蓝心大模型进行全面的风险分析和建议。</div>
         </div>
 
         <div class="card">
             <div class="panel-title">
-                <i class="fas fa-search"></i> 缁煎悎椋庨櫓鎺掓煡
+                <i class="fas fa-search"></i> 综合风险排查
             </div>
             <div class="card-content">
                 <div class="form-group">
-                    <label for="comprehensiveSearchKey"><i class="fas fa-building"></i> 浼佷笟鍚嶇О鎴栫粺涓€绀句細淇＄敤浠ｇ爜</label>
-                    <input type="text" id="comprehensiveSearchKey" placeholder="璇疯緭鍏ヤ紒涓氬悕绉版垨缁熶竴绀句細淇＄敤浠ｇ爜">
+                    <label for="comprehensiveSearchKey"><i class="fas fa-building"></i> 企业名称或统一社会信用代码</label>
+                    <input type="text" id="comprehensiveSearchKey" placeholder="请输入企业名称或统一社会信用代码">
                 </div>
                 <div class="form-group">
-                    <label for="comprehensiveCompanyNameForBlueLM"><i class="fas fa-tag"></i> 鐢ㄤ簬AI鍒嗘瀽鐨勫叕鍙稿悕绉?(鍙€夛紝榛樿涓烘煡璇㈠叧閿瘝)</label>
-                    <input type="text" id="comprehensiveCompanyNameForBlueLM" placeholder="渚嬪: 鏌愭煇绉戞妧鍏徃">
-                    <small class="form-text text-muted">姝ゅ悕绉板皢浣滀负AI鍒嗘瀽鎶ュ憡涓殑涓讳綋鍏徃鍚嶇О銆?/small>
+                    <label for="comprehensiveCompanyNameForBlueLM"><i class="fas fa-tag"></i> 用于AI分析的公司名称 (可选，默认为查询关键词)</label>
+                    <input type="text" id="comprehensiveCompanyNameForBlueLM" placeholder="例如: 某某科技公司">
+                    <small class="form-text text-muted">此名称将作为AI分析报告中的主体公司名称。</small>
                 </div>
                 <button id="comprehensiveAnalyzeBtn" class="btn">
-                    <i class="fas fa-magic"></i> 缁煎悎鏌ヨ骞禔I鍒嗘瀽
+                    <i class="fas fa-magic"></i> 综合查询并AI分析
                 </button>
             </div>
         </div>
 
         <div class="card" id="comprehensiveResultCard" style="display: none;">
             <div class="panel-title">
-                <i class="fas fa-info-circle"></i> 浼佹煡鏌ョ患鍚堥闄╂帓鏌ョ粨鏋?
+                <i class="fas fa-info-circle"></i> 企查查综合风险排查结果
             </div>
             <div class="card-content" id="comprehensiveResultDisplay">
-                <p class="suggestion-item">鏌ヨ缁撴灉灏嗗湪姝ゅ鏄剧ず銆?/p>
+                <p class="suggestion-item">查询结果将在此处显示。</p>
             </div>
         </div>
 
         <div class="card" id="comprehensiveRiskFactorsCard" style="display: none;">
             <div class="panel-title">
-                <i class="fas fa-exclamation-triangle"></i> AI 椋庨櫓鍒嗘瀽鎶ュ憡
+                <i class="fas fa-exclamation-triangle"></i> AI 风险分析报告
             </div>
             <div class="card-content ai-analysis-output" id="comprehensiveRiskFactors">
-                <p class="suggestion-item">AI 椋庨櫓鍒嗘瀽鎶ュ憡灏嗗湪姝ゅ鏄剧ず銆?/p>
+                <p class="suggestion-item">AI 风险分析报告将在此处显示。</p>
             </div>
         </div>
 
         <div class="card" id="comprehensiveSuggestionsCard" style="display: none;">
             <div class="panel-title">
-                <i class="fas fa-lightbulb"></i> AI 鏀硅繘寤鸿
+                <i class="fas fa-lightbulb"></i> AI 改进建议
             </div>
             <div class="card-content ai-analysis-output" id="comprehensiveSuggestions">
-                <p class="suggestion-item">AI 鏀硅繘寤鸿灏嗗湪姝ゅ鏄剧ず銆?/p>
+                <p class="suggestion-item">AI 改进建议将在此处显示。</p>
             </div>
         </div>
     </div>

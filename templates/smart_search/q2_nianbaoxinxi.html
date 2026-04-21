@@ -1,58 +1,58 @@
-﻿{% extends "base.html" %}
+{% extends "base.html" %}
 
-{% block title %}钃濆績鏅烘煡 - 浼佷笟骞存姤淇℃伅{% endblock %}
+{% block title %}蓝心智查 - 企业年报信息{% endblock %}
 
 {% block center_content %}
     <div class="qichacha-container">
         <div class="qichacha-header">
-            <div class="qichacha-title">钃濆績鏅烘煡 - 浼佷笟骞存姤淇℃伅</div>
-            <div class="qichacha-subtitle">鍏徃骞存姤鍖呭惈浼佷笟鑷繁鐢虫姤鐨勫熀鏈俊鎭€佺綉绔欐垨缃戝簵淇℃伅銆佸彂璧蜂汉鍙婂嚭璧勪俊鎭€佷紒涓氳祫浜х姸鎬佸拰鑲℃潈鍙樻洿淇℃伅绛夛紝骞剁粨鍚圓I杩涜椋庨櫓鍒嗘瀽銆?/div>
+            <div class="qichacha-title">蓝心智查 - 企业年报信息</div>
+            <div class="qichacha-subtitle">公司年报包含企业自己申报的基本信息、网站或网店信息、发起人及出资信息、企业资产状态和股权变更信息等，并结合AI进行风险分析。</div>
         </div>
 
         <div class="card">
             <div class="panel-title">
-                <i class="fas fa-file-alt"></i> 浼佷笟骞存姤淇℃伅鏌ヨ
+                <i class="fas fa-file-alt"></i> 企业年报信息查询
             </div>
             <div class="card-content">
                 <div class="form-group">
-                    <label for="annualReportKeyNo"><i class="fas fa-building"></i> 鏌ヨ鍏抽敭瀛楋紙浼佷笟鍚嶇О鎴栫粺涓€绀句細淇＄敤浠ｇ爜锛?/label>
-                    <input type="text" id="annualReportKeyNo" placeholder="杈撳叆浼佷笟鍚嶇О鎴栦唬鐮?>
+                    <label for="annualReportKeyNo"><i class="fas fa-building"></i> 查询关键字（企业名称或统一社会信用代码）</label>
+                    <input type="text" id="annualReportKeyNo" placeholder="输入企业名称或代码">
                 </div>
                 <div class="form-group">
-                    <label for="annualReportYear"><i class="fas fa-calendar-alt"></i> 鎶ラ€佸勾搴︼紙鍙€夛級</label>
-                    <input type="number" id="annualReportYear" placeholder="渚嬪锛?023">
+                    <label for="annualReportYear"><i class="fas fa-calendar-alt"></i> 报送年度（可选）</label>
+                    <input type="number" id="annualReportYear" placeholder="例如：2023">
                 </div>
                 <button id="annualReportAnalyzeBtn" class="btn">
-                    <i class="fas fa-search"></i> 鏌ヨ骞禔I鍒嗘瀽
+                    <i class="fas fa-search"></i> 查询并AI分析
                 </button>
             </div>
         </div>
 
-        <!-- 淇敼杩欓噷锛氭坊鍔?ID 鍜屽垵濮嬮殣钘忔牱寮?-->
+        <!-- 修改这里：添加 ID 和初始隐藏样式 -->
         <div class="card" id="annualReportResultCard" style="display: none;">
             <div class="panel-title">
-                <i class="fas fa-info-circle"></i> 鏌ヨ缁撴灉
+                <i class="fas fa-info-circle"></i> 查询结果
             </div>
             <div class="card-content" id="annualReportResultDisplay">
-                <p style="text-align: center; color: #a3c3ff;">璇疯緭鍏ュ叧閿瘝杩涜鏌ヨ...</p>
+                <p style="text-align: center; color: #a3c3ff;">请输入关键词进行查询...</p>
             </div>
         </div>
 
         <div class="card" id="annualReportRiskFactorsCard" style="display: none;">
             <div class="panel-title">
-                <i class="fas fa-exclamation-triangle"></i> AI椋庨櫓鍒嗘瀽
+                <i class="fas fa-exclamation-triangle"></i> AI风险分析
             </div>
             <div class="card-content ai-analysis-output" id="annualReportRiskFactors">
-                <p style="text-align: center; color: #a3c3ff;">AI鍒嗘瀽缁撴灉灏嗗湪姝ゅ鏄剧ず...</p>
+                <p style="text-align: center; color: #a3c3ff;">AI分析结果将在此处显示...</p>
             </div>
         </div>
 
         <div class="card" id="annualReportSuggestionsCard" style="display: none;">
             <div class="panel-title">
-                <i class="fas fa-lightbulb"></i> AI鏀硅繘寤鸿
+                <i class="fas fa-lightbulb"></i> AI改进建议
             </div>
             <div class="card-content ai-analysis-output" id="annualReportSuggestions">
-                <p style="text-align: center; color: #a3c3ff;">AI鏀硅繘寤鸿灏嗗湪姝ゅ鏄剧ず...</p>
+                <p style="text-align: center; color: #a3c3ff;">AI改进建议将在此处显示...</p>
             </div>
         </div>
     </div>
