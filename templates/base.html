@@ -5,13 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{% block title %}智企云盾{% endblock %}</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/echarts@5.4.3/dist/echarts.min.js"></script>
-    <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
-    <script src="https://unpkg.com/leaflet.markercluster@1.4.1/dist/leaflet.markercluster.js"></script>
-    <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.4.1/dist/MarkerCluster.css">
-    <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.4.1/dist/MarkerCluster.Default.css">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
 
     {# --- 新增此块，用于子模板注入额外的头部内容，例如自定义CSS --- #}
@@ -385,6 +380,12 @@
                                             <li><a href="{{ url_for('q3_yanzhongweifahecha') }}" class="system-function-link sub-submenu-item {% if request.endpoint == 'q3_yanzhongweifahecha' %}active{% endif %}">严重违法核查</a></li>
                                             <li><a href="{{ url_for('q3_caipanwenshuhecha') }}" class="system-function-link sub-submenu-item {% if request.endpoint == 'q3_caipanwenshuhecha' %}active{% endif %}">裁判文书核查</a></li>
                                         </ul>
+                                    <!-- 企业知识图谱 (子类) -->
+                                    <li class="submenu-group">
+                                        <a href="{{ url_for('q4_knowledge_graph') }}" class="system-function-link toggle-submenu {% if request.endpoint == 'q4_knowledge_graph' %}active{% endif %}">
+                                            <i class="fas fa-project-diagram"></i> 企业关系图谱
+                                        </a>
+                                    </li>
                                     </li>
                                 </ul>
                             </div>

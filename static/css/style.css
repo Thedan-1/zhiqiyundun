@@ -337,59 +337,150 @@ body {
     font-weight: 500;
 }
 
-.world-map {
+.risk-overview-panel {
     width: 100%;
-    height: 400px; /* 调整地图高度 */
-    background-color: #0d2f6a;
-    border-radius: 10px;
+    min-height: 320px;
+    background: radial-gradient(circle at 10% 10%, rgba(0, 212, 255, 0.16), rgba(13, 47, 106, 0.88) 55%),
+                linear-gradient(145deg, rgba(5, 28, 56, 0.95), rgba(8, 52, 102, 0.86));
+    border-radius: 14px;
     margin-bottom: 20px;
     position: relative;
     overflow: hidden;
     border: 1px solid var(--border-color-light);
+    padding: 18px;
 }
 
-.map-placeholder {
-    width: 100%;
-    height: 100%;
+.risk-overview-head {
+    margin-bottom: 12px;
+}
+
+.risk-overview-title {
+    color: #e9f8ff;
+    font-size: 1.2rem;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+}
+
+.risk-overview-title i {
+    color: #37d7ff;
+}
+
+.risk-overview-subtitle {
+    color: #9dc6e9;
+    font-size: 0.92rem;
+    margin-top: 4px;
+}
+
+.risk-overview-tags {
     display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 14px;
+}
+
+.risk-overview-tag {
+    display: inline-flex;
     align-items: center;
-    justify-content: center;
-    color: var(--accent-color);
-    font-size: 1.5em;
+    gap: 6px;
+    border: 1px solid rgba(163, 195, 255, 0.24);
+    border-radius: 999px;
+    padding: 5px 10px;
+    color: #cde7ff;
+    font-size: 0.85rem;
+    background: rgba(10, 31, 61, 0.35);
 }
 
-/* Leaflet 地图样式调整 */
-.leaflet-container {
-    background-color: var(--card-bg); /* 地图背景色 */
+.risk-overview-tag.tag-high i {
+    color: var(--danger-color);
+}
+
+.risk-overview-tag.tag-medium i {
+    color: var(--warning-color);
+}
+
+.risk-overview-tag.tag-low i {
+    color: var(--success-color);
+}
+
+.risk-company-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 10px;
+}
+
+.risk-company-card {
+    background: linear-gradient(160deg, rgba(13, 35, 68, 0.92), rgba(20, 67, 118, 0.72));
+    border: 1px solid rgba(163, 195, 255, 0.22);
     border-radius: 10px;
+    padding: 12px;
+    transition: transform 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
 }
 
-.leaflet-control-attribution,
-.leaflet-control-layers-toggle {
-    color: var(--text-color);
-    background-color: rgba(15, 41, 66, 0.8); /* 控制器背景 */
-    border-radius: 5px;
+.risk-company-card:hover {
+    transform: translateY(-2px);
+    border-color: rgba(0, 212, 255, 0.45);
+    box-shadow: 0 8px 18px rgba(0, 0, 0, 0.25);
 }
 
-.leaflet-control-layers-expanded {
-    background-color: rgba(15, 41, 66, 0.9) !important;
-    color: var(--text-color) !important;
+.risk-company-head {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 8px;
 }
 
-.leaflet-control-layers-base label,
-.leaflet-control-layers-overlays label {
-    color: var(--text-color) !important;
+.risk-company-name {
+    color: #e8f6ff;
+    font-weight: 600;
+    line-height: 1.4;
 }
 
-.leaflet-popup-content-wrapper {
-    background-color: var(--card-bg);
-    color: var(--text-color);
-    border-radius: 8px;
-    box-shadow: 0 0 10px var(--shadow-color-light);
+.risk-company-level {
+    font-size: 0.78rem;
+    border-radius: 999px;
+    padding: 2px 8px;
+    border: 1px solid transparent;
+    white-space: nowrap;
 }
 
-.leaflet-popup-tip {
-    background-color: var(--card-bg);
+.risk-company-level.level-high {
+    color: #ffd9d9;
+    border-color: rgba(220, 53, 69, 0.45);
+    background: rgba(220, 53, 69, 0.22);
+}
+
+.risk-company-level.level-medium {
+    color: #ffecc1;
+    border-color: rgba(255, 193, 7, 0.45);
+    background: rgba(255, 193, 7, 0.2);
+}
+
+.risk-company-level.level-low {
+    color: #d5ffe5;
+    border-color: rgba(40, 167, 69, 0.4);
+    background: rgba(40, 167, 69, 0.2);
+}
+
+.risk-company-city {
+    font-size: 0.82rem;
+    color: #9cc3e1;
+    margin-top: 4px;
+}
+
+.risk-company-desc {
+    font-size: 0.86rem;
+    color: #d3e5f5;
+    line-height: 1.5;
+    margin-top: 8px;
+}
+
+.risk-company-empty {
+    grid-column: 1 / -1;
+    text-align: center;
+    color: #b8d9f1;
+    padding: 26px 12px;
+    border: 1px dashed rgba(163, 195, 255, 0.28);
+    border-radius: 10px;
 }
 
 .dashboard-controls {
@@ -1418,3 +1509,5 @@ select.form-control {
     background-size: 12px;
     padding-right: 30px; /* Make space for the arrow */
 }
+.system-function-submenu.show, .system-function-sub-submenu.show { max-height: 2000px !important; }
+

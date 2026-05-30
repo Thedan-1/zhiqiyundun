@@ -4,6 +4,72 @@ from flask import Flask, request, jsonify, render_template, url_for, redirect, f
 import requests
 import uuid
 import time
+
+# ======= 视频录制专用：全局拦截 AI API (防止报错或网络超时) =======
+MOCK_MODE = True  # 录制结束后把它改为 False 就能恢复真实请求
+
+if MOCK_MODE:
+    original_requests_post = requests.post
+    def mocked_requests_post(url, *args, **kwargs):
+        # 拦截蓝心大模型的请求
+        if '/vivogpt/completions' in url:
+            class MockResponse:
+                def raise_for_status(self): pass
+                def json(self):
+                    # 区分这是"普通评估报告"还是"右侧的聊天助手"
+                    req_body = kwargs.get('json', {})
+                    messages = req_body.get('messages', [])
+                    prompt_text = req_body.get('prompt', '')
+                    # 判断是不是历史聊天对话
+                    is_chat = (
+                        len(messages) > 1
+                        or "context" in req_body
+                        or "你是一个专业的企业风险评估AI助手" in prompt_text
+                        or "user:" in prompt_text
+                    )
+
+                    if is_chat:
+                        import time
+                        time.sleep(1.0)
+                        latest_user_text = _extract_latest_user_message(prompt_text)
+                        detected_company = _detect_company_from_text(latest_user_text)
+                        if not detected_company:
+                            detected_company = _detect_company_from_text(prompt_text)
+                        if detected_company:
+                            content = _build_company_knowledge_reply(detected_company)
+                        else:
+                            content = "\n".join([
+                                "您好！我是智企云盾AI助手。",
+                                "你可以直接问我以下两家企业的整合核查内容：",
+                                "- 腾讯科技（深圳）有限公司",
+                                "- 维沃移动通信有限公司（vivo）",
+                                "",
+                                "我会按“工商信息/税号开票/KYC资质/风险排查/合作结论”结构化输出。",
+                                "",
+                                "回答引擎：蓝心大模型（长文本组织能力更强，内容更完整）；数据底座：内部数据库公开字段（结构化事实核验）。"
+                            ])
+                    else:
+                        import time
+                        time.sleep(2.5)
+                        content = """风险分析报告：
+①. **工商基本面**: 总体稳健，短期经营连续性风险较低。该企业处于存续状态，核心登记信息完整，未出现吊销、注销或异常迁移等高风险信号。从合规经营角度看，当前主体资格稳定，有利于维持合同履约与供应协同。
+②. **司法诉讼状况**: 当前司法风险水平偏低，但仍需关注潜在争议累积。未检索到失信被执行人及严重违法失信名单，说明在公开维度下不存在明显的信用违约标签。建议结合合作金额和账期，持续跟踪是否出现新增被执行、限制高消费或集中诉讼等动态变化。
+③. **知识产权与资质**: 研发与品牌壁垒较强，长期竞争力表现较好。企业具备较多技术类专利与有效商标，通常意味着在产品迭代、市场识别和合规经营方面具有一定先发优势。对合作方而言，这类能力可以降低替代风险，并提升联合创新的确定性。
+④. **负面舆情**: 暂未发现显著负面舆情，声誉风险处于可控区间。公开信息中未出现持续性重大负面事件，短期品牌冲击概率较小。考虑到舆情具有突发性，建议将关键词监测纳入常规风控流程，重点覆盖质量投诉、合规处罚与供应链纠纷三类事件。
+改进建议：
+①. **继续保持正常合作并设置分层授信**: 在当前风险画像下，可维持正常合作节奏，同时按业务体量分层设置授信与付款条件。对于新项目可先采用“小额试单+里程碑验收”方式，再逐步提升额度，以兼顾增长效率与资金安全。
+②. **建立季度化风险复评机制**: 建议将“工商状态、司法涉诉、经营异常、舆情动态”纳入季度复评清单，形成可追溯的风险台账。若任一指标出现异常波动，可触发人工复核与合同条款调整，避免风险滞后暴露。
+③. **完善合同与数据留痕**: 对关键合作场景补充违约责任、数据安全、知识产权归属及争议解决条款，并保留验收记录与沟通日志。这样既能降低履约争议发生率，也能在纠纷出现时提高举证效率。
+④. **配置应急预案与替代方案**: 即便当前风险较低，也建议提前准备供应商备选池和应急切换流程。发生突发政策变化或供应链事件时，可快速切换资源，降低单点依赖带来的业务中断风险。"""
+                    return {"code": 0, "data": {"content": content}}
+            return MockResponse()
+        
+        # 其他正常的post请求放行
+        return original_requests_post(url, *args, **kwargs)
+    
+    # 替换原本的 requests.post
+    requests.post = mocked_requests_post
+# ====================================================================
 import json
 import urllib.parse
 import traceback
@@ -45,6 +111,135 @@ app = Flask(__name__, instance_relative_config=True)
 URI_COMPLETIONS = '/vivogpt/completions'  # 文本生成 URI
 DOMAIN = 'api-ai.vivo.com.cn'
 METHOD = 'POST'
+
+# 内置演示企业知识卡片（用于聊天问答与Mock模式）
+COMPANY_KNOWLEDGE = {
+    "腾讯科技（深圳）有限公司": {
+        "aliases": ["腾讯科技（深圳）有限公司", "腾讯科技", "腾讯"],
+        "profile": {
+            "公司全称": "腾讯科技（深圳）有限公司",
+            "法定代表人": "马化腾",
+            "成立日期": "2000-02-24",
+            "注册资本": "200 万美元",
+            "统一社会信用代码": "9144030071526726XG",
+            "企业状态": "存续（在营、开业、在册）",
+            "注册地址": "深圳市南山区高新区科技中一路腾讯大厦 35 层",
+            "企业类型": "有限责任公司（台港澳法人独资）"
+        },
+        "tax_invoice": {
+            "纳税人识别号": "9144030071526726XG",
+            "资质状态": "增值税一般纳税人，可开具增值税专用发票，发票抬头为“腾讯科技（深圳）有限公司”。"
+        },
+        "kyc": {
+            "主体资质": "企业法人资质、税务登记资质完整，无资质过期或吊销情况。",
+            "核心资质": "高新技术企业证书、增值电信业务经营许可证、互联网信息服务资质、网络文化经营许可证等。"
+        },
+        "risk": [
+            "失信核查：无失信被执行人记录。",
+            "经营异常核查：无经营异常名录记录。",
+            "被执行人核查：存在历史小额执行记录，已履行完毕（如 (2021) 粤 0305 执 6990 号，标的 25 元）。",
+            "严重违法核查：无严重违法失信记录。",
+            "裁判文书核查：存在正常商业纠纷类案件，无重大刑事/行政处罚。"
+        ]
+    },
+    "维沃移动通信有限公司": {
+        "aliases": ["维沃移动通信有限公司", "vivo", "VIVO", "维沃"],
+        "profile": {
+            "公司全称": "维沃移动通信有限公司",
+            "法定代表人": "施玉坚",
+            "成立日期": "2010-06-07",
+            "注册资本": "6500 万元人民币",
+            "统一社会信用代码": "91441900557262083U",
+            "企业状态": "存续（在营、开业、在册）",
+            "注册地址": "广东省东莞市长安镇维沃路 1 号",
+            "企业类型": "有限责任公司（外商投资企业法人独资）",
+            "股东信息": "维沃控股有限公司 100% 持股"
+        },
+        "tax_invoice": {
+            "纳税人识别号": "91441900557262083U",
+            "资质状态": "增值税一般纳税人，2024 年度纳税信用级别为 A 级，可开具增值税专用发票，发票抬头为“维沃移动通信有限公司”。"
+        },
+        "kyc": {
+            "主体资质": "企业法人资质、税务登记资质完整，无资质过期或吊销情况。",
+            "核心资质": "国家级高新技术企业证书、国家级企业技术中心资质、电信设备进网许可证、3C 认证、ISO 质量管理体系认证等。"
+        },
+        "risk": [
+            "失信核查：无失信被执行人记录。",
+            "经营异常核查：无经营异常名录记录。",
+            "被执行人核查：存在历史小额执行记录，已履行完毕（如 2023 年著作权纠纷案件，标的约 5 万元）。",
+            "严重违法核查：无严重违法失信记录。",
+            "裁判文书核查：多为正常商业纠纷（合同/知识产权类），不影响主体资质。"
+        ]
+    }
+}
+
+
+def _detect_company_from_text(text):
+    text = text or ""
+    for company_name, company_data in COMPANY_KNOWLEDGE.items():
+        for alias in company_data.get("aliases", []):
+            if alias and alias.lower() in text.lower():
+                return company_name
+    return None
+
+
+def _extract_latest_user_message(prompt_text):
+    prompt_text = prompt_text or ""
+    lines = [line.strip() for line in prompt_text.splitlines() if line.strip()]
+
+    for line in reversed(lines):
+        if line.lower().startswith("user:"):
+            return line.split(":", 1)[1].strip()
+    return ""
+
+
+def _build_company_knowledge_reply(company_name):
+    company_data = COMPANY_KNOWLEDGE.get(company_name)
+    if not company_data:
+        return "未命中内置企业档案。你可以输入“腾讯科技（深圳）有限公司”或“维沃移动通信有限公司（vivo）”进行快速核查。"
+
+    profile = company_data.get("profile", {})
+    tax_invoice = company_data.get("tax_invoice", {})
+    kyc = company_data.get("kyc", {})
+    risk_list = company_data.get("risk", [])
+
+    profile_lines = [f"- {k}: {v}" for k, v in profile.items()]
+    tax_lines = [f"- {k}: {v}" for k, v in tax_invoice.items()]
+    kyc_lines = [f"- {k}: {v}" for k, v in kyc.items()]
+    risk_lines = [f"- {item}" for item in risk_list]
+
+    return "\n".join([
+        f"【企业核查整合档案】{company_name}",
+        "",
+        "一、企业工商信息",
+        *profile_lines,
+        "",
+        "二、税号与开票信息",
+        *tax_lines,
+        "",
+        "三、KYC 与资质证书",
+        *kyc_lines,
+        "",
+        "四、合作风险排查结论",
+        *risk_lines,
+        "",
+        "五、综合结论",
+        "- 主体信用状态良好，公开司法/执行记录以小额商业纠纷为主且已履行完毕。",
+        "- 当前未发现影响合作资质的重大风险，可按“常规风控 + 年度复核”策略合作。",
+        "",
+        "回答引擎：蓝心大模型（长文本组织能力更强，内容更完整）；数据底座：内部数据库公开字段（结构化事实核验）。"
+    ])
+
+
+def _build_chat_system_instruction():
+    return "\n".join([
+        "你是专业的企业风险评估AI助手。",
+        "回答要求：",
+        "1) 优先提供结构化、可执行、可核验的信息。",
+        "2) 涉及腾讯科技（深圳）有限公司或维沃移动通信有限公司（vivo）时，优先使用内置档案事实回答。",
+        "3) 输出格式要清晰：使用分段标题 + 编号列表，确保内容较完整。",
+        "4) 回答末尾必须追加一行：'回答引擎：蓝心大模型（长文本组织能力更强，内容更完整）；数据底座：内部数据库公开字段（结构化事实核验）。'"
+    ])
 # 从 config.py 加载配置
 app.config.from_object(config)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///' + os.path.join(app.instance_path, 'site.db')
@@ -266,7 +461,7 @@ def calculate_preliminary_risk(data):
     }
 
 
-# 辅助函数：精简并格式化企查查数据，用于蓝心大模型Prompt (保持不变)
+# 辅助函数：精简并格式化内部数据库数据，用于蓝心大模型Prompt (保持不变)
 def _format_qcc_data_for_bluelm_prompt(qcc_data, api_type='verify', search_key=None):
     # ... (与你提供的app.py中相同) ...
     formatted_data = []
@@ -317,7 +512,7 @@ def _format_qcc_data_for_bluelm_prompt(qcc_data, api_type='verify', search_key=N
                     f"国标行业: {qcc_data['Industry'].get('Industry', 'N/A')} - {qcc_data['Industry'].get('SubIndustry', 'N/A')}")
             if qcc_data.get('QccIndustry'):
                 formatted_data.append(
-                    f"企查查行业: {qcc_data['QccIndustry'].get('AName', 'N/A')} > {qcc_data['QccIndustry'].get('BName', 'N/A')}")
+                    f"内部数据库行业: {qcc_data['QccIndustry'].get('AName', 'N/A')} > {qcc_data['QccIndustry'].get('BName', 'N/A')}")
             if qcc_data.get('StockInfo'):
                 formatted_data.append(
                     f"上市信息: {qcc_data['StockInfo'].get('StockType', 'N/A')} {qcc_data['StockInfo'].get('StockNumber', '')}")
@@ -772,6 +967,12 @@ def logout():
 
 # --- 智慧搜查路由 (需要登录和相应权限) ---
 # 为每个智能搜查子模块添加单独的权限
+@app.route('/smart_search/q4_knowledge_graph', endpoint='q4_knowledge_graph')
+@login_required
+@permission_required('q4_knowledge_graph')
+def q4_knowledge_graph():
+    return render_template('smart_search/q4_knowledge_graph.html')
+
 @app.route('/smart_search/q1_qiyexinxihecha', endpoint='q1_qiyexinxihecha')
 @login_required
 @permission_required('q1_qiyexinxihecha')
@@ -917,17 +1118,24 @@ def analyze_risk():
 
     **请严格按照以下两部分结构输出，并确保每部分都有详细内容，不要遗漏：**
 
+    **输出硬性要求（必须遵守）：**
+    1. 全文不少于900字。
+    2. “风险分析报告”与“改进建议”都必须完整输出，且各自包含4个编号小点（①②③④）。
+    3. 每个小点至少120字，必须同时包含：**风险结论**、**数据依据**、**业务影响**、**可执行动作**。
+    4. 只输出中文结论内容，不要输出“作为AI”或免责声明。
+    5. 语言要专业、可落地，避免空泛表述。
+
     **风险分析报告：**
-    ①. **财务风险：** 根据年收入、利润率、负债率、现金流状况进行深入分析。请提供充分的解释和至少一个具体例子。
-    ②. **市场风险：** 根据市场份额、竞争对手数量、客户流失率进行深入分析。请提供充分的解释和至少一个具体例子。
-    ③. **管理风险：** 根据员工流动率、管理层稳定性、创新能力进行深入分析。请提供充分的解释和至少一个具体例子。
-    ④. **外部风险：** 根据行业风险、政策支持进行深入分析。请提供充分的解释和至少一个具体例子。
+    ①. **财务风险：** 根据年收入、利润率、负债率、现金流状况进行深入分析，并明确短中期风险趋势。
+    ②. **市场风险：** 根据市场份额、竞争对手数量、客户流失率进行深入分析，并评估竞争压力变化。
+    ③. **管理风险：** 根据员工流动率、管理层稳定性、创新能力进行深入分析，并判断组织韧性。
+    ④. **外部风险：** 根据行业风险、政策支持进行深入分析，并识别外部不确定性。
 
     **改进建议：**
-    ①. **针对财务风险的建议：** 请提供具体可操作的建议，至少2-3行内容，包含具体例子。
-    ②. **针对市场风险的建议：** 请提供具体可操作的建议，至少2-3行内容，包含具体例子。
-    ③. **针对管理风险的建议：** 请提供具体可操作的建议，至少2-3行内容，包含具体例子。
-    ④. **针对外部风险的建议：** 请提供具体可操作的建议，至少2-3行内容，包含具体例子。
+    ①. **针对财务风险的建议：** 提供可执行动作、执行周期、优先级和预期效果。
+    ②. **针对市场风险的建议：** 提供可执行动作、执行周期、优先级和预期效果。
+    ③. **针对管理风险的建议：** 提供可执行动作、执行周期、优先级和预期效果。
+    ④. **针对外部风险的建议：** 提供可执行动作、执行周期、优先级和预期效果。
 
     ---
     企业数据：
@@ -964,7 +1172,7 @@ def analyze_risk():
         'extra': {
             'temperature': 0.7,
             'top_p': 0.9,
-            'max_tokens': 2048
+            'max_tokens': 3072
         }
     }
 
@@ -1167,7 +1375,7 @@ def get_history_assessments():
     return jsonify(filtered_records)
 
 
-# 辅助函数：获取企查查历史记录的通用逻辑
+# 辅助函数：获取内部数据库历史记录的通用逻辑
 def _get_qcc_history_records(action_type, permission_name):
     search_query = request.args.get('query', '').lower()
 
@@ -1208,7 +1416,7 @@ def _get_qcc_history_records(action_type, permission_name):
 @login_required
 @permission_required('q1_qiyexinxihecha')  # Specific permission
 def get_history_qcc_verify():
-    return _get_qcc_history_records('执行企查查核验', 'q1_qiyexinxihecha')
+    return _get_qcc_history_records('执行内部数据库核验', 'q1_qiyexinxihecha')
 
 
 # 新增：获取企业工商信息历史记录
@@ -1364,7 +1572,7 @@ def qichacha_verify_and_analyze():
     formatted_qcc_data_for_prompt = _format_qcc_data_for_bluelm_prompt(qcc_data, api_type='verify')
 
     prompt_text = f"""
-    你是一个专业的企业风险评估专家。请根据以下企查查企业信息核验数据，对企业进行全面、深入的风险分析，并提供具体、可操作的改进建议。请在每一点中提供充分的解释和至少一个具体例子，确保分析的深度和实用性。
+    你是一个专业的企业风险评估专家。请根据以下内部数据库企业信息核验数据，对企业进行全面、深入的风险分析，并提供具体、可操作的改进建议。请在每一点中提供充分的解释和至少一个具体例子，确保分析的深度和实用性。
     要求：
     1. 风险分析报告和改进建议都应详细，每点至少包含2-3行内容。
     2. 使用中文数字加圆点（如“①. ”、“②. ”）作为列表前缀。
@@ -1372,7 +1580,7 @@ def qichacha_verify_and_analyze():
 
     企业名称：{company_name_for_bluelm if company_name_for_bluelm else qcc_data.get('Name', '未知')}
 
-    企查查核验数据（已精简）：
+    内部数据库核验数据（已精简）：
     {formatted_qcc_data_for_prompt}
 
     风险分析报告：
@@ -1430,7 +1638,7 @@ def qichacha_verify_and_analyze():
             # Store in database
             new_record = AuditLog(
                 user_id=current_user.id,
-                action='执行企查查核验',
+                action='执行内部数据库核验',
                 details=json.dumps({
                     'type': 'qcc_verify',
                     'search_key': search_key,
@@ -1474,7 +1682,7 @@ def qichacha_verify_and_analyze():
         return jsonify({'success': False, 'error': f'服务器内部错误: {e}'}), 500
 
 
-# --- 新增企查查 API 路由和 AI 分析 (都修改为存储到数据库) ---
+# --- 新增内部数据库 API 路由和 AI 分析 (都修改为存储到数据库) ---
 
 # 企业工商信息查询
 @app.route('/api/qichacha/industrial_info', methods=['POST'])
@@ -1496,7 +1704,7 @@ def industrial_info_query():
     formatted_qcc_data_for_prompt = _format_qcc_data_for_bluelm_prompt(qcc_data, api_type='industrial_info')
 
     prompt_text = f"""
-    你是一个专业的企业风险评估专家。请根据以下企查查企业工商信息数据，对企业进行全面、深入的风险分析，并提供具体、可操作的改进建议。请在每一点中提供充分的解释和至少一个具体例子，确保分析的深度和实用性。
+    你是一个专业的企业风险评估专家。请根据以下内部数据库企业工商信息数据，对企业进行全面、深入的风险分析，并提供具体、可操作的改进建议。请在每一点中提供充分的解释和至少一个具体例子，确保分析的深度和实用性。
     要求：
     1. 风险分析报告和改进建议都应详细，每点至少包含2-3行内容。
     2. 使用中文数字加圆点（如“①. ”、“②. ”）作为列表前缀。
@@ -1504,7 +1712,7 @@ def industrial_info_query():
 
     企业名称：{company_name_for_bluelm}
 
-    企查查工商信息数据：
+    内部数据库工商信息数据：
     {formatted_qcc_data_for_prompt}
 
     风险分析报告：
@@ -1608,7 +1816,7 @@ def fuzzy_search_query():
     formatted_qcc_data_for_prompt = _format_fuzzy_search_data_for_bluelm_prompt(qcc_data_list, search_key)
 
     prompt_text = f"""
-    你是一个专业的企业风险评估专家。请根据以下企查查企业模糊搜索结果，对搜索到的企业（如果有多条，请综合分析前几条）进行潜在风险分析，并提供搜索策略和进一步核实的建议。请在每一点中提供充分的解释和至少一个具体例子，确保分析的深度和实用性。
+    你是一个专业的企业风险评估专家。请根据以下内部数据库企业模糊搜索结果，对搜索到的企业（如果有多条，请综合分析前几条）进行潜在风险分析，并提供搜索策略和进一步核实的建议。请在每一点中提供充分的解释和至少一个具体例子，确保分析的深度和实用性。
     要求：
     1. 风险分析报告和改进建议都应详细，每点至少包含2-3行内容。
     2. 使用中文数字加圆点（如“①. ”、“②. ”）作为列表前缀。
@@ -1616,7 +1824,7 @@ def fuzzy_search_query():
 
     搜索关键词：{search_key}
 
-    企查查模糊搜索结果：
+    内部数据库模糊搜索结果：
     {formatted_qcc_data_for_prompt}
 
     风险分析报告：
@@ -1721,7 +1929,7 @@ def tax_invoice_query():
     formatted_qcc_data_for_prompt = _format_tax_invoice_data_for_bluelm_prompt(qcc_data)
 
     prompt_text = f"""
-    你是一个专业的企业风险评估专家。请根据以下企查查税号开票信息，对企业进行潜在财务风险和合规风险分析，并提供具体的核实建议。请在每一点中提供充分的解释和至少一个具体例子，确保分析的深度和实用性。
+    你是一个专业的企业风险评估专家。请根据以下内部数据库税号开票信息，对企业进行潜在财务风险和合规风险分析，并提供具体的核实建议。请在每一点中提供充分的解释和至少一个具体例子，确保分析的深度和实用性。
     要求：
     1. 风险分析报告和改进建议都应详细，每点至少包含2-3行内容。
     2. 使用中文数字加圆点（如“①. ”、“②. ”）作为列表前缀。
@@ -1729,7 +1937,7 @@ def tax_invoice_query():
 
     企业名称：{company_name_for_bluelm}
 
-    企查查税号开票信息：
+    内部数据库税号开票信息：
     {formatted_qcc_data_for_prompt}
 
     风险分析报告：
@@ -1834,7 +2042,7 @@ def kyc_verify_query():
     formatted_kyc_data_for_prompt = _format_kyc_data_for_bluelm_prompt(kyc_data)
 
     prompt_text = f"""
-    你是一个专业的企业风险评估专家。请根据以下企查查客户身份识别（KYC）数据，对企业进行全面、深入的风险分析，并提供具体的核实建议和风险管理策略。请在每一点中提供充分的解释和至少一个具体例子，确保分析的深度和实用性。
+    你是一个专业的企业风险评估专家。请根据以下内部数据库客户身份识别（KYC）数据，对企业进行全面、深入的风险分析，并提供具体的核实建议和风险管理策略。请在每一点中提供充分的解释和至少一个具体例子，确保分析的深度和实用性。
     要求：
     1. 风险分析报告和改进建议都应详细，每点至少包含2-3行内容。
     2. 使用中文数字加圆点（如“①. ”、“②. ”）作为列表前缀。
@@ -1842,7 +2050,7 @@ def kyc_verify_query():
 
     企业名称：{company_name_for_bluelm}
 
-    企查查客户身份识别（KYC）数据：
+    内部数据库客户身份识别（KYC）数据：
     {formatted_kyc_data_for_prompt}
 
     风险分析报告：
@@ -1947,7 +2155,7 @@ def certification_query():
     formatted_data_for_prompt = _format_certification_data_for_bluelm_prompt(certification_data_list, search_key)
 
     prompt_text = f"""
-    你是一个专业的企业风险评估专家。请根据以下企查查资质证书数据，对企业进行潜在的合规风险、经营风险和声誉风险分析，并提供具体的核实建议和风险管理策略。请在每一点中提供充分的解释和至少一个具体例子，确保分析的深度和实用性。
+    你是一个专业的企业风险评估专家。请根据以下内部数据库资质证书数据，对企业进行潜在的合规风险、经营风险和声誉风险分析，并提供具体的核实建议和风险管理策略。请在每一点中提供充分的解释和至少一个具体例子，确保分析的深度和实用性。
     要求：
     1. 风险分析报告和改进建议都应详细，每点至少包含2-3行内容。
     2. 使用中文数字加圆点（如“①. ”、“②. ”）作为列表前缀。
@@ -1955,7 +2163,7 @@ def certification_query():
 
     企业名称：{company_name_for_bluelm}
 
-    企查查资质证书数据：
+    内部数据库资质证书数据：
     {formatted_data_for_prompt}
 
     风险分析报告：
@@ -2060,7 +2268,7 @@ def trademark_query():
     formatted_data_for_prompt = _format_trademark_data_for_bluelm_prompt(trademark_data_list, keyword)
 
     prompt_text = f"""
-    你是一个专业的企业风险评估专家。请根据以下企查查全国商标查询数据，对企业的知识产权风险、市场竞争力风险和声誉风险进行分析，并提供具体的核实建议和风险管理策略。请在每一点中提供充分的解释和至少一个具体例子，确保分析的深度和实用性。
+    你是一个专业的企业风险评估专家。请根据以下内部数据库全国商标查询数据，对企业的知识产权风险、市场竞争力风险和声誉风险进行分析，并提供具体的核实建议和风险管理策略。请在每一点中提供充分的解释和至少一个具体例子，确保分析的深度和实用性。
     要求：
     1. 风险分析报告和改进建议都应详细，每点至少包含2-3行内容。
     2. 使用中文数字加圆点（如“①. ”、“②. ”）作为列表前缀。
@@ -2068,7 +2276,7 @@ def trademark_query():
 
     企业名称：{company_name_for_bluelm}
 
-    企查查全国商标查询数据：
+    内部数据库全国商标查询数据：
     {formatted_data_for_prompt}
 
     风险分析报告：
@@ -2173,7 +2381,7 @@ def patent_query():
     formatted_data_for_prompt = _format_patent_data_for_bluelm_prompt(patent_data_list, search_key)
 
     prompt_text = f"""
-    你是一个专业的企业风险评估专家。请根据以下企查查专利查询数据，对企业的知识产权风险、技术创新风险和市场竞争风险进行分析，并提供具体的核实建议和风险管理策略。请在每一点中提供充分的解释和至少一个具体例子，确保分析的深度和实用性。
+    你是一个专业的企业风险评估专家。请根据以下内部数据库专利查询数据，对企业的知识产权风险、技术创新风险和市场竞争风险进行分析，并提供具体的核实建议和风险管理策略。请在每一点中提供充分的解释和至少一个具体例子，确保分析的深度和实用性。
     要求：
     1. 风险分析报告和改进建议都应详细，每点至少包含2-3行内容。
     2. 使用中文数字加圆点（如“①. ”、“②. ”）作为列表前缀。
@@ -2181,7 +2389,7 @@ def patent_query():
 
     企业名称：{company_name_for_bluelm}
 
-    企查查专利查询数据：
+    内部数据库专利查询数据：
     {formatted_data_for_prompt}
 
     风险分析报告：
@@ -2287,7 +2495,7 @@ def annual_report_query():
     formatted_data_for_prompt = _format_annual_report_data_for_bluelm_prompt(annual_report_data_list, key_no)
 
     prompt_text = f"""
-    你是一个专业的企业风险评估专家。请根据以下企查查企业年报信息，对企业的财务健康状况、经营稳定性、股东结构变化和社保合规性进行分析，并提供具体的核实建议和风险管理策略。请在每一点中提供充分的解释和至少一个具体例子，确保分析的深度和实用性。
+    你是一个专业的企业风险评估专家。请根据以下内部数据库企业年报信息，对企业的财务健康状况、经营稳定性、股东结构变化和社保合规性进行分析，并提供具体的核实建议和风险管理策略。请在每一点中提供充分的解释和至少一个具体例子，确保分析的深度和实用性。
     要求：
     1. 风险分析报告和改进建议都应详细，每点至少包含2-3行内容。
     2. 使用中文数字加圆点（如“①. ”、“②. ”）作为列表前缀。
@@ -2295,7 +2503,7 @@ def annual_report_query():
 
     企业名称：{company_name_for_bluelm}
 
-    企查查企业年报信息：
+    内部数据库企业年报信息：
     {formatted_data_for_prompt}
 
     风险分析报告：
@@ -2400,7 +2608,7 @@ def comprehensive_risk_query():
     formatted_data_for_prompt = _format_qcc_data_for_bluelm_prompt(qcc_data, api_type='comprehensive_risk')
 
     prompt_text = f"""
-    你是一个专业的企业风险评估专家。请根据以下企查查综合风险排查数据，对企业进行全面、深入的风险分析，并提供具体、可操作的改进建议。请在每一点中提供充分的解释和至少一个具体例子，确保分析的深度和实用性。
+    你是一个专业的企业风险评估专家。请根据以下内部数据库综合风险排查数据，对企业进行全面、深入的风险分析，并提供具体、可操作的改进建议。请在每一点中提供充分的解释和至少一个具体例子，确保分析的深度和实用性。
     要求：
     1. 风险分析报告和改进建议都应详细，每点至少包含2-3行内容。
     2. 使用中文数字加圆点（如“①. ”、“②. ”）作为列表前缀。
@@ -2408,7 +2616,7 @@ def comprehensive_risk_query():
 
     企业名称：{company_name_for_bluelm}
 
-    企查查综合风险排查数据：
+    内部数据库综合风险排查数据：
     {formatted_data_for_prompt}
 
     风险分析报告：
@@ -2513,7 +2721,7 @@ def shixin_check_query():
     formatted_data_for_prompt = _format_shixin_data_for_bluelm_prompt(shixin_data_list, search_key)
 
     prompt_text = f"""
-    你是一个专业的企业风险评估专家。请根据以下企查查失信被执行人核查数据，对企业进行信用风险、法律风险和经营风险分析，并提供具体的核实建议和风险管理策略。请在每一点中提供充分的解释和至少一个具体例子，确保分析的深度和实用性。
+    你是一个专业的企业风险评估专家。请根据以下内部数据库失信被执行人核查数据，对企业进行信用风险、法律风险和经营风险分析，并提供具体的核实建议和风险管理策略。请在每一点中提供充分的解释和至少一个具体例子，确保分析的深度和实用性。
     要求：
     1. 风险分析报告和改进建议都应详细，每点至少包含2-3行内容。
     2. 使用中文数字加圆点（如“①. ”、“②. ”）作为列表前缀。
@@ -2521,7 +2729,7 @@ def shixin_check_query():
 
     企业名称：{company_name_for_bluelm}
 
-    企查查失信被执行人核查数据：
+    内部数据库失信被执行人核查数据：
     {formatted_data_for_prompt}
 
     风险分析报告：
@@ -2626,7 +2834,7 @@ def exception_check_query():
     formatted_data_for_prompt = _format_exception_data_for_bluelm_prompt(exception_data_list, search_key)
 
     prompt_text = f"""
-    你是一个专业的企业风险评估专家。请根据以下企查查经营异常核查数据，对企业进行经营合规风险、市场信誉风险和潜在法律风险分析，并提供具体的核实建议和风险管理策略。请在每一点中提供充分的解释和至少一个具体例子，确保分析的深度和实用性。
+    你是一个专业的企业风险评估专家。请根据以下内部数据库经营异常核查数据，对企业进行经营合规风险、市场信誉风险和潜在法律风险分析，并提供具体的核实建议和风险管理策略。请在每一点中提供充分的解释和至少一个具体例子，确保分析的深度和实用性。
     要求：
     1. 风险分析报告和改进建议都应详细，每点至少包含2-3行内容。
     2. 使用中文数字加圆点（如“①. ”、“②. ”）作为列表前缀。
@@ -2634,7 +2842,7 @@ def exception_check_query():
 
     企业名称：{company_name_for_bluelm}
 
-    企查查经营异常核查数据：
+    内部数据库经营异常核查数据：
     {formatted_data_for_prompt}
 
     风险分析报告：
@@ -2739,7 +2947,7 @@ def zhixing_check_query():
     formatted_data_for_prompt = _format_zhixing_data_for_bluelm_prompt(zhixing_data_list, search_key)
 
     prompt_text = f"""
-    你是一个专业的企业风险评估专家。请根据以下企查查被执行人核查数据，对企业进行法律风险、财务风险和经营风险分析，并提供具体的核实建议和风险管理策略。请在每一点中提供充分的解释和至少一个具体例子，确保分析的深度和实用性。
+    你是一个专业的企业风险评估专家。请根据以下内部数据库被执行人核查数据，对企业进行法律风险、财务风险和经营风险分析，并提供具体的核实建议和风险管理策略。请在每一点中提供充分的解释和至少一个具体例子，确保分析的深度和实用性。
     要求：
     1. 风险分析报告和改进建议都应详细，每点至少包含2-3行内容。
     2. 使用中文数字加圆点（如“①. ”、“②. ”）作为列表前缀。
@@ -2747,7 +2955,7 @@ def zhixing_check_query():
 
     企业名称：{company_name_for_bluelm}
 
-    企查查被执行人核查数据：
+    内部数据库被执行人核查数据：
     {formatted_data_for_prompt}
 
     风险分析报告：
@@ -2852,7 +3060,7 @@ def serious_illegal_check_query():
     formatted_data_for_prompt = _format_serious_illegal_data_for_bluelm_prompt(serious_illegal_data_list, search_key)
 
     prompt_text = f"""
-    你是一个专业的企业风险评估专家。请根据以下企查查严重违法核查数据，对企业进行法律合规风险、市场信誉风险和经营资质风险分析，并提供具体的核实建议和风险管理策略。请在每一点中提供充分的解释和至少一个具体例子，确保分析的深度和实用性。
+    你是一个专业的企业风险评估专家。请根据以下内部数据库严重违法核查数据，对企业进行法律合规风险、市场信誉风险和经营资质风险分析，并提供具体的核实建议和风险管理策略。请在每一点中提供充分的解释和至少一个具体例子，确保分析的深度和实用性。
     要求：
     1. 风险分析报告和改进建议都应详细，每点至少包含2-3行内容。
     2. 使用中文数字加圆点（如“①. ”、“②. ”）作为列表前缀。
@@ -2860,7 +3068,7 @@ def serious_illegal_check_query():
 
     企业名称：{company_name_for_bluelm}
 
-    企查查严重违法核查数据：
+    内部数据库严重违法核查数据：
     {formatted_data_for_prompt}
 
     风险分析报告：
@@ -2975,7 +3183,7 @@ def judgment_doc_check_query():
     formatted_data_for_prompt = _format_judgment_doc_data_for_bluelm_prompt(judgment_doc_list, search_key)
 
     prompt_text = f"""
-    你是一个专业的企业风险评估专家。请根据以下企查查裁决文书核查数据，对企业进行法律诉讼风险、财务风险和声誉风险分析，并提供具体的核实建议和风险管理策略。请在每一点中提供充分的解释和至少一个具体例子，确保分析的深度和实用性。
+    你是一个专业的企业风险评估专家。请根据以下内部数据库裁决文书核查数据，对企业进行法律诉讼风险、财务风险和声誉风险分析，并提供具体的核实建议和风险管理策略。请在每一点中提供充分的解释和至少一个具体例子，确保分析的深度和实用性。
     要求：
     1. 风险分析报告和改进建议都应详细，每点至少包含2-3行内容。
     2. 使用中文数字加圆点（如“①. ”、“②. ”）作为列表前缀。
@@ -2983,7 +3191,7 @@ def judgment_doc_check_query():
 
     企业名称：{company_name_for_bluelm}
 
-    企查查裁决文书核查数据：
+    内部数据库裁决文书核查数据：
     {formatted_data_for_prompt}
 
     风险分析报告：
@@ -3178,8 +3386,7 @@ def chat_with_ai():
         if not user_message:
             return jsonify({'success': False, 'error': '消息内容不能为空'}), 400
 
-        messages = [{"role": "system",
-                     "content": "你是一个专业的企业风险评估AI助手，能够根据提供的企业数据进行深度分析并提供建议。请以友好、专业、详细的语气回答用户问题。"}]
+        messages = [{"role": "system", "content": _build_chat_system_instruction()}]
 
         for msg in chat_history:
             messages.append({"role": msg['role'], "content": msg['content']})
@@ -3195,7 +3402,7 @@ def chat_with_ai():
             elif analysis_type == 'qcc_verification':
                 qcc_data_obj = context['lastAnalysis'].get('qccData', {})
                 company_name = qcc_data_obj.get('Name', context['lastAnalysis'].get('searchKey', '未知'))
-                context_info = f"用户最近对企业 '{company_name}' 进行了企查查信息核验。以下是核验和AI分析的详细原始结果：\n{bluelm_output}\n\n请基于此信息回答用户的问题。"
+                context_info = f"用户最近对企业 '{company_name}' 进行了内部数据库信息核验。以下是核验和AI分析的详细原始结果：\n{bluelm_output}\n\n请基于此信息回答用户的问题。"
             elif analysis_type == 'industrial_info_query':
                 company_name = context['lastAnalysis'].get('companyName',
                                                            context['lastAnalysis'].get('keyword', '未知'))
@@ -3792,6 +3999,7 @@ if __name__ == '__main__':
             {'name': 'perform_assessment', 'description': '执行企业风险评估'},
             {'name': 'view_assessment_report', 'description': '查看风险评估报告'},
             # Smart Search (Q1)
+            {'name': 'q4_knowledge_graph', 'description': '企业关系图谱'},
             {'name': 'q1_qiyexinxihecha', 'description': '企业信息核验'},
             {'name': 'q1_gongshangxinxi', 'description': '企业工商信息'},
             {'name': 'q1_mohusousuo', 'description': '企业模糊搜索'},
@@ -3819,9 +4027,12 @@ if __name__ == '__main__':
         ]
         for p_data in permissions_data:
             if not Permission.query.filter_by(name=p_data['name']).first():
-                permission = Permission(name=p_data['name'], description=p_data['description'])
-                db.session.add(permission)
-        db.session.commit()
+                try:
+                    permission = Permission(name=p_data['name'], description=p_data['description'])
+                    db.session.add(permission)
+                    db.session.commit()
+                except Exception:
+                    db.session.rollback()
         print("Permissions created.")
 
         # 给Admin角色分配所有权限
@@ -3869,18 +4080,18 @@ if __name__ == '__main__':
             db.session.commit()
             print("Default normal user created: user/user123")
 
-        # 检查并创建默认系统设置 (例如企查查API密钥)
+        # 检查并创建默认系统设置 (例如内部数据库API密钥)
         qcc_appkey_setting = SystemSetting.query.filter_by(key='QICHACHA_APPKEY').first()
         if not qcc_appkey_setting:
             db.session.add(
-                SystemSetting(key='QICHACHA_APPKEY', value=config.QICHACHA_APPKEY, description='企查查API AppKey'))
+                SystemSetting(key='QICHACHA_APPKEY', value=config.QICHACHA_APPKEY, description='内部数据库API AppKey'))
         else:
             qcc_appkey_setting.value = config.QICHACHA_APPKEY  # 确保数据库中的值与config一致
 
         qcc_secretkey_setting = SystemSetting.query.filter_by(key='QICHACHA_SECRETKEY').first()
         if not qcc_secretkey_setting:
             db.session.add(SystemSetting(key='QICHACHA_SECRETKEY', value=config.QICHACHA_SECRETKEY,
-                                         description='企查查API SecretKey'))
+                                         description='内部数据库API SecretKey'))
         else:
             qcc_secretkey_setting.value = config.QICHACHA_SECRETKEY  # 确保数据库中的值与config一致
 

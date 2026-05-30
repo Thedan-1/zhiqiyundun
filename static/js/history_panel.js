@@ -66,7 +66,7 @@ function updateHistoryAssessmentsTable(searchQuery = '') {
                     <td>${record.companyName}</td>
                     <td><span style="color: ${record.riskColor};">${record.riskLevel}</span></td>
                     <td>${record.time}</td>
-                    <td><a href="/report/${record.id}" class="case-link">查看报告</a></td>
+                    <td><a href="/report/${record.id}" target="_blank" class="case-link">查看报告</a></td>
                 `;
             });
         })

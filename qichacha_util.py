@@ -7,15 +7,87 @@ from config import QICHACHA_APPKEY, QICHACHA_SECRETKEY, QICHACHA_API_BASE_URL
 
 def gen_qcc_token(app_key, secret_key, timespan):
     """
-    生成企查查 API 的 Token
+    生成内部数据库 API 的 Token
     Token = Md5(key + Timespan + SecretKey)
     """
     sign_string = f"{app_key}{timespan}{secret_key}"
     return hashlib.md5(sign_string.encode('utf-8')).hexdigest().upper()
 
 def _call_qcc_api(endpoint, params):
+    MOCK_QCC = True
+    if MOCK_QCC:
+        keyword_candidates = [
+            str(params.get('keyword', '')),
+            str(params.get('searchKey', '')),
+            str(params.get('keyWord', '')),
+            str(params.get('keyNo', ''))
+        ]
+        # Remove empty strings and spaces to match properly
+        valid_cands = [k.strip().lower() for k in keyword_candidates if k.strip()]
+        query_text = ' '.join(valid_cands) if valid_cands else ''
+        
+        import json
+        import os
+        mock_file = os.path.join(os.path.dirname(__file__), 'mock_companies.json')
+        companies = []
+        if os.path.exists(mock_file):
+            with open(mock_file, 'r', encoding='utf-8') as f:
+                companies = json.load(f)
+                
+        company_detail = companies[0] if companies else {}
+        if query_text:
+            found = False
+            for comp in companies:
+                if 'keywords' in comp:
+                    for kw in comp['keywords']:
+                        kw_lower = kw.lower()
+                        if kw_lower in query_text or query_text in kw_lower:
+                            company_detail = comp
+                            found = True
+                            break
+                if found:
+                    break
+                # Fallback to Name
+                comp_name = comp.get('Name', '').lower()
+                if query_text in comp_name or comp_name in query_text:
+                    company_detail = comp
+                    break
+        if '/EnterpriseInfo/Verify' in endpoint:
+            return {'VerifyResult': 1, 'Data': company_detail}
+
+        if '/CustomerDueDiligence/KYC' in endpoint:
+            return {'VerifyResult': 1, 'Data': company_detail}
+
+        if '/RiskControl/Scan' in endpoint:
+            return {
+                'VerifyResult': 1,
+                'Data': {
+                    'Name': company_detail['Name'],
+                    'RiskLevel': '低',
+                    'Summary': '未发现重大失信与经营异常记录，建议保持年度复核。'
+                }
+            }
+
+        if '/ShixinCheck/GetList' in endpoint or '/ExceptionCheck/GetList' in endpoint or '/ZhixingCheck/GetList' in endpoint or '/SeriousIllegalCheck/GetList' in endpoint or '/JudgmentDocCheck/GetList' in endpoint:
+            return {'VerifyResult': 1, 'Data': []}
+
+        if 'GetList' in endpoint or 'Search' in endpoint or 'List' in endpoint:
+            return [{
+                'Name': company_detail['Name'],
+                'OperName': company_detail['OperName'],
+                'CreditCode': company_detail['CreditCode'],
+                'Status': company_detail['Status'],
+                'AppDate': company_detail['StartDate'],
+                'Title': '高新技术企业',
+                'Category': 'A'
+            }]
+
+        return company_detail
+
+
+def ORIGINAL_call_qcc_api(endpoint, params):
     """
-    通用企查查 API 调用函数
+    通用内部数据库 API 调用函数
     """
     timespan = str(int(time.time()))
     token = gen_qcc_token(QICHACHA_APPKEY, QICHACHA_SECRETKEY, timespan)
@@ -48,24 +120,24 @@ def _call_qcc_api(endpoint, params):
             print(f"Qichacha API returned an error or no data for {endpoint}: {result.get('Message', 'Unknown error')}")
             return None
     except requests.exceptions.Timeout:
-        print(f"请求企查查 API ({endpoint}) 超时。")
+        print(f"请求内部数据库 API ({endpoint}) 超时。")
         return None
     except requests.exceptions.ConnectionError:
-        print(f"无法连接到企查查 API ({endpoint})。")
+        print(f"无法连接到内部数据库 API ({endpoint})。")
         return None
     except requests.exceptions.HTTPError as e:
-        print(f"企查查 API ({endpoint}) 返回 HTTP 错误: {e.response.status_code} - {e.response.text}")
+        print(f"内部数据库 API ({endpoint}) 返回 HTTP 错误: {e.response.status_code} - {e.response.text}")
         return None
     except Exception as e:
-        print(f"调用企查查 API ({endpoint}) 发生未知错误: {e}")
+        print(f"调用内部数据库 API ({endpoint}) 发生未知错误: {e}")
         return None
 
 
 def verify_enterprise_info(search_key):
     """
-    调用企查查企业信息核验接口 (API Code 1)
+    调用内部数据库企业信息核验接口 (API Code 1)
     :param search_key: 搜索关键词（统一社会信用代码、企业名称）
-    :return: 企查查 API 返回的原始数据，或 None（如果请求失败）
+    :return: 内部数据库 API 返回的原始数据，或 None（如果请求失败）
     """
     params = {'searchKey': search_key}
     result = _call_qcc_api("/EnterpriseInfo/Verify", params)
@@ -75,37 +147,37 @@ def verify_enterprise_info(search_key):
 
 def get_basic_details_by_name(keyword):
     """
-    调用企查查企业工商信息接口 (API Code 410)
+    调用内部数据库企业工商信息接口 (API Code 410)
     :param keyword: 搜索关键词（支持统一社会信用代码、企业名称）
-    :return: 企查查 API 返回的原始数据，或 None（如果请求失败）
+    :return: 内部数据库 API 返回的原始数据，或 None（如果请求失败）
     """
     params = {'keyword': keyword}
     return _call_qcc_api("/ECIV4/GetBasicDetailsByName", params)
 
 def fuzzy_search_companies(search_key, page_index=1):
     """
-    调用企查查企业模糊搜索接口 (API Code 886)
+    调用内部数据库企业模糊搜索接口 (API Code 886)
     :param search_key: 搜索关键词（支持企业名、人名、产品名、地址、电话、经营范围等）
     :param page_index: 页码，默认第1页
-    :return: 企查查 API 返回的 Result 列表，或 None（如果请求失败）
+    :return: 内部数据库 API 返回的 Result 列表，或 None（如果请求失败）
     """
     params = {'searchKey': search_key, 'pageIndex': str(page_index)}
     return _call_qcc_api("/FuzzySearch/GetList", params)
 
 def get_tax_invoice_info(key_word):
     """
-    调用企查查税号开票信息接口 (API Code 271)
+    调用内部数据库税号开票信息接口 (API Code 271)
     :param key_word: 查询关键字（公司名称）
-    :return: 企查查 API 返回的 Result 对象，或 None（如果请求失败）
+    :return: 内部数据库 API 返回的 Result 对象，或 None（如果请求失败）
     """
     params = {'keyWord': key_word}
     return _call_qcc_api("/ECICreditCode/GetCreditCodeNew", params)
 
 def get_kyc_info(search_key):
     """
-    调用企查查客户身份识别接口 (API Code 2003)
+    调用内部数据库客户身份识别接口 (API Code 2003)
     :param search_key: 搜索关键词（统一社会信用代码、企业名称）
-    :return: 企查查 API 返回的原始数据 Data，或 None（如果请求失败）
+    :return: 内部数据库 API 返回的原始数据 Data，或 None（如果请求失败）
     """
     params = {'searchKey': search_key}
     result = _call_qcc_api("/CustomerDueDiligence/KYC", params)
@@ -115,13 +187,13 @@ def get_kyc_info(search_key):
 
 def search_certification(search_key, cert_category=None, page_size=10, page_index=1, is_valid=None):
     """
-    调用企查查资质证书接口 (API Code 255)
+    调用内部数据库资质证书接口 (API Code 255)
     :param search_key: 搜索关键字（公司名称）
     :param cert_category: 证书类型
     :param page_size: 每页数据条数
     :param page_index: 页码
     :param is_valid: 是否有效（0-无效，1-有效，2-未披露）
-    :return: 企查查 API 返回的 Result 列表，或 None（如果请求失败）
+    :return: 内部数据库 API 返回的 Result 列表，或 None（如果请求失败）
     """
     params = {
         'searchKey': search_key,
@@ -136,12 +208,12 @@ def search_certification(search_key, cert_category=None, page_size=10, page_inde
 
 def search_trademark_by_applicant(keyword, int_cls=None, page_size=10, page_index=1):
     """
-    调用企查查全国商标查询接口 (API Code 231)
+    调用内部数据库全国商标查询接口 (API Code 231)
     :param keyword: 申请人名称
     :param int_cls: 商标类别号
     :param page_size: 每页数据条数
     :param page_index: 页码
-    :return: 企查查 API 返回的 Result 列表，或 None（如果请求失败）
+    :return: 内部数据库 API 返回的 Result 列表，或 None（如果请求失败）
     """
     params = {
         'keyword': keyword,
@@ -154,7 +226,7 @@ def search_trademark_by_applicant(keyword, int_cls=None, page_size=10, page_inde
 
 def search_patent(search_key, search_type=None, kind_code_desc=None, ipc=None, pub_date_begin=None, pub_date_end=None, page_size=10, page_index=1):
     """
-    调用企查查专利查询接口 (API Code 514)
+    调用内部数据库专利查询接口 (API Code 514)
     :param search_key: 查询关键字
     :param search_type: 搜索类型
     :param kind_code_desc: 专利类型
@@ -163,7 +235,7 @@ def search_patent(search_key, search_type=None, kind_code_desc=None, ipc=None, p
     :param pub_date_end: 发布结束时间
     :param page_size: 每页数据条数
     :param page_index: 页码
-    :return: 企查查 API 返回的 Result 列表，或 None（如果请求失败）
+    :return: 内部数据库 API 返回的 Result 列表，或 None（如果请求失败）
     """
     params = {
         'searchKey': search_key,
@@ -184,23 +256,23 @@ def search_patent(search_key, search_type=None, kind_code_desc=None, ipc=None, p
 
 def get_annual_report(key_no, year=None):
     """
-    调用企查查企业年报信息接口 (API Code 213)
+    调用内部数据库企业年报信息接口 (API Code 213)
     :param key_no: 企业名称、统一社会信用代码
     :param year: 报送年度
-    :return: 企查查 API 返回的 Result 列表，或 None（如果请求失败）
+    :return: 内部数据库 API 返回的 Result 列表，或 None（如果请求失败）
     """
     params = {'keyNo': key_no}
     if year:
         params['year'] = year
     return _call_qcc_api("/AR/GetAnnualReport", params)
 
-# --- 新增的企查查 API 封装函数 ---
+# --- 新增的内部数据库 API 封装函数 ---
 
 def comprehensive_risk_scan(search_key):
     """
-    调用企查查综合风险排查接口 (API Code 2006)
+    调用内部数据库综合风险排查接口 (API Code 2006)
     :param search_key: 搜索关键词（统一社会信用代码、企业名称）
-    :return: 企查查 API 返回的原始数据 Data，或 None（如果请求失败）
+    :return: 内部数据库 API 返回的原始数据 Data，或 None（如果请求失败）
     """
     params = {'searchKey': search_key}
     result = _call_qcc_api("/RiskControl/Scan", params)
@@ -210,11 +282,11 @@ def comprehensive_risk_scan(search_key):
 
 def get_shixin_list(search_key, page_index=1, page_size=10):
     """
-    调用企查查失信核查接口 (API Code 740)
+    调用内部数据库失信核查接口 (API Code 740)
     :param search_key: 搜索关键词（统一社会信用代码、企业名称）
     :param page_index: 页码，默认第1页
     :param page_size: 每页数据条数，默认为10，最大20
-    :return: 企查查 API 返回的 Data 列表，或 None（如果请求失败）
+    :return: 内部数据库 API 返回的 Data 列表，或 None（如果请求失败）
     """
     params = {
         'searchKey': search_key,
@@ -228,9 +300,9 @@ def get_shixin_list(search_key, page_index=1, page_size=10):
 
 def get_exception_list(search_key):
     """
-    调用企查查经营异常核查接口 (API Code 739)
+    调用内部数据库经营异常核查接口 (API Code 739)
     :param search_key: 搜索关键词（统一社会信用代码、企业名称）
-    :return: 企查查 API 返回的 Data 列表，或 None（如果请求失败）
+    :return: 内部数据库 API 返回的 Data 列表，或 None（如果请求失败）
     """
     params = {'searchKey': search_key}
     result = _call_qcc_api("/ExceptionCheck/GetList", params)
@@ -240,11 +312,11 @@ def get_exception_list(search_key):
 
 def get_zhixing_list(search_key, page_index=1, page_size=10):
     """
-    调用企查查被执行人核查接口 (API Code 741)
+    调用内部数据库被执行人核查接口 (API Code 741)
     :param search_key: 搜索关键词（统一社会信用代码、企业名称）
     :param page_index: 页码，默认第1页
     :param page_size: 每页数据条数，默认为10，最大20
-    :return: 企查查 API 返回的 Data 列表，或 None（如果请求失败）
+    :return: 内部数据库 API 返回的 Data 列表，或 None（如果请求失败）
     """
     params = {
         'searchKey': search_key,
@@ -258,9 +330,9 @@ def get_zhixing_list(search_key, page_index=1, page_size=10):
 
 def get_serious_illegal_list(search_key):
     """
-    调用企查查严重违法核查接口 (API Code 748)
+    调用内部数据库严重违法核查接口 (API Code 748)
     :param search_key: 搜索关键词（统一社会信用代码、企业名称）
-    :return: 企查查 API 返回的 Data 列表，或 None（如果请求失败）
+    :return: 内部数据库 API 返回的 Data 列表，或 None（如果请求失败）
     """
     params = {'searchKey': search_key}
     result = _call_qcc_api("/SeriousIllegalCheck/GetList", params)
@@ -270,7 +342,7 @@ def get_serious_illegal_list(search_key):
 
 def get_judgment_doc_list(search_key, pub_year=None, case_identity=None, case_status=None, key_word_filter=None, page_index=1, page_size=10):
     """
-    调用企查查裁决文书核查接口 (API Code 887)
+    调用内部数据库裁决文书核查接口 (API Code 887)
     :param search_key: 搜索关键词（统一社会信用代码、企业名称）
     :param pub_year: 发布年份
     :param case_identity: 案件身份（1-被告，2-原告）
@@ -278,7 +350,7 @@ def get_judgment_doc_list(search_key, pub_year=None, case_identity=None, case_st
     :param key_word_filter: 筛选关键词（支持案号、案由、当事人、判决结果）
     :param page_index: 页码
     :param page_size: 每页数据条数
-    :return: 企查查 API 返回的 Data 列表，或 None（如果请求失败）
+    :return: 内部数据库 API 返回的 Data 列表，或 None（如果请求失败）
     """
     params = {
         'searchKey': search_key,

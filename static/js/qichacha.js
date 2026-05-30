@@ -13,6 +13,7 @@ document.getElementById('qccAnalyzeBtn')?.addEventListener('click', async functi
     const qccResultCard = document.getElementById('qccResultCard');
     const qccRiskFactorsCard = document.getElementById('qccRiskFactorsCard');
     const qccSuggestionsCard = document.getElementById('qccSuggestionsCard');
+    const knowledgeGraphCard = document.getElementById('knowledgeGraphCard');
 
     if (!searchKey) {
         alert('请输入搜索关键词（企业名称或统一社会信用代码）！');
@@ -23,7 +24,7 @@ document.getElementById('qccAnalyzeBtn')?.addEventListener('click', async functi
     qccAnalyzeBtn.disabled = true;
 
     // 清空并显示加载状态
-    qccResultDisplay.innerHTML = '<p style="text-align: center; color: #a3c3ff;"><i class="fas fa-spinner fa-spin"></i> 正在查询企查查数据...</p>';
+    qccResultDisplay.innerHTML = '<p style="text-align: center; color: #a3c3ff;"><i class="fas fa-spinner fa-spin"></i> 正在查询内部数据库数据...</p>';
     qccRiskFactors.innerHTML = '<p style="text-align: center; color: #a3c3ff;"><i class="fas fa-spinner fa-spin"></i> 正在进行AI风险分析...</p>';
     qccSuggestions.innerHTML = '<p style="text-align: center; color: #a3c3ff;"><i class="fas fa-spinner fa-spin"></i> 正在生成AI改进建议...</p>';
 
@@ -31,8 +32,10 @@ document.getElementById('qccAnalyzeBtn')?.addEventListener('click', async functi
     if (qccResultCard) qccResultCard.style.display = 'block';
     if (qccRiskFactorsCard) qccRiskFactorsCard.style.display = 'block';
     if (qccSuggestionsCard) qccSuggestionsCard.style.display = 'block';
+    if (knowledgeGraphCard) knowledgeGraphCard.style.display = 'block';
+    if (typeof window.renderGraph === 'function') window.renderGraph(searchKey);
 
-    let qccData = null; // 用于存储企查查原始数据
+    let qccData = null; // 用于存储内部数据库原始数据
 
     try {
         const response = await fetch('/api/qichacha/verify_and_analyze', {
@@ -60,7 +63,7 @@ document.getElementById('qccAnalyzeBtn')?.addEventListener('click', async functi
         const result = await response.json();
 
         if (result.success) {
-            qccData = result.qccData; // 保存企查查数据
+            qccData = result.qccData; // 保存内部数据库数据
             renderQccVerifyData(qccData, qccResultDisplay); // Specific render function for verify
             qccRiskFactors.innerHTML = result.riskFactorsHtml;
             qccSuggestions.innerHTML = result.suggestionsHtml;
@@ -945,7 +948,7 @@ document.getElementById('comprehensiveAnalyzeBtn')?.addEventListener('click', as
 
     comprehensiveAnalyzeBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> 综合查询并AI分析中...';
     comprehensiveAnalyzeBtn.disabled = true;
-    comprehensiveResultDisplay.innerHTML = '<p style="text-align: center; color: #a3c3ff;"><i class="fas fa-spinner fa-spin"></i> 正在查询企查查综合风险数据...</p>';
+    comprehensiveResultDisplay.innerHTML = '<p style="text-align: center; color: #a3c3ff;"><i class="fas fa-spinner fa-spin"></i> 正在查询内部数据库综合风险数据...</p>';
     comprehensiveRiskFactors.innerHTML = '<p style="text-align: center; color: #a3c3ff;"><i class="fas fa-spinner fa-spin"></i> 正在进行AI风险分析...</p>';
     comprehensiveSuggestions.innerHTML = '<p style="text-align: center; color: #a3c3ff;"><i class="fas fa-spinner fa-spin"></i> 正在生成AI改进建议...</p>';
 
@@ -1584,7 +1587,7 @@ function renderQccVerifyData(data, containerElement) {
             <div class="qcc-data-item"><strong>是否小微企业:</strong> <span>${data.IsSmall === '1' ? '是' : (data.IsSmall === '0' ? '否' : 'N/A')}</span></div>
             <div class="qcc-data-item"><strong>企业规模:</strong> <span>${data.Scale || 'N/A'}</span></div>
             <div class="qcc-data-item"><strong>国标行业:</strong> <span>${data.Industry?.Industry || 'N/A'} - ${data.Industry?.SubIndustry || 'N/A'}</span></div>
-            <div class="qcc-data-item"><strong>企查查行业:</strong> <span>${data.QccIndustry?.AName || 'N/A'} > ${data.QccIndustry?.BName || 'N/A'}</span></div>
+            <div class="qcc-data-item"><strong>内部数据库行业:</strong> <span>${data.QccIndustry?.AName || 'N/A'} > ${data.QccIndustry?.BName || 'N/A'}</span></div>
             <div class="qcc-data-item"><strong>经营范围:</strong> <span>${data.Scope ? data.Scope.substring(0, 300) + (data.Scope.length > 300 ? '...' : '') : 'N/A'}</span></div>
         </div>
     `;

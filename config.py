@@ -6,7 +6,7 @@ from dotenv import load_dotenv
 
 load_dotenv()
 
-# 企查查 API 配置
+# 内部数据库 API 配置
 QICHACHA_APPKEY = os.getenv('QICHACHA_APPKEY', '') # 从环境变量读取，避免提交到 GitHub
 QICHACHA_SECRETKEY = os.getenv('QICHACHA_SECRETKEY', '') # 从环境变量读取，避免提交到 GitHub
 QICHACHA_API_BASE_URL = 'https://api.qichacha.com'

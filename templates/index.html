@@ -9,9 +9,18 @@
             <div class="dashboard-subtitle">中小企业风险评估与智能管理平台</div>
         </div>
 
-        <div class="world-map" id="map">
-            <div class="map-placeholder">
-                世界地图显示
+        <div class="risk-overview-panel" id="riskOverviewPanel">
+            <div class="risk-overview-head">
+                <div class="risk-overview-title"><i class="fas fa-bolt"></i> 风险热力看板</div>
+                <div class="risk-overview-subtitle">基于企业样本实时筛选高/中/低风险，替代地图视图</div>
+            </div>
+            <div class="risk-overview-tags" id="riskOverviewTags">
+                <span class="risk-overview-tag tag-high"><i class="fas fa-circle"></i> 高风险</span>
+                <span class="risk-overview-tag tag-medium"><i class="fas fa-circle"></i> 中风险</span>
+                <span class="risk-overview-tag tag-low"><i class="fas fa-circle"></i> 低风险</span>
+            </div>
+            <div class="risk-company-grid" id="riskCompaniesList">
+                <div class="risk-company-empty">正在加载企业风险样本...</div>
             </div>
         </div>
 
@@ -79,7 +88,7 @@
 
         <div class="search-container card">
             <div class="card-header">
-                <i class="fas fa-search"></i> 地图搜索
+                <i class="fas fa-search"></i> 风险检索
             </div>
             <div class="card-content">
                 <div class="form-group">

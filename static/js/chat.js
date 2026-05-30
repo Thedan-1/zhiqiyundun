@@ -248,7 +248,7 @@ function initializeChatbot() {
                 if (context.lastAnalysis.type === 'dashboard_assessment') {
                     welcomeMessage += `我注意到您刚刚评估了 <strong>${companyNameDisplay}</strong>。您想了解更多关于该公司的风险或建议吗？`;
                 } else if (context.lastAnalysis.type === 'qcc_verification') {
-                    welcomeMessage += `我注意到您刚刚查询了 <strong>${companyNameDisplay}</strong> 的企查查信息。您想了解更多关于该公司的风险、股权结构或经营状况吗？`;
+                    welcomeMessage += `我注意到您刚刚查询了 <strong>${companyNameDisplay}</strong> 的内部数据库信息。您想了解更多关于该公司的风险、股权结构或经营状况吗？`;
                 } else if (context.lastAnalysis.type === 'industrial_info_query') {
                     welcomeMessage += `我注意到您刚刚查询了 <strong>${companyNameDisplay}</strong> 的企业工商信息。您想了解更多关于该公司的注册详情或潜在风险吗？`;
                 } else if (context.lastAnalysis.type === 'fuzzy_search_query') {

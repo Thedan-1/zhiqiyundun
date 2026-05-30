@@ -1,0 +1,3418 @@
+[
+  {
+    "RealCapi": "已实缴",
+    "TermStart": "2010-01-01",
+    "TermEnd": "长期",
+    "TaxpayerType": "一般纳税人",
+    "PersonScope": "5000-10000人",
+    "InsuredCount": "6000",
+    "IsSmall": "0",
+    "Scale": "大型企业",
+    "keywords": [
+      "维沃",
+      "vivo"
+    ],
+    "Name": "维沃移动通信有限公司",
+    "OperName": "施玉坚",
+    "StartDate": "2010-06-07",
+    "Status": "存续",
+    "No": "441900400125191",
+    "CreditCode": "91441900557262083U",
+    "RegistCapi": "6500万元人民币",
+    "EconKind": "有限责任公司(自然人投资或控股)",
+    "Address": "广东省东莞市长安镇维沃路1号",
+    "Scope": "生产、销售：移动通信业务设备、计算机及其零配件；通信技术及配套软件的开发、技术转让等。",
+    "ContactInfo": {
+      "Tel": "400-678-9688",
+      "Email": "service@vivo.com"
+    },
+    "ActualControllerList": [
+      {
+        "Name": "沈炜"
+      }
+    ],
+    "Area": {
+      "Province": "广东省",
+      "City": "东莞市",
+      "County": ""
+    },
+    "Industry": {
+      "Industry": "制造业",
+      "SubIndustry": "计算机、通信和其他电子设备制造业"
+    },
+    "QccIndustry": {
+      "AName": "制造业",
+      "BName": "通信设备制造"
+    },
+    "PartnerList": [
+      {
+        "StockName": "维沃控股有限公司",
+        "StockPercent": "100%"
+      }
+    ],
+    "EmployeeList": [
+      {
+        "Name": "施玉坚",
+        "Job": "执行董事"
+      }
+    ],
+    "StockInfo": {
+      "StockType": "未上市",
+      "StockNumber": ""
+    },
+    "OriginalName": [
+      {
+        "Name": "暂无"
+      }
+    ],
+    "BankInfo": {
+      "Bank": "中国建设银行东莞长安支行",
+      "BankAccount": "44050110461200000123"
+    }
+  },
+  {
+    "RealCapi": "已实缴",
+    "TermStart": "2010-01-01",
+    "TermEnd": "长期",
+    "TaxpayerType": "一般纳税人",
+    "PersonScope": "10000人以上",
+    "InsuredCount": "15000",
+    "IsSmall": "0",
+    "Scale": "大型企业",
+    "keywords": [
+      "腾讯",
+      "tencent"
+    ],
+    "Name": "腾讯科技（深圳）有限公司",
+    "OperName": "马化腾",
+    "StartDate": "2000-02-24",
+    "Status": "存续",
+    "No": "440301104612450",
+    "CreditCode": "91440300708461136T",
+    "RegistCapi": "200000万美元",
+    "EconKind": "有限责任公司(台港澳法人独资)",
+    "Address": "深圳市南山区海天二路33号腾讯滨海大厦",
+    "Scope": "从事计算机软硬件的技术开发、销售自行开发的软件；计算机技术服务及信息服务等。",
+    "ContactInfo": {
+      "Tel": "0755-86013388",
+      "Email": "tencent_sp@tencent.com"
+    },
+    "ActualControllerList": [
+      {
+        "Name": "马化腾"
+      }
+    ],
+    "Area": {
+      "Province": "广东省",
+      "City": "深圳市",
+      "County": "南山区"
+    },
+    "Industry": {
+      "Industry": "信息传输、软件和信息技术服务业",
+      "SubIndustry": "互联网和相关服务"
+    },
+    "QccIndustry": {
+      "AName": "信息传输",
+      "BName": "互联网"
+    },
+    "PartnerList": [
+      {
+        "StockName": "中霸集团有限公司",
+        "StockPercent": "100%"
+      }
+    ],
+    "EmployeeList": [
+      {
+        "Name": "马化腾",
+        "Job": "执行董事"
+      }
+    ],
+    "StockInfo": {
+      "StockType": "港股",
+      "StockNumber": "00700"
+    },
+    "OriginalName": [
+      {
+        "Name": "无"
+      }
+    ],
+    "BankInfo": {
+      "Bank": "招商银行深圳分行",
+      "BankAccount": "755914222010101"
+    }
+  },
+  {
+    "RealCapi": "已实缴",
+    "TermStart": "2010-01-01",
+    "TermEnd": "长期",
+    "TaxpayerType": "一般纳税人",
+    "PersonScope": "10000人以上",
+    "InsuredCount": "15000",
+    "IsSmall": "0",
+    "Scale": "大型企业",
+    "keywords": [
+      "阿里",
+      "alibaba"
+    ],
+    "Name": "阿里巴巴（中国）网络技术有限公司",
+    "OperName": "戴珊",
+    "StartDate": "1999-09-09",
+    "Status": "存续",
+    "No": "330100400013504",
+    "CreditCode": "91330100799655058B",
+    "RegistCapi": "1072514万美元",
+    "EconKind": "有限责任公司(台港澳法人独资)",
+    "Address": "杭州市滨江区网商路699号",
+    "Scope": "网络技术、网络软件等技术开发；电子商务平台及软件系统开发；企业管理咨询。",
+    "ContactInfo": {
+      "Tel": "0571-85022088",
+      "Email": "alibaba@service.alibaba.com"
+    },
+    "ActualControllerList": [
+      {
+        "Name": "马云"
+      }
+    ],
+    "Area": {
+      "Province": "浙江省",
+      "City": "杭州市",
+      "County": "滨江区"
+    },
+    "Industry": {
+      "Industry": "信息传输、软件和信息技术服务业",
+      "SubIndustry": "互联网和相关服务"
+    },
+    "QccIndustry": {
+      "AName": "信息传输",
+      "BName": "互联网"
+    },
+    "PartnerList": [
+      {
+        "StockName": "淘宝中国控股有限公司",
+        "StockPercent": "100%"
+      }
+    ],
+    "EmployeeList": [
+      {
+        "Name": "戴珊",
+        "Job": "法定代表人"
+      }
+    ],
+    "StockInfo": {
+      "StockType": "纽交所",
+      "StockNumber": "BABA"
+    },
+    "OriginalName": [
+      {
+        "Name": "无"
+      }
+    ],
+    "BankInfo": {
+      "Bank": "工商银行杭州支行",
+      "BankAccount": "1202020202020202"
+    }
+  },
+  {
+    "RealCapi": "已实缴",
+    "TermStart": "2010-01-01",
+    "TermEnd": "长期",
+    "TaxpayerType": "一般纳税人",
+    "PersonScope": "10000人以上",
+    "InsuredCount": "15000",
+    "IsSmall": "0",
+    "Scale": "大型企业",
+    "keywords": [
+      "字节",
+      "bytedance",
+      "头条"
+    ],
+    "Name": "北京字节跳动科技有限公司",
+    "OperName": "张一鸣",
+    "StartDate": "2012-03-09",
+    "Status": "存续",
+    "No": "110108014664790",
+    "CreditCode": "91110108592317351H",
+    "RegistCapi": "1000万元人民币",
+    "EconKind": "有限责任公司(自然人独资)",
+    "Address": "北京市海淀区紫金数码园4号楼",
+    "Scope": "从事因特网文化活动；经营电信业务；技术开发、技术推广、技术转让、技术咨询、技术服务。",
+    "ContactInfo": {
+      "Tel": "010-58341833",
+      "Email": "service@bytedance.com"
+    },
+    "ActualControllerList": [
+      {
+        "Name": "张一鸣"
+      }
+    ],
+    "Area": {
+      "Province": "北京市",
+      "City": "市辖区",
+      "County": "海淀区"
+    },
+    "Industry": {
+      "Industry": "信息传输、软件和信息技术服务业",
+      "SubIndustry": "互联网和相关服务"
+    },
+    "QccIndustry": {
+      "AName": "信息传输",
+      "BName": "互联网"
+    },
+    "PartnerList": [
+      {
+        "StockName": "字节跳动(香港)有限公司",
+        "StockPercent": "100%"
+      }
+    ],
+    "EmployeeList": [
+      {
+        "Name": "张一鸣",
+        "Job": "执行董事"
+      }
+    ],
+    "StockInfo": {
+      "StockType": "未上市",
+      "StockNumber": ""
+    },
+    "OriginalName": [
+      {
+        "Name": "无"
+      }
+    ],
+    "BankInfo": {
+      "Bank": "中国银行北京分行",
+      "BankAccount": "100100100100"
+    }
+  },
+  {
+    "RealCapi": "已实缴",
+    "TermStart": "2010-01-01",
+    "TermEnd": "长期",
+    "TaxpayerType": "一般纳税人",
+    "PersonScope": "10000人以上",
+    "InsuredCount": "15000",
+    "IsSmall": "0",
+    "Scale": "大型企业",
+    "keywords": [
+      "百度",
+      "baidu"
+    ],
+    "Name": "百度在线网络技术（北京）有限公司",
+    "OperName": "崔珊珊",
+    "StartDate": "2000-01-18",
+    "Status": "存续",
+    "No": "110108000673293",
+    "CreditCode": "91110000802100433B",
+    "RegistCapi": "4520万美元",
+    "EconKind": "有限责任公司(外国法人独资)",
+    "Address": "北京市海淀区上地十街10号百度大厦3层",
+    "Scope": "开发、生产计算机软件；提供相关技术咨询、技术服务、技术培训。",
+    "ContactInfo": {
+      "Tel": "010-59928888",
+      "Email": "help@baidu.com"
+    },
+    "ActualControllerList": [
+      {
+        "Name": "李彦宏"
+      }
+    ],
+    "Area": {
+      "Province": "北京市",
+      "City": "市辖区",
+      "County": "海淀区"
+    },
+    "Industry": {
+      "Industry": "信息传输、软件和信息技术服务业",
+      "SubIndustry": "互联网和相关服务"
+    },
+    "QccIndustry": {
+      "AName": "信息传输",
+      "BName": "互联网"
+    },
+    "PartnerList": [
+      {
+        "StockName": "Baidu Holdings Limited",
+        "StockPercent": "100%"
+      }
+    ],
+    "EmployeeList": [
+      {
+        "Name": "崔珊珊",
+        "Job": "执行董事"
+      }
+    ],
+    "StockInfo": {
+      "StockType": "纳斯达克",
+      "StockNumber": "BIDU"
+    },
+    "OriginalName": [
+      {
+        "Name": "无"
+      }
+    ],
+    "BankInfo": {
+      "Bank": "建设银行北京上地支行",
+      "BankAccount": "102030405060708"
+    }
+  },
+  {
+    "keywords": [
+      "星辰科技"
+    ],
+    "Name": "星辰科技有限公司",
+    "OperName": "周强",
+    "StartDate": "2020-06-17",
+    "Status": "存续",
+    "No": "110102883919334",
+    "CreditCode": "917797350732345190L",
+    "RegistCapi": "226万元人民币",
+    "RealCapi": "未实缴",
+    "EconKind": "有限责任公司",
+    "Address": "四川省成都市武侯区街道36号",
+    "Scope": "星辰科技相关的技术开发、咨询、服务；销售商品等。",
+    "PersonScope": "30人",
+    "InsuredCount": "21",
+    "TaxpayerType": "一般纳税人",
+    "IsSmall": "1",
+    "Scale": "小型企业",
+    "Area": {
+      "Province": "四川省",
+      "City": "成都市",
+      "County": "武侯区"
+    },
+    "ContactInfo": {
+      "Tel": "13834445231",
+      "Email": "contact@3859.com"
+    },
+    "Industry": {
+      "Industry": "科技推广和应用服务业",
+      "SubIndustry": "综合服务"
+    },
+    "QccIndustry": {
+      "AName": "服务业",
+      "BName": "其他"
+    },
+    "PartnerList": [
+      {
+        "StockName": "周强",
+        "StockPercent": "100%"
+      }
+    ],
+    "EmployeeList": [
+      {
+        "Name": "周强",
+        "Job": "执行董事"
+      }
+    ],
+    "ActualControllerList": [
+      {
+        "Name": "周强"
+      }
+    ],
+    "StockInfo": {
+      "StockType": "未上市",
+      "StockNumber": ""
+    },
+    "OriginalName": [
+      {
+        "Name": "无"
+      }
+    ],
+    "BankInfo": {
+      "Bank": "当地商业银行",
+      "BankAccount": "10203057865917"
+    }
+  },
+  {
+    "keywords": [
+      "蓝海贸易"
+    ],
+    "Name": "蓝海贸易有限公司",
+    "OperName": "周强",
+    "StartDate": "2017-05-16",
+    "Status": "存续",
+    "No": "110105926244439",
+    "CreditCode": "915326784440186411L",
+    "RegistCapi": "387万元人民币",
+    "RealCapi": "已实缴",
+    "EconKind": "有限责任公司",
+    "Address": "广东省广州市天河区街道6号",
+    "Scope": "蓝海贸易相关的技术开发、咨询、服务；销售商品等。",
+    "PersonScope": "27人",
+    "InsuredCount": "22",
+    "TaxpayerType": "一般纳税人",
+    "IsSmall": "1",
+    "Scale": "小型企业",
+    "Area": {
+      "Province": "广东省",
+      "City": "广州市",
+      "County": "天河区"
+    },
+    "ContactInfo": {
+      "Tel": "13894621689",
+      "Email": "contact@5495.com"
+    },
+    "Industry": {
+      "Industry": "各类实体与服务业",
+      "SubIndustry": "综合服务"
+    },
+    "QccIndustry": {
+      "AName": "服务业",
+      "BName": "其他"
+    },
+    "PartnerList": [
+      {
+        "StockName": "周强",
+        "StockPercent": "100%"
+      }
+    ],
+    "EmployeeList": [
+      {
+        "Name": "周强",
+        "Job": "执行董事"
+      }
+    ],
+    "ActualControllerList": [
+      {
+        "Name": "周强"
+      }
+    ],
+    "StockInfo": {
+      "StockType": "未上市",
+      "StockNumber": ""
+    },
+    "OriginalName": [
+      {
+        "Name": "无"
+      }
+    ],
+    "BankInfo": {
+      "Bank": "当地商业银行",
+      "BankAccount": "10203060876003"
+    }
+  },
+  {
+    "keywords": [
+      "绿源建材"
+    ],
+    "Name": "绿源建材有限公司",
+    "OperName": "陈静",
+    "StartDate": "2023-09-13",
+    "Status": "存续",
+    "No": "110107923804962",
+    "CreditCode": "918288108062843867L",
+    "RegistCapi": "199万元人民币",
+    "RealCapi": "未实缴",
+    "EconKind": "有限责任公司",
+    "Address": "浙江省杭州市西湖区街道99号",
+    "Scope": "绿源建材相关的技术开发、咨询、服务；销售商品等。",
+    "PersonScope": "19人",
+    "InsuredCount": "15",
+    "TaxpayerType": "小规模纳税人",
+    "IsSmall": "1",
+    "Scale": "微型企业",
+    "Area": {
+      "Province": "浙江省",
+      "City": "杭州市",
+      "County": "西湖区"
+    },
+    "ContactInfo": {
+      "Tel": "13811988130",
+      "Email": "contact@2259.com"
+    },
+    "Industry": {
+      "Industry": "各类实体与服务业",
+      "SubIndustry": "综合服务"
+    },
+    "QccIndustry": {
+      "AName": "服务业",
+      "BName": "其他"
+    },
+    "PartnerList": [
+      {
+        "StockName": "陈静",
+        "StockPercent": "100%"
+      }
+    ],
+    "EmployeeList": [
+      {
+        "Name": "陈静",
+        "Job": "执行董事"
+      }
+    ],
+    "ActualControllerList": [
+      {
+        "Name": "陈静"
+      }
+    ],
+    "StockInfo": {
+      "StockType": "未上市",
+      "StockNumber": ""
+    },
+    "OriginalName": [
+      {
+        "Name": "无"
+      }
+    ],
+    "BankInfo": {
+      "Bank": "当地商业银行",
+      "BankAccount": "10203067133205"
+    }
+  },
+  {
+    "keywords": [
+      "创新网络"
+    ],
+    "Name": "创新网络有限公司",
+    "OperName": "吴芳",
+    "StartDate": "2022-08-17",
+    "Status": "存续",
+    "No": "110105902515759",
+    "CreditCode": "914479974283307973L",
+    "RegistCapi": "61万元人民币",
+    "RealCapi": "已实缴",
+    "EconKind": "有限责任公司",
+    "Address": "江苏省南京市建邺区街道66号",
+    "Scope": "创新网络相关的技术开发、咨询、服务；销售商品等。",
+    "PersonScope": "16人",
+    "InsuredCount": "12",
+    "TaxpayerType": "小规模纳税人",
+    "IsSmall": "1",
+    "Scale": "微型企业",
+    "Area": {
+      "Province": "江苏省",
+      "City": "南京市",
+      "County": "建邺区"
+    },
+    "ContactInfo": {
+      "Tel": "13819758060",
+      "Email": "contact@5181.com"
+    },
+    "Industry": {
+      "Industry": "各类实体与服务业",
+      "SubIndustry": "综合服务"
+    },
+    "QccIndustry": {
+      "AName": "服务业",
+      "BName": "其他"
+    },
+    "PartnerList": [
+      {
+        "StockName": "吴芳",
+        "StockPercent": "100%"
+      }
+    ],
+    "EmployeeList": [
+      {
+        "Name": "吴芳",
+        "Job": "执行董事"
+      }
+    ],
+    "ActualControllerList": [
+      {
+        "Name": "吴芳"
+      }
+    ],
+    "StockInfo": {
+      "StockType": "未上市",
+      "StockNumber": ""
+    },
+    "OriginalName": [
+      {
+        "Name": "无"
+      }
+    ],
+    "BankInfo": {
+      "Bank": "当地商业银行",
+      "BankAccount": "10203065440400"
+    }
+  },
+  {
+    "keywords": [
+      "飞跃物流"
+    ],
+    "Name": "飞跃物流有限公司",
+    "OperName": "王涛",
+    "StartDate": "2022-03-18",
+    "Status": "存续",
+    "No": "110109402807000",
+    "CreditCode": "919309713410269869L",
+    "RegistCapi": "180万元人民币",
+    "RealCapi": "已实缴",
+    "EconKind": "有限责任公司",
+    "Address": "江苏省南京市建邺区街道49号",
+    "Scope": "飞跃物流相关的技术开发、咨询、服务；销售商品等。",
+    "PersonScope": "43人",
+    "InsuredCount": "43",
+    "TaxpayerType": "一般纳税人",
+    "IsSmall": "1",
+    "Scale": "小型企业",
+    "Area": {
+      "Province": "江苏省",
+      "City": "南京市",
+      "County": "建邺区"
+    },
+    "ContactInfo": {
+      "Tel": "13819811974",
+      "Email": "contact@6529.com"
+    },
+    "Industry": {
+      "Industry": "各类实体与服务业",
+      "SubIndustry": "综合服务"
+    },
+    "QccIndustry": {
+      "AName": "服务业",
+      "BName": "其他"
+    },
+    "PartnerList": [
+      {
+        "StockName": "王涛",
+        "StockPercent": "100%"
+      }
+    ],
+    "EmployeeList": [
+      {
+        "Name": "王涛",
+        "Job": "执行董事"
+      }
+    ],
+    "ActualControllerList": [
+      {
+        "Name": "王涛"
+      }
+    ],
+    "StockInfo": {
+      "StockType": "未上市",
+      "StockNumber": ""
+    },
+    "OriginalName": [
+      {
+        "Name": "无"
+      }
+    ],
+    "BankInfo": {
+      "Bank": "当地商业银行",
+      "BankAccount": "10203076934716"
+    }
+  },
+  {
+    "keywords": [
+      "宏图文化"
+    ],
+    "Name": "宏图文化有限公司",
+    "OperName": "吴芳",
+    "StartDate": "2015-07-10",
+    "Status": "存续",
+    "No": "110106251399245",
+    "CreditCode": "915165260622202806L",
+    "RegistCapi": "106万元人民币",
+    "RealCapi": "已实缴",
+    "EconKind": "有限责任公司",
+    "Address": "四川省成都市武侯区街道70号",
+    "Scope": "宏图文化相关的技术开发、咨询、服务；销售商品等。",
+    "PersonScope": "36人",
+    "InsuredCount": "28",
+    "TaxpayerType": "一般纳税人",
+    "IsSmall": "1",
+    "Scale": "小型企业",
+    "Area": {
+      "Province": "四川省",
+      "City": "成都市",
+      "County": "武侯区"
+    },
+    "ContactInfo": {
+      "Tel": "13884028501",
+      "Email": "contact@9542.com"
+    },
+    "Industry": {
+      "Industry": "各类实体与服务业",
+      "SubIndustry": "综合服务"
+    },
+    "QccIndustry": {
+      "AName": "服务业",
+      "BName": "其他"
+    },
+    "PartnerList": [
+      {
+        "StockName": "吴芳",
+        "StockPercent": "100%"
+      }
+    ],
+    "EmployeeList": [
+      {
+        "Name": "吴芳",
+        "Job": "执行董事"
+      }
+    ],
+    "ActualControllerList": [
+      {
+        "Name": "吴芳"
+      }
+    ],
+    "StockInfo": {
+      "StockType": "未上市",
+      "StockNumber": ""
+    },
+    "OriginalName": [
+      {
+        "Name": "无"
+      }
+    ],
+    "BankInfo": {
+      "Bank": "当地商业银行",
+      "BankAccount": "10203098547319"
+    }
+  },
+  {
+    "keywords": [
+      "共创广告"
+    ],
+    "Name": "共创广告有限公司",
+    "OperName": "吴芳",
+    "StartDate": "2015-04-19",
+    "Status": "存续",
+    "No": "110109960537387",
+    "CreditCode": "913528907333329415L",
+    "RegistCapi": "226万元人民币",
+    "RealCapi": "已实缴",
+    "EconKind": "有限责任公司",
+    "Address": "江苏省南京市建邺区街道60号",
+    "Scope": "共创广告相关的技术开发、咨询、服务；销售商品等。",
+    "PersonScope": "15人",
+    "InsuredCount": "13",
+    "TaxpayerType": "小规模纳税人",
+    "IsSmall": "1",
+    "Scale": "微型企业",
+    "Area": {
+      "Province": "江苏省",
+      "City": "南京市",
+      "County": "建邺区"
+    },
+    "ContactInfo": {
+      "Tel": "13884863356",
+      "Email": "contact@6006.com"
+    },
+    "Industry": {
+      "Industry": "各类实体与服务业",
+      "SubIndustry": "综合服务"
+    },
+    "QccIndustry": {
+      "AName": "服务业",
+      "BName": "其他"
+    },
+    "PartnerList": [
+      {
+        "StockName": "吴芳",
+        "StockPercent": "100%"
+      }
+    ],
+    "EmployeeList": [
+      {
+        "Name": "吴芳",
+        "Job": "执行董事"
+      }
+    ],
+    "ActualControllerList": [
+      {
+        "Name": "吴芳"
+      }
+    ],
+    "StockInfo": {
+      "StockType": "未上市",
+      "StockNumber": ""
+    },
+    "OriginalName": [
+      {
+        "Name": "无"
+      }
+    ],
+    "BankInfo": {
+      "Bank": "当地商业银行",
+      "BankAccount": "10203083896112"
+    }
+  },
+  {
+    "keywords": [
+      "天际软件"
+    ],
+    "Name": "天际软件有限公司",
+    "OperName": "杨超",
+    "StartDate": "2017-02-19",
+    "Status": "存续",
+    "No": "110108546774047",
+    "CreditCode": "911187374376459955L",
+    "RegistCapi": "302万元人民币",
+    "RealCapi": "未实缴",
+    "EconKind": "有限责任公司",
+    "Address": "浙江省杭州市西湖区街道77号",
+    "Scope": "天际软件相关的技术开发、咨询、服务；销售商品等。",
+    "PersonScope": "28人",
+    "InsuredCount": "27",
+    "TaxpayerType": "一般纳税人",
+    "IsSmall": "1",
+    "Scale": "小型企业",
+    "Area": {
+      "Province": "浙江省",
+      "City": "杭州市",
+      "County": "西湖区"
+    },
+    "ContactInfo": {
+      "Tel": "13828786761",
+      "Email": "contact@2793.com"
+    },
+    "Industry": {
+      "Industry": "各类实体与服务业",
+      "SubIndustry": "综合服务"
+    },
+    "QccIndustry": {
+      "AName": "服务业",
+      "BName": "其他"
+    },
+    "PartnerList": [
+      {
+        "StockName": "杨超",
+        "StockPercent": "100%"
+      }
+    ],
+    "EmployeeList": [
+      {
+        "Name": "杨超",
+        "Job": "执行董事"
+      }
+    ],
+    "ActualControllerList": [
+      {
+        "Name": "杨超"
+      }
+    ],
+    "StockInfo": {
+      "StockType": "未上市",
+      "StockNumber": ""
+    },
+    "OriginalName": [
+      {
+        "Name": "无"
+      }
+    ],
+    "BankInfo": {
+      "Bank": "当地商业银行",
+      "BankAccount": "10203076980852"
+    }
+  },
+  {
+    "keywords": [
+      "融通商贸"
+    ],
+    "Name": "融通商贸有限公司",
+    "OperName": "王涛",
+    "StartDate": "2018-04-19",
+    "Status": "存续",
+    "No": "110104926308626",
+    "CreditCode": "912068990094672582L",
+    "RegistCapi": "472万元人民币",
+    "RealCapi": "已实缴",
+    "EconKind": "有限责任公司",
+    "Address": "湖北省武汉市洪山区街道29号",
+    "Scope": "融通商贸相关的技术开发、咨询、服务；销售商品等。",
+    "PersonScope": "37人",
+    "InsuredCount": "30",
+    "TaxpayerType": "一般纳税人",
+    "IsSmall": "1",
+    "Scale": "小型企业",
+    "Area": {
+      "Province": "湖北省",
+      "City": "武汉市",
+      "County": "洪山区"
+    },
+    "ContactInfo": {
+      "Tel": "13836945272",
+      "Email": "contact@9811.com"
+    },
+    "Industry": {
+      "Industry": "各类实体与服务业",
+      "SubIndustry": "综合服务"
+    },
+    "QccIndustry": {
+      "AName": "服务业",
+      "BName": "其他"
+    },
+    "PartnerList": [
+      {
+        "StockName": "王涛",
+        "StockPercent": "100%"
+      }
+    ],
+    "EmployeeList": [
+      {
+        "Name": "王涛",
+        "Job": "执行董事"
+      }
+    ],
+    "ActualControllerList": [
+      {
+        "Name": "王涛"
+      }
+    ],
+    "StockInfo": {
+      "StockType": "未上市",
+      "StockNumber": ""
+    },
+    "OriginalName": [
+      {
+        "Name": "无"
+      }
+    ],
+    "BankInfo": {
+      "Bank": "当地商业银行",
+      "BankAccount": "10203084885333"
+    }
+  },
+  {
+    "keywords": [
+      "启航教育"
+    ],
+    "Name": "启航教育有限公司",
+    "OperName": "陈静",
+    "StartDate": "2020-06-13",
+    "Status": "存续",
+    "No": "110108705659626",
+    "CreditCode": "918760145660088857L",
+    "RegistCapi": "495万元人民币",
+    "RealCapi": "已实缴",
+    "EconKind": "有限责任公司",
+    "Address": "江苏省南京市建邺区街道10号",
+    "Scope": "启航教育相关的技术开发、咨询、服务；销售商品等。",
+    "PersonScope": "11人",
+    "InsuredCount": "10",
+    "TaxpayerType": "小规模纳税人",
+    "IsSmall": "1",
+    "Scale": "微型企业",
+    "Area": {
+      "Province": "江苏省",
+      "City": "南京市",
+      "County": "建邺区"
+    },
+    "ContactInfo": {
+      "Tel": "13818466640",
+      "Email": "contact@6074.com"
+    },
+    "Industry": {
+      "Industry": "各类实体与服务业",
+      "SubIndustry": "综合服务"
+    },
+    "QccIndustry": {
+      "AName": "服务业",
+      "BName": "其他"
+    },
+    "PartnerList": [
+      {
+        "StockName": "陈静",
+        "StockPercent": "100%"
+      }
+    ],
+    "EmployeeList": [
+      {
+        "Name": "陈静",
+        "Job": "执行董事"
+      }
+    ],
+    "ActualControllerList": [
+      {
+        "Name": "陈静"
+      }
+    ],
+    "StockInfo": {
+      "StockType": "未上市",
+      "StockNumber": ""
+    },
+    "OriginalName": [
+      {
+        "Name": "无"
+      }
+    ],
+    "BankInfo": {
+      "Bank": "当地商业银行",
+      "BankAccount": "10203025591411"
+    }
+  },
+  {
+    "keywords": [
+      "金桥咨询"
+    ],
+    "Name": "金桥咨询有限公司",
+    "OperName": "黄勇",
+    "StartDate": "2018-05-12",
+    "Status": "存续",
+    "No": "110106722776558",
+    "CreditCode": "915445525901810138L",
+    "RegistCapi": "491万元人民币",
+    "RealCapi": "已实缴",
+    "EconKind": "有限责任公司",
+    "Address": "浙江省杭州市西湖区街道29号",
+    "Scope": "金桥咨询相关的技术开发、咨询、服务；销售商品等。",
+    "PersonScope": "21人",
+    "InsuredCount": "14",
+    "TaxpayerType": "一般纳税人",
+    "IsSmall": "1",
+    "Scale": "小型企业",
+    "Area": {
+      "Province": "浙江省",
+      "City": "杭州市",
+      "County": "西湖区"
+    },
+    "ContactInfo": {
+      "Tel": "13856096229",
+      "Email": "contact@2435.com"
+    },
+    "Industry": {
+      "Industry": "各类实体与服务业",
+      "SubIndustry": "综合服务"
+    },
+    "QccIndustry": {
+      "AName": "服务业",
+      "BName": "其他"
+    },
+    "PartnerList": [
+      {
+        "StockName": "黄勇",
+        "StockPercent": "100%"
+      }
+    ],
+    "EmployeeList": [
+      {
+        "Name": "黄勇",
+        "Job": "执行董事"
+      }
+    ],
+    "ActualControllerList": [
+      {
+        "Name": "黄勇"
+      }
+    ],
+    "StockInfo": {
+      "StockType": "未上市",
+      "StockNumber": ""
+    },
+    "OriginalName": [
+      {
+        "Name": "无"
+      }
+    ],
+    "BankInfo": {
+      "Bank": "当地商业银行",
+      "BankAccount": "10203075178088"
+    }
+  },
+  {
+    "keywords": [
+      "未来传媒"
+    ],
+    "Name": "未来传媒有限公司",
+    "OperName": "王涛",
+    "StartDate": "2015-03-11",
+    "Status": "存续",
+    "No": "110104530777225",
+    "CreditCode": "912505106842148904L",
+    "RegistCapi": "180万元人民币",
+    "RealCapi": "未实缴",
+    "EconKind": "有限责任公司",
+    "Address": "江苏省南京市建邺区街道76号",
+    "Scope": "未来传媒相关的技术开发、咨询、服务；销售商品等。",
+    "PersonScope": "19人",
+    "InsuredCount": "11",
+    "TaxpayerType": "小规模纳税人",
+    "IsSmall": "1",
+    "Scale": "微型企业",
+    "Area": {
+      "Province": "江苏省",
+      "City": "南京市",
+      "County": "建邺区"
+    },
+    "ContactInfo": {
+      "Tel": "13871143974",
+      "Email": "contact@8866.com"
+    },
+    "Industry": {
+      "Industry": "各类实体与服务业",
+      "SubIndustry": "综合服务"
+    },
+    "QccIndustry": {
+      "AName": "服务业",
+      "BName": "其他"
+    },
+    "PartnerList": [
+      {
+        "StockName": "王涛",
+        "StockPercent": "100%"
+      }
+    ],
+    "EmployeeList": [
+      {
+        "Name": "王涛",
+        "Job": "执行董事"
+      }
+    ],
+    "ActualControllerList": [
+      {
+        "Name": "王涛"
+      }
+    ],
+    "StockInfo": {
+      "StockType": "未上市",
+      "StockNumber": ""
+    },
+    "OriginalName": [
+      {
+        "Name": "无"
+      }
+    ],
+    "BankInfo": {
+      "Bank": "当地商业银行",
+      "BankAccount": "10203087856152"
+    }
+  },
+  {
+    "keywords": [
+      "智能制造"
+    ],
+    "Name": "智能制造有限公司",
+    "OperName": "王涛",
+    "StartDate": "2019-07-18",
+    "Status": "存续",
+    "No": "110105458016804",
+    "CreditCode": "915757388742445110L",
+    "RegistCapi": "213万元人民币",
+    "RealCapi": "已实缴",
+    "EconKind": "有限责任公司",
+    "Address": "湖北省武汉市洪山区街道97号",
+    "Scope": "智能制造相关的技术开发、咨询、服务；销售商品等。",
+    "PersonScope": "31人",
+    "InsuredCount": "22",
+    "TaxpayerType": "一般纳税人",
+    "IsSmall": "1",
+    "Scale": "小型企业",
+    "Area": {
+      "Province": "湖北省",
+      "City": "武汉市",
+      "County": "洪山区"
+    },
+    "ContactInfo": {
+      "Tel": "13860416003",
+      "Email": "contact@7229.com"
+    },
+    "Industry": {
+      "Industry": "各类实体与服务业",
+      "SubIndustry": "综合服务"
+    },
+    "QccIndustry": {
+      "AName": "服务业",
+      "BName": "其他"
+    },
+    "PartnerList": [
+      {
+        "StockName": "王涛",
+        "StockPercent": "100%"
+      }
+    ],
+    "EmployeeList": [
+      {
+        "Name": "王涛",
+        "Job": "执行董事"
+      }
+    ],
+    "ActualControllerList": [
+      {
+        "Name": "王涛"
+      }
+    ],
+    "StockInfo": {
+      "StockType": "未上市",
+      "StockNumber": ""
+    },
+    "OriginalName": [
+      {
+        "Name": "无"
+      }
+    ],
+    "BankInfo": {
+      "Bank": "当地商业银行",
+      "BankAccount": "10203014330183"
+    }
+  },
+  {
+    "keywords": [
+      "云端数据"
+    ],
+    "Name": "云端数据有限公司",
+    "OperName": "刘洋",
+    "StartDate": "2021-06-15",
+    "Status": "存续",
+    "No": "110104488143465",
+    "CreditCode": "916028434320137729L",
+    "RegistCapi": "357万元人民币",
+    "RealCapi": "未实缴",
+    "EconKind": "有限责任公司",
+    "Address": "湖北省武汉市洪山区街道95号",
+    "Scope": "云端数据相关的技术开发、咨询、服务；销售商品等。",
+    "PersonScope": "34人",
+    "InsuredCount": "34",
+    "TaxpayerType": "一般纳税人",
+    "IsSmall": "1",
+    "Scale": "小型企业",
+    "Area": {
+      "Province": "湖北省",
+      "City": "武汉市",
+      "County": "洪山区"
+    },
+    "ContactInfo": {
+      "Tel": "13817934968",
+      "Email": "contact@8872.com"
+    },
+    "Industry": {
+      "Industry": "各类实体与服务业",
+      "SubIndustry": "综合服务"
+    },
+    "QccIndustry": {
+      "AName": "服务业",
+      "BName": "其他"
+    },
+    "PartnerList": [
+      {
+        "StockName": "刘洋",
+        "StockPercent": "100%"
+      }
+    ],
+    "EmployeeList": [
+      {
+        "Name": "刘洋",
+        "Job": "执行董事"
+      }
+    ],
+    "ActualControllerList": [
+      {
+        "Name": "刘洋"
+      }
+    ],
+    "StockInfo": {
+      "StockType": "未上市",
+      "StockNumber": ""
+    },
+    "OriginalName": [
+      {
+        "Name": "无"
+      }
+    ],
+    "BankInfo": {
+      "Bank": "当地商业银行",
+      "BankAccount": "10203018488552"
+    }
+  },
+  {
+    "keywords": [
+      "光影视觉"
+    ],
+    "Name": "光影视觉有限公司",
+    "OperName": "刘洋",
+    "StartDate": "2019-08-16",
+    "Status": "存续",
+    "No": "110104599829049",
+    "CreditCode": "915248277023340247L",
+    "RegistCapi": "374万元人民币",
+    "RealCapi": "已实缴",
+    "EconKind": "有限责任公司",
+    "Address": "浙江省杭州市西湖区街道15号",
+    "Scope": "光影视觉相关的技术开发、咨询、服务；销售商品等。",
+    "PersonScope": "12人",
+    "InsuredCount": "5",
+    "TaxpayerType": "小规模纳税人",
+    "IsSmall": "1",
+    "Scale": "微型企业",
+    "Area": {
+      "Province": "浙江省",
+      "City": "杭州市",
+      "County": "西湖区"
+    },
+    "ContactInfo": {
+      "Tel": "13886650641",
+      "Email": "contact@5460.com"
+    },
+    "Industry": {
+      "Industry": "各类实体与服务业",
+      "SubIndustry": "综合服务"
+    },
+    "QccIndustry": {
+      "AName": "服务业",
+      "BName": "其他"
+    },
+    "PartnerList": [
+      {
+        "StockName": "刘洋",
+        "StockPercent": "100%"
+      }
+    ],
+    "EmployeeList": [
+      {
+        "Name": "刘洋",
+        "Job": "执行董事"
+      }
+    ],
+    "ActualControllerList": [
+      {
+        "Name": "刘洋"
+      }
+    ],
+    "StockInfo": {
+      "StockType": "未上市",
+      "StockNumber": ""
+    },
+    "OriginalName": [
+      {
+        "Name": "无"
+      }
+    ],
+    "BankInfo": {
+      "Bank": "当地商业银行",
+      "BankAccount": "10203096882943"
+    }
+  },
+  {
+    "keywords": [
+      "浩宇机电"
+    ],
+    "Name": "浩宇机电有限公司",
+    "OperName": "吴芳",
+    "StartDate": "2019-06-14",
+    "Status": "存续",
+    "No": "110101215780282",
+    "CreditCode": "915188623196539764L",
+    "RegistCapi": "296万元人民币",
+    "RealCapi": "已实缴",
+    "EconKind": "有限责任公司",
+    "Address": "湖北省武汉市洪山区街道91号",
+    "Scope": "浩宇机电相关的技术开发、咨询、服务；销售商品等。",
+    "PersonScope": "37人",
+    "InsuredCount": "27",
+    "TaxpayerType": "一般纳税人",
+    "IsSmall": "1",
+    "Scale": "小型企业",
+    "Area": {
+      "Province": "湖北省",
+      "City": "武汉市",
+      "County": "洪山区"
+    },
+    "ContactInfo": {
+      "Tel": "13825294842",
+      "Email": "contact@9928.com"
+    },
+    "Industry": {
+      "Industry": "各类实体与服务业",
+      "SubIndustry": "综合服务"
+    },
+    "QccIndustry": {
+      "AName": "服务业",
+      "BName": "其他"
+    },
+    "PartnerList": [
+      {
+        "StockName": "吴芳",
+        "StockPercent": "100%"
+      }
+    ],
+    "EmployeeList": [
+      {
+        "Name": "吴芳",
+        "Job": "执行董事"
+      }
+    ],
+    "ActualControllerList": [
+      {
+        "Name": "吴芳"
+      }
+    ],
+    "StockInfo": {
+      "StockType": "未上市",
+      "StockNumber": ""
+    },
+    "OriginalName": [
+      {
+        "Name": "无"
+      }
+    ],
+    "BankInfo": {
+      "Bank": "当地商业银行",
+      "BankAccount": "10203066885640"
+    }
+  },
+  {
+    "keywords": [
+      "盛世地产"
+    ],
+    "Name": "盛世地产有限公司",
+    "OperName": "陈静",
+    "StartDate": "2018-03-12",
+    "Status": "存续",
+    "No": "110103089640314",
+    "CreditCode": "915899777206926460L",
+    "RegistCapi": "362万元人民币",
+    "RealCapi": "已实缴",
+    "EconKind": "有限责任公司",
+    "Address": "四川省成都市武侯区街道38号",
+    "Scope": "盛世地产相关的技术开发、咨询、服务；销售商品等。",
+    "PersonScope": "23人",
+    "InsuredCount": "18",
+    "TaxpayerType": "一般纳税人",
+    "IsSmall": "1",
+    "Scale": "小型企业",
+    "Area": {
+      "Province": "四川省",
+      "City": "成都市",
+      "County": "武侯区"
+    },
+    "ContactInfo": {
+      "Tel": "13842989482",
+      "Email": "contact@7265.com"
+    },
+    "Industry": {
+      "Industry": "各类实体与服务业",
+      "SubIndustry": "综合服务"
+    },
+    "QccIndustry": {
+      "AName": "服务业",
+      "BName": "其他"
+    },
+    "PartnerList": [
+      {
+        "StockName": "陈静",
+        "StockPercent": "100%"
+      }
+    ],
+    "EmployeeList": [
+      {
+        "Name": "陈静",
+        "Job": "执行董事"
+      }
+    ],
+    "ActualControllerList": [
+      {
+        "Name": "陈静"
+      }
+    ],
+    "StockInfo": {
+      "StockType": "未上市",
+      "StockNumber": ""
+    },
+    "OriginalName": [
+      {
+        "Name": "无"
+      }
+    ],
+    "BankInfo": {
+      "Bank": "当地商业银行",
+      "BankAccount": "10203027907240"
+    }
+  },
+  {
+    "keywords": [
+      "嘉合餐饮"
+    ],
+    "Name": "嘉合餐饮有限公司",
+    "OperName": "王涛",
+    "StartDate": "2020-04-14",
+    "Status": "存续",
+    "No": "110102284510165",
+    "CreditCode": "917648903512274726L",
+    "RegistCapi": "205万元人民币",
+    "RealCapi": "未实缴",
+    "EconKind": "有限责任公司",
+    "Address": "江苏省南京市建邺区街道1号",
+    "Scope": "嘉合餐饮相关的技术开发、咨询、服务；销售商品等。",
+    "PersonScope": "39人",
+    "InsuredCount": "30",
+    "TaxpayerType": "一般纳税人",
+    "IsSmall": "1",
+    "Scale": "小型企业",
+    "Area": {
+      "Province": "江苏省",
+      "City": "南京市",
+      "County": "建邺区"
+    },
+    "ContactInfo": {
+      "Tel": "13872181661",
+      "Email": "contact@4374.com"
+    },
+    "Industry": {
+      "Industry": "各类实体与服务业",
+      "SubIndustry": "综合服务"
+    },
+    "QccIndustry": {
+      "AName": "服务业",
+      "BName": "其他"
+    },
+    "PartnerList": [
+      {
+        "StockName": "王涛",
+        "StockPercent": "100%"
+      }
+    ],
+    "EmployeeList": [
+      {
+        "Name": "王涛",
+        "Job": "执行董事"
+      }
+    ],
+    "ActualControllerList": [
+      {
+        "Name": "王涛"
+      }
+    ],
+    "StockInfo": {
+      "StockType": "未上市",
+      "StockNumber": ""
+    },
+    "OriginalName": [
+      {
+        "Name": "无"
+      }
+    ],
+    "BankInfo": {
+      "Bank": "当地商业银行",
+      "BankAccount": "10203031978346"
+    }
+  },
+  {
+    "keywords": [
+      "博雅信息"
+    ],
+    "Name": "博雅信息有限公司",
+    "OperName": "李明",
+    "StartDate": "2016-05-16",
+    "Status": "存续",
+    "No": "110103850112754",
+    "CreditCode": "918674641030777633L",
+    "RegistCapi": "70万元人民币",
+    "RealCapi": "未实缴",
+    "EconKind": "有限责任公司",
+    "Address": "四川省成都市武侯区街道35号",
+    "Scope": "博雅信息相关的技术开发、咨询、服务；销售商品等。",
+    "PersonScope": "11人",
+    "InsuredCount": "3",
+    "TaxpayerType": "小规模纳税人",
+    "IsSmall": "1",
+    "Scale": "微型企业",
+    "Area": {
+      "Province": "四川省",
+      "City": "成都市",
+      "County": "武侯区"
+    },
+    "ContactInfo": {
+      "Tel": "13833213144",
+      "Email": "contact@8631.com"
+    },
+    "Industry": {
+      "Industry": "各类实体与服务业",
+      "SubIndustry": "综合服务"
+    },
+    "QccIndustry": {
+      "AName": "服务业",
+      "BName": "其他"
+    },
+    "PartnerList": [
+      {
+        "StockName": "李明",
+        "StockPercent": "100%"
+      }
+    ],
+    "EmployeeList": [
+      {
+        "Name": "李明",
+        "Job": "执行董事"
+      }
+    ],
+    "ActualControllerList": [
+      {
+        "Name": "李明"
+      }
+    ],
+    "StockInfo": {
+      "StockType": "未上市",
+      "StockNumber": ""
+    },
+    "OriginalName": [
+      {
+        "Name": "无"
+      }
+    ],
+    "BankInfo": {
+      "Bank": "当地商业银行",
+      "BankAccount": "10203030934971"
+    }
+  },
+  {
+    "keywords": [
+      "汇智医药"
+    ],
+    "Name": "汇智医药有限公司",
+    "OperName": "吴芳",
+    "StartDate": "2021-03-16",
+    "Status": "存续",
+    "No": "110105031380786",
+    "CreditCode": "915802545498378515L",
+    "RegistCapi": "313万元人民币",
+    "RealCapi": "未实缴",
+    "EconKind": "有限责任公司",
+    "Address": "浙江省杭州市西湖区街道16号",
+    "Scope": "汇智医药相关的技术开发、咨询、服务；销售商品等。",
+    "PersonScope": "44人",
+    "InsuredCount": "37",
+    "TaxpayerType": "一般纳税人",
+    "IsSmall": "1",
+    "Scale": "小型企业",
+    "Area": {
+      "Province": "浙江省",
+      "City": "杭州市",
+      "County": "西湖区"
+    },
+    "ContactInfo": {
+      "Tel": "13885736235",
+      "Email": "contact@4774.com"
+    },
+    "Industry": {
+      "Industry": "各类实体与服务业",
+      "SubIndustry": "综合服务"
+    },
+    "QccIndustry": {
+      "AName": "服务业",
+      "BName": "其他"
+    },
+    "PartnerList": [
+      {
+        "StockName": "吴芳",
+        "StockPercent": "100%"
+      }
+    ],
+    "EmployeeList": [
+      {
+        "Name": "吴芳",
+        "Job": "执行董事"
+      }
+    ],
+    "ActualControllerList": [
+      {
+        "Name": "吴芳"
+      }
+    ],
+    "StockInfo": {
+      "StockType": "未上市",
+      "StockNumber": ""
+    },
+    "OriginalName": [
+      {
+        "Name": "无"
+      }
+    ],
+    "BankInfo": {
+      "Bank": "当地商业银行",
+      "BankAccount": "10203048352629"
+    }
+  },
+  {
+    "keywords": [
+      "瑞丰化工"
+    ],
+    "Name": "瑞丰化工有限公司",
+    "OperName": "吴芳",
+    "StartDate": "2021-02-19",
+    "Status": "存续",
+    "No": "110103762329892",
+    "CreditCode": "913295745476184347L",
+    "RegistCapi": "50万元人民币",
+    "RealCapi": "未实缴",
+    "EconKind": "有限责任公司",
+    "Address": "广东省广州市天河区街道16号",
+    "Scope": "瑞丰化工相关的技术开发、咨询、服务；销售商品等。",
+    "PersonScope": "14人",
+    "InsuredCount": "5",
+    "TaxpayerType": "小规模纳税人",
+    "IsSmall": "1",
+    "Scale": "微型企业",
+    "Area": {
+      "Province": "广东省",
+      "City": "广州市",
+      "County": "天河区"
+    },
+    "ContactInfo": {
+      "Tel": "13895507269",
+      "Email": "contact@6286.com"
+    },
+    "Industry": {
+      "Industry": "各类实体与服务业",
+      "SubIndustry": "综合服务"
+    },
+    "QccIndustry": {
+      "AName": "服务业",
+      "BName": "其他"
+    },
+    "PartnerList": [
+      {
+        "StockName": "吴芳",
+        "StockPercent": "100%"
+      }
+    ],
+    "EmployeeList": [
+      {
+        "Name": "吴芳",
+        "Job": "执行董事"
+      }
+    ],
+    "ActualControllerList": [
+      {
+        "Name": "吴芳"
+      }
+    ],
+    "StockInfo": {
+      "StockType": "未上市",
+      "StockNumber": ""
+    },
+    "OriginalName": [
+      {
+        "Name": "无"
+      }
+    ],
+    "BankInfo": {
+      "Bank": "当地商业银行",
+      "BankAccount": "10203018174176"
+    }
+  },
+  {
+    "keywords": [
+      "卓越机械"
+    ],
+    "Name": "卓越机械有限公司",
+    "OperName": "王涛",
+    "StartDate": "2017-04-12",
+    "Status": "存续",
+    "No": "110109274434540",
+    "CreditCode": "911631160550444357L",
+    "RegistCapi": "222万元人民币",
+    "RealCapi": "未实缴",
+    "EconKind": "有限责任公司",
+    "Address": "江苏省南京市建邺区街道51号",
+    "Scope": "卓越机械相关的技术开发、咨询、服务；销售商品等。",
+    "PersonScope": "29人",
+    "InsuredCount": "20",
+    "TaxpayerType": "一般纳税人",
+    "IsSmall": "1",
+    "Scale": "小型企业",
+    "Area": {
+      "Province": "江苏省",
+      "City": "南京市",
+      "County": "建邺区"
+    },
+    "ContactInfo": {
+      "Tel": "13873356750",
+      "Email": "contact@7139.com"
+    },
+    "Industry": {
+      "Industry": "各类实体与服务业",
+      "SubIndustry": "综合服务"
+    },
+    "QccIndustry": {
+      "AName": "服务业",
+      "BName": "其他"
+    },
+    "PartnerList": [
+      {
+        "StockName": "王涛",
+        "StockPercent": "100%"
+      }
+    ],
+    "EmployeeList": [
+      {
+        "Name": "王涛",
+        "Job": "执行董事"
+      }
+    ],
+    "ActualControllerList": [
+      {
+        "Name": "王涛"
+      }
+    ],
+    "StockInfo": {
+      "StockType": "未上市",
+      "StockNumber": ""
+    },
+    "OriginalName": [
+      {
+        "Name": "无"
+      }
+    ],
+    "BankInfo": {
+      "Bank": "当地商业银行",
+      "BankAccount": "10203079130668"
+    }
+  },
+  {
+    "keywords": [
+      "聚力设备"
+    ],
+    "Name": "聚力设备有限公司",
+    "OperName": "王涛",
+    "StartDate": "2020-01-12",
+    "Status": "存续",
+    "No": "110103075046490",
+    "CreditCode": "918835216996129490L",
+    "RegistCapi": "227万元人民币",
+    "RealCapi": "未实缴",
+    "EconKind": "有限责任公司",
+    "Address": "湖北省武汉市洪山区街道60号",
+    "Scope": "聚力设备相关的技术开发、咨询、服务；销售商品等。",
+    "PersonScope": "19人",
+    "InsuredCount": "18",
+    "TaxpayerType": "小规模纳税人",
+    "IsSmall": "1",
+    "Scale": "微型企业",
+    "Area": {
+      "Province": "湖北省",
+      "City": "武汉市",
+      "County": "洪山区"
+    },
+    "ContactInfo": {
+      "Tel": "13822301310",
+      "Email": "contact@9515.com"
+    },
+    "Industry": {
+      "Industry": "各类实体与服务业",
+      "SubIndustry": "综合服务"
+    },
+    "QccIndustry": {
+      "AName": "服务业",
+      "BName": "其他"
+    },
+    "PartnerList": [
+      {
+        "StockName": "王涛",
+        "StockPercent": "100%"
+      }
+    ],
+    "EmployeeList": [
+      {
+        "Name": "王涛",
+        "Job": "执行董事"
+      }
+    ],
+    "ActualControllerList": [
+      {
+        "Name": "王涛"
+      }
+    ],
+    "StockInfo": {
+      "StockType": "未上市",
+      "StockNumber": ""
+    },
+    "OriginalName": [
+      {
+        "Name": "无"
+      }
+    ],
+    "BankInfo": {
+      "Bank": "当地商业银行",
+      "BankAccount": "10203042329113"
+    }
+  },
+  {
+    "keywords": [
+      "诚达包装"
+    ],
+    "Name": "诚达包装有限公司",
+    "OperName": "王涛",
+    "StartDate": "2023-01-11",
+    "Status": "存续",
+    "No": "110102787515870",
+    "CreditCode": "915347016210467679L",
+    "RegistCapi": "478万元人民币",
+    "RealCapi": "未实缴",
+    "EconKind": "有限责任公司",
+    "Address": "广东省广州市天河区街道28号",
+    "Scope": "诚达包装相关的技术开发、咨询、服务；销售商品等。",
+    "PersonScope": "45人",
+    "InsuredCount": "35",
+    "TaxpayerType": "一般纳税人",
+    "IsSmall": "1",
+    "Scale": "小型企业",
+    "Area": {
+      "Province": "广东省",
+      "City": "广州市",
+      "County": "天河区"
+    },
+    "ContactInfo": {
+      "Tel": "13814382470",
+      "Email": "contact@6248.com"
+    },
+    "Industry": {
+      "Industry": "各类实体与服务业",
+      "SubIndustry": "综合服务"
+    },
+    "QccIndustry": {
+      "AName": "服务业",
+      "BName": "其他"
+    },
+    "PartnerList": [
+      {
+        "StockName": "王涛",
+        "StockPercent": "100%"
+      }
+    ],
+    "EmployeeList": [
+      {
+        "Name": "王涛",
+        "Job": "执行董事"
+      }
+    ],
+    "ActualControllerList": [
+      {
+        "Name": "王涛"
+      }
+    ],
+    "StockInfo": {
+      "StockType": "未上市",
+      "StockNumber": ""
+    },
+    "OriginalName": [
+      {
+        "Name": "无"
+      }
+    ],
+    "BankInfo": {
+      "Bank": "当地商业银行",
+      "BankAccount": "10203052663632"
+    }
+  },
+  {
+    "keywords": [
+      "信诚财务"
+    ],
+    "Name": "信诚财务有限公司",
+    "OperName": "赵磊",
+    "StartDate": "2019-04-18",
+    "Status": "存续",
+    "No": "110101692989512",
+    "CreditCode": "912819306178225704L",
+    "RegistCapi": "419万元人民币",
+    "RealCapi": "已实缴",
+    "EconKind": "有限责任公司",
+    "Address": "湖北省武汉市洪山区街道28号",
+    "Scope": "信诚财务相关的技术开发、咨询、服务；销售商品等。",
+    "PersonScope": "12人",
+    "InsuredCount": "10",
+    "TaxpayerType": "小规模纳税人",
+    "IsSmall": "1",
+    "Scale": "微型企业",
+    "Area": {
+      "Province": "湖北省",
+      "City": "武汉市",
+      "County": "洪山区"
+    },
+    "ContactInfo": {
+      "Tel": "13826434606",
+      "Email": "contact@2360.com"
+    },
+    "Industry": {
+      "Industry": "各类实体与服务业",
+      "SubIndustry": "综合服务"
+    },
+    "QccIndustry": {
+      "AName": "服务业",
+      "BName": "其他"
+    },
+    "PartnerList": [
+      {
+        "StockName": "赵磊",
+        "StockPercent": "100%"
+      }
+    ],
+    "EmployeeList": [
+      {
+        "Name": "赵磊",
+        "Job": "执行董事"
+      }
+    ],
+    "ActualControllerList": [
+      {
+        "Name": "赵磊"
+      }
+    ],
+    "StockInfo": {
+      "StockType": "未上市",
+      "StockNumber": ""
+    },
+    "OriginalName": [
+      {
+        "Name": "无"
+      }
+    ],
+    "BankInfo": {
+      "Bank": "当地商业银行",
+      "BankAccount": "10203054371544"
+    }
+  },
+  {
+    "keywords": [
+      "鑫源环保"
+    ],
+    "Name": "鑫源环保有限公司",
+    "OperName": "周强",
+    "StartDate": "2021-05-10",
+    "Status": "存续",
+    "No": "110103441757477",
+    "CreditCode": "916961147665089880L",
+    "RegistCapi": "302万元人民币",
+    "RealCapi": "已实缴",
+    "EconKind": "有限责任公司",
+    "Address": "湖北省武汉市洪山区街道83号",
+    "Scope": "鑫源环保相关的技术开发、咨询、服务；销售商品等。",
+    "PersonScope": "16人",
+    "InsuredCount": "14",
+    "TaxpayerType": "小规模纳税人",
+    "IsSmall": "1",
+    "Scale": "微型企业",
+    "Area": {
+      "Province": "湖北省",
+      "City": "武汉市",
+      "County": "洪山区"
+    },
+    "ContactInfo": {
+      "Tel": "13854705660",
+      "Email": "contact@6977.com"
+    },
+    "Industry": {
+      "Industry": "各类实体与服务业",
+      "SubIndustry": "综合服务"
+    },
+    "QccIndustry": {
+      "AName": "服务业",
+      "BName": "其他"
+    },
+    "PartnerList": [
+      {
+        "StockName": "周强",
+        "StockPercent": "100%"
+      }
+    ],
+    "EmployeeList": [
+      {
+        "Name": "周强",
+        "Job": "执行董事"
+      }
+    ],
+    "ActualControllerList": [
+      {
+        "Name": "周强"
+      }
+    ],
+    "StockInfo": {
+      "StockType": "未上市",
+      "StockNumber": ""
+    },
+    "OriginalName": [
+      {
+        "Name": "无"
+      }
+    ],
+    "BankInfo": {
+      "Bank": "当地商业银行",
+      "BankAccount": "10203055697883"
+    }
+  },
+  {
+    "keywords": [
+      "泰和农业"
+    ],
+    "Name": "泰和农业有限公司",
+    "OperName": "张伟",
+    "StartDate": "2022-05-15",
+    "Status": "存续",
+    "No": "110104672309130",
+    "CreditCode": "912106920517009217L",
+    "RegistCapi": "441万元人民币",
+    "RealCapi": "已实缴",
+    "EconKind": "有限责任公司",
+    "Address": "湖北省武汉市洪山区街道32号",
+    "Scope": "泰和农业相关的技术开发、咨询、服务；销售商品等。",
+    "PersonScope": "19人",
+    "InsuredCount": "13",
+    "TaxpayerType": "小规模纳税人",
+    "IsSmall": "1",
+    "Scale": "微型企业",
+    "Area": {
+      "Province": "湖北省",
+      "City": "武汉市",
+      "County": "洪山区"
+    },
+    "ContactInfo": {
+      "Tel": "13826009196",
+      "Email": "contact@2301.com"
+    },
+    "Industry": {
+      "Industry": "各类实体与服务业",
+      "SubIndustry": "综合服务"
+    },
+    "QccIndustry": {
+      "AName": "服务业",
+      "BName": "其他"
+    },
+    "PartnerList": [
+      {
+        "StockName": "张伟",
+        "StockPercent": "100%"
+      }
+    ],
+    "EmployeeList": [
+      {
+        "Name": "张伟",
+        "Job": "执行董事"
+      }
+    ],
+    "ActualControllerList": [
+      {
+        "Name": "张伟"
+      }
+    ],
+    "StockInfo": {
+      "StockType": "未上市",
+      "StockNumber": ""
+    },
+    "OriginalName": [
+      {
+        "Name": "无"
+      }
+    ],
+    "BankInfo": {
+      "Bank": "当地商业银行",
+      "BankAccount": "10203069582298"
+    }
+  },
+  {
+    "keywords": [
+      "安泰物业"
+    ],
+    "Name": "安泰物业有限公司",
+    "OperName": "黄勇",
+    "StartDate": "2018-07-12",
+    "Status": "存续",
+    "No": "110105392949436",
+    "CreditCode": "912831666597249021L",
+    "RegistCapi": "343万元人民币",
+    "RealCapi": "未实缴",
+    "EconKind": "有限责任公司",
+    "Address": "江苏省南京市建邺区街道39号",
+    "Scope": "安泰物业相关的技术开发、咨询、服务；销售商品等。",
+    "PersonScope": "22人",
+    "InsuredCount": "14",
+    "TaxpayerType": "一般纳税人",
+    "IsSmall": "1",
+    "Scale": "小型企业",
+    "Area": {
+      "Province": "江苏省",
+      "City": "南京市",
+      "County": "建邺区"
+    },
+    "ContactInfo": {
+      "Tel": "13813424089",
+      "Email": "contact@5299.com"
+    },
+    "Industry": {
+      "Industry": "各类实体与服务业",
+      "SubIndustry": "综合服务"
+    },
+    "QccIndustry": {
+      "AName": "服务业",
+      "BName": "其他"
+    },
+    "PartnerList": [
+      {
+        "StockName": "黄勇",
+        "StockPercent": "100%"
+      }
+    ],
+    "EmployeeList": [
+      {
+        "Name": "黄勇",
+        "Job": "执行董事"
+      }
+    ],
+    "ActualControllerList": [
+      {
+        "Name": "黄勇"
+      }
+    ],
+    "StockInfo": {
+      "StockType": "未上市",
+      "StockNumber": ""
+    },
+    "OriginalName": [
+      {
+        "Name": "无"
+      }
+    ],
+    "BankInfo": {
+      "Bank": "当地商业银行",
+      "BankAccount": "10203011450211"
+    }
+  },
+  {
+    "keywords": [
+      "华康医疗"
+    ],
+    "Name": "华康医疗有限公司",
+    "OperName": "陈静",
+    "StartDate": "2016-06-17",
+    "Status": "存续",
+    "No": "110102905967195",
+    "CreditCode": "916050890513786439L",
+    "RegistCapi": "136万元人民币",
+    "RealCapi": "未实缴",
+    "EconKind": "有限责任公司",
+    "Address": "浙江省杭州市西湖区街道81号",
+    "Scope": "华康医疗相关的技术开发、咨询、服务；销售商品等。",
+    "PersonScope": "23人",
+    "InsuredCount": "21",
+    "TaxpayerType": "一般纳税人",
+    "IsSmall": "1",
+    "Scale": "小型企业",
+    "Area": {
+      "Province": "浙江省",
+      "City": "杭州市",
+      "County": "西湖区"
+    },
+    "ContactInfo": {
+      "Tel": "13893836017",
+      "Email": "contact@9524.com"
+    },
+    "Industry": {
+      "Industry": "各类实体与服务业",
+      "SubIndustry": "综合服务"
+    },
+    "QccIndustry": {
+      "AName": "服务业",
+      "BName": "其他"
+    },
+    "PartnerList": [
+      {
+        "StockName": "陈静",
+        "StockPercent": "100%"
+      }
+    ],
+    "EmployeeList": [
+      {
+        "Name": "陈静",
+        "Job": "执行董事"
+      }
+    ],
+    "ActualControllerList": [
+      {
+        "Name": "陈静"
+      }
+    ],
+    "StockInfo": {
+      "StockType": "未上市",
+      "StockNumber": ""
+    },
+    "OriginalName": [
+      {
+        "Name": "无"
+      }
+    ],
+    "BankInfo": {
+      "Bank": "当地商业银行",
+      "BankAccount": "10203082754089"
+    }
+  },
+  {
+    "keywords": [
+      "恒大装饰"
+    ],
+    "Name": "恒大装饰有限公司",
+    "OperName": "黄勇",
+    "StartDate": "2021-01-15",
+    "Status": "存续",
+    "No": "110104661821527",
+    "CreditCode": "918439879258846476L",
+    "RegistCapi": "257万元人民币",
+    "RealCapi": "未实缴",
+    "EconKind": "有限责任公司",
+    "Address": "广东省广州市天河区街道55号",
+    "Scope": "恒大装饰相关的技术开发、咨询、服务；销售商品等。",
+    "PersonScope": "11人",
+    "InsuredCount": "1",
+    "TaxpayerType": "小规模纳税人",
+    "IsSmall": "1",
+    "Scale": "微型企业",
+    "Area": {
+      "Province": "广东省",
+      "City": "广州市",
+      "County": "天河区"
+    },
+    "ContactInfo": {
+      "Tel": "13866735777",
+      "Email": "contact@6569.com"
+    },
+    "Industry": {
+      "Industry": "各类实体与服务业",
+      "SubIndustry": "综合服务"
+    },
+    "QccIndustry": {
+      "AName": "服务业",
+      "BName": "其他"
+    },
+    "PartnerList": [
+      {
+        "StockName": "黄勇",
+        "StockPercent": "100%"
+      }
+    ],
+    "EmployeeList": [
+      {
+        "Name": "黄勇",
+        "Job": "执行董事"
+      }
+    ],
+    "ActualControllerList": [
+      {
+        "Name": "黄勇"
+      }
+    ],
+    "StockInfo": {
+      "StockType": "未上市",
+      "StockNumber": ""
+    },
+    "OriginalName": [
+      {
+        "Name": "无"
+      }
+    ],
+    "BankInfo": {
+      "Bank": "当地商业银行",
+      "BankAccount": "10203075814190"
+    }
+  },
+  {
+    "keywords": [
+      "新纪元科技"
+    ],
+    "Name": "新纪元科技有限公司",
+    "OperName": "赵磊",
+    "StartDate": "2022-06-17",
+    "Status": "存续",
+    "No": "110102332041401",
+    "CreditCode": "915550990497450626L",
+    "RegistCapi": "454万元人民币",
+    "RealCapi": "已实缴",
+    "EconKind": "有限责任公司",
+    "Address": "四川省成都市武侯区街道27号",
+    "Scope": "新纪元科技相关的技术开发、咨询、服务；销售商品等。",
+    "PersonScope": "27人",
+    "InsuredCount": "20",
+    "TaxpayerType": "一般纳税人",
+    "IsSmall": "1",
+    "Scale": "小型企业",
+    "Area": {
+      "Province": "四川省",
+      "City": "成都市",
+      "County": "武侯区"
+    },
+    "ContactInfo": {
+      "Tel": "13827503153",
+      "Email": "contact@8230.com"
+    },
+    "Industry": {
+      "Industry": "科技推广和应用服务业",
+      "SubIndustry": "综合服务"
+    },
+    "QccIndustry": {
+      "AName": "服务业",
+      "BName": "其他"
+    },
+    "PartnerList": [
+      {
+        "StockName": "赵磊",
+        "StockPercent": "100%"
+      }
+    ],
+    "EmployeeList": [
+      {
+        "Name": "赵磊",
+        "Job": "执行董事"
+      }
+    ],
+    "ActualControllerList": [
+      {
+        "Name": "赵磊"
+      }
+    ],
+    "StockInfo": {
+      "StockType": "未上市",
+      "StockNumber": ""
+    },
+    "OriginalName": [
+      {
+        "Name": "无"
+      }
+    ],
+    "BankInfo": {
+      "Bank": "当地商业银行",
+      "BankAccount": "10203083454417"
+    }
+  },
+  {
+    "keywords": [
+      "大有商贸"
+    ],
+    "Name": "大有商贸有限公司",
+    "OperName": "黄勇",
+    "StartDate": "2015-02-17",
+    "Status": "存续",
+    "No": "110101306909223",
+    "CreditCode": "916289775180984971L",
+    "RegistCapi": "140万元人民币",
+    "RealCapi": "未实缴",
+    "EconKind": "有限责任公司",
+    "Address": "广东省广州市天河区街道80号",
+    "Scope": "大有商贸相关的技术开发、咨询、服务；销售商品等。",
+    "PersonScope": "25人",
+    "InsuredCount": "16",
+    "TaxpayerType": "一般纳税人",
+    "IsSmall": "1",
+    "Scale": "小型企业",
+    "Area": {
+      "Province": "广东省",
+      "City": "广州市",
+      "County": "天河区"
+    },
+    "ContactInfo": {
+      "Tel": "13835918154",
+      "Email": "contact@7391.com"
+    },
+    "Industry": {
+      "Industry": "各类实体与服务业",
+      "SubIndustry": "综合服务"
+    },
+    "QccIndustry": {
+      "AName": "服务业",
+      "BName": "其他"
+    },
+    "PartnerList": [
+      {
+        "StockName": "黄勇",
+        "StockPercent": "100%"
+      }
+    ],
+    "EmployeeList": [
+      {
+        "Name": "黄勇",
+        "Job": "执行董事"
+      }
+    ],
+    "ActualControllerList": [
+      {
+        "Name": "黄勇"
+      }
+    ],
+    "StockInfo": {
+      "StockType": "未上市",
+      "StockNumber": ""
+    },
+    "OriginalName": [
+      {
+        "Name": "无"
+      }
+    ],
+    "BankInfo": {
+      "Bank": "当地商业银行",
+      "BankAccount": "10203023656394"
+    }
+  },
+  {
+    "keywords": [
+      "百川物流"
+    ],
+    "Name": "百川物流有限公司",
+    "OperName": "周强",
+    "StartDate": "2019-05-14",
+    "Status": "存续",
+    "No": "110105648124102",
+    "CreditCode": "912796390728710345L",
+    "RegistCapi": "455万元人民币",
+    "RealCapi": "已实缴",
+    "EconKind": "有限责任公司",
+    "Address": "浙江省杭州市西湖区街道1号",
+    "Scope": "百川物流相关的技术开发、咨询、服务；销售商品等。",
+    "PersonScope": "28人",
+    "InsuredCount": "18",
+    "TaxpayerType": "一般纳税人",
+    "IsSmall": "1",
+    "Scale": "小型企业",
+    "Area": {
+      "Province": "浙江省",
+      "City": "杭州市",
+      "County": "西湖区"
+    },
+    "ContactInfo": {
+      "Tel": "13831700231",
+      "Email": "contact@9825.com"
+    },
+    "Industry": {
+      "Industry": "各类实体与服务业",
+      "SubIndustry": "综合服务"
+    },
+    "QccIndustry": {
+      "AName": "服务业",
+      "BName": "其他"
+    },
+    "PartnerList": [
+      {
+        "StockName": "周强",
+        "StockPercent": "100%"
+      }
+    ],
+    "EmployeeList": [
+      {
+        "Name": "周强",
+        "Job": "执行董事"
+      }
+    ],
+    "ActualControllerList": [
+      {
+        "Name": "周强"
+      }
+    ],
+    "StockInfo": {
+      "StockType": "未上市",
+      "StockNumber": ""
+    },
+    "OriginalName": [
+      {
+        "Name": "无"
+      }
+    ],
+    "BankInfo": {
+      "Bank": "当地商业银行",
+      "BankAccount": "10203057080110"
+    }
+  },
+  {
+    "keywords": [
+      "九鼎投资"
+    ],
+    "Name": "九鼎投资有限公司",
+    "OperName": "赵磊",
+    "StartDate": "2015-03-11",
+    "Status": "存续",
+    "No": "110102383326512",
+    "CreditCode": "912426223572829121L",
+    "RegistCapi": "401万元人民币",
+    "RealCapi": "已实缴",
+    "EconKind": "有限责任公司",
+    "Address": "浙江省杭州市西湖区街道39号",
+    "Scope": "九鼎投资相关的技术开发、咨询、服务；销售商品等。",
+    "PersonScope": "37人",
+    "InsuredCount": "34",
+    "TaxpayerType": "一般纳税人",
+    "IsSmall": "1",
+    "Scale": "小型企业",
+    "Area": {
+      "Province": "浙江省",
+      "City": "杭州市",
+      "County": "西湖区"
+    },
+    "ContactInfo": {
+      "Tel": "13853609852",
+      "Email": "contact@3438.com"
+    },
+    "Industry": {
+      "Industry": "各类实体与服务业",
+      "SubIndustry": "综合服务"
+    },
+    "QccIndustry": {
+      "AName": "服务业",
+      "BName": "其他"
+    },
+    "PartnerList": [
+      {
+        "StockName": "赵磊",
+        "StockPercent": "100%"
+      }
+    ],
+    "EmployeeList": [
+      {
+        "Name": "赵磊",
+        "Job": "执行董事"
+      }
+    ],
+    "ActualControllerList": [
+      {
+        "Name": "赵磊"
+      }
+    ],
+    "StockInfo": {
+      "StockType": "未上市",
+      "StockNumber": ""
+    },
+    "OriginalName": [
+      {
+        "Name": "无"
+      }
+    ],
+    "BankInfo": {
+      "Bank": "当地商业银行",
+      "BankAccount": "10203095893511"
+    }
+  },
+  {
+    "keywords": [
+      "万达电子"
+    ],
+    "Name": "万达电子有限公司",
+    "OperName": "赵磊",
+    "StartDate": "2021-06-12",
+    "Status": "存续",
+    "No": "110106879763272",
+    "CreditCode": "913359475973807321L",
+    "RegistCapi": "151万元人民币",
+    "RealCapi": "未实缴",
+    "EconKind": "有限责任公司",
+    "Address": "广东省广州市天河区街道17号",
+    "Scope": "万达电子相关的技术开发、咨询、服务；销售商品等。",
+    "PersonScope": "29人",
+    "InsuredCount": "21",
+    "TaxpayerType": "一般纳税人",
+    "IsSmall": "1",
+    "Scale": "小型企业",
+    "Area": {
+      "Province": "广东省",
+      "City": "广州市",
+      "County": "天河区"
+    },
+    "ContactInfo": {
+      "Tel": "13886592394",
+      "Email": "contact@1910.com"
+    },
+    "Industry": {
+      "Industry": "各类实体与服务业",
+      "SubIndustry": "综合服务"
+    },
+    "QccIndustry": {
+      "AName": "服务业",
+      "BName": "其他"
+    },
+    "PartnerList": [
+      {
+        "StockName": "赵磊",
+        "StockPercent": "100%"
+      }
+    ],
+    "EmployeeList": [
+      {
+        "Name": "赵磊",
+        "Job": "执行董事"
+      }
+    ],
+    "ActualControllerList": [
+      {
+        "Name": "赵磊"
+      }
+    ],
+    "StockInfo": {
+      "StockType": "未上市",
+      "StockNumber": ""
+    },
+    "OriginalName": [
+      {
+        "Name": "无"
+      }
+    ],
+    "BankInfo": {
+      "Bank": "当地商业银行",
+      "BankAccount": "10203057046533"
+    }
+  },
+  {
+    "keywords": [
+      "同创仪器"
+    ],
+    "Name": "同创仪器有限公司",
+    "OperName": "杨超",
+    "StartDate": "2020-06-16",
+    "Status": "存续",
+    "No": "110103946288804",
+    "CreditCode": "918076307137429829L",
+    "RegistCapi": "80万元人民币",
+    "RealCapi": "未实缴",
+    "EconKind": "有限责任公司",
+    "Address": "浙江省杭州市西湖区街道98号",
+    "Scope": "同创仪器相关的技术开发、咨询、服务；销售商品等。",
+    "PersonScope": "10人",
+    "InsuredCount": "1",
+    "TaxpayerType": "小规模纳税人",
+    "IsSmall": "1",
+    "Scale": "微型企业",
+    "Area": {
+      "Province": "浙江省",
+      "City": "杭州市",
+      "County": "西湖区"
+    },
+    "ContactInfo": {
+      "Tel": "13842870264",
+      "Email": "contact@2026.com"
+    },
+    "Industry": {
+      "Industry": "各类实体与服务业",
+      "SubIndustry": "综合服务"
+    },
+    "QccIndustry": {
+      "AName": "服务业",
+      "BName": "其他"
+    },
+    "PartnerList": [
+      {
+        "StockName": "杨超",
+        "StockPercent": "100%"
+      }
+    ],
+    "EmployeeList": [
+      {
+        "Name": "杨超",
+        "Job": "执行董事"
+      }
+    ],
+    "ActualControllerList": [
+      {
+        "Name": "杨超"
+      }
+    ],
+    "StockInfo": {
+      "StockType": "未上市",
+      "StockNumber": ""
+    },
+    "OriginalName": [
+      {
+        "Name": "无"
+      }
+    ],
+    "BankInfo": {
+      "Bank": "当地商业银行",
+      "BankAccount": "10203078534950"
+    }
+  },
+  {
+    "keywords": [
+      "明达五金"
+    ],
+    "Name": "明达五金有限公司",
+    "OperName": "李明",
+    "StartDate": "2018-07-11",
+    "Status": "存续",
+    "No": "110103868697990",
+    "CreditCode": "915487826247089599L",
+    "RegistCapi": "396万元人民币",
+    "RealCapi": "已实缴",
+    "EconKind": "有限责任公司",
+    "Address": "江苏省南京市建邺区街道9号",
+    "Scope": "明达五金相关的技术开发、咨询、服务；销售商品等。",
+    "PersonScope": "39人",
+    "InsuredCount": "33",
+    "TaxpayerType": "一般纳税人",
+    "IsSmall": "1",
+    "Scale": "小型企业",
+    "Area": {
+      "Province": "江苏省",
+      "City": "南京市",
+      "County": "建邺区"
+    },
+    "ContactInfo": {
+      "Tel": "13814662480",
+      "Email": "contact@3044.com"
+    },
+    "Industry": {
+      "Industry": "各类实体与服务业",
+      "SubIndustry": "综合服务"
+    },
+    "QccIndustry": {
+      "AName": "服务业",
+      "BName": "其他"
+    },
+    "PartnerList": [
+      {
+        "StockName": "李明",
+        "StockPercent": "100%"
+      }
+    ],
+    "EmployeeList": [
+      {
+        "Name": "李明",
+        "Job": "执行董事"
+      }
+    ],
+    "ActualControllerList": [
+      {
+        "Name": "李明"
+      }
+    ],
+    "StockInfo": {
+      "StockType": "未上市",
+      "StockNumber": ""
+    },
+    "OriginalName": [
+      {
+        "Name": "无"
+      }
+    ],
+    "BankInfo": {
+      "Bank": "当地商业银行",
+      "BankAccount": "10203052924100"
+    }
+  },
+  {
+    "keywords": [
+      "兴业通讯"
+    ],
+    "Name": "兴业通讯有限公司",
+    "OperName": "杨超",
+    "StartDate": "2017-03-17",
+    "Status": "存续",
+    "No": "110105479304926",
+    "CreditCode": "914734110977647606L",
+    "RegistCapi": "210万元人民币",
+    "RealCapi": "未实缴",
+    "EconKind": "有限责任公司",
+    "Address": "广东省广州市天河区街道7号",
+    "Scope": "兴业通讯相关的技术开发、咨询、服务；销售商品等。",
+    "PersonScope": "31人",
+    "InsuredCount": "22",
+    "TaxpayerType": "一般纳税人",
+    "IsSmall": "1",
+    "Scale": "小型企业",
+    "Area": {
+      "Province": "广东省",
+      "City": "广州市",
+      "County": "天河区"
+    },
+    "ContactInfo": {
+      "Tel": "13823695642",
+      "Email": "contact@5542.com"
+    },
+    "Industry": {
+      "Industry": "各类实体与服务业",
+      "SubIndustry": "综合服务"
+    },
+    "QccIndustry": {
+      "AName": "服务业",
+      "BName": "其他"
+    },
+    "PartnerList": [
+      {
+        "StockName": "杨超",
+        "StockPercent": "100%"
+      }
+    ],
+    "EmployeeList": [
+      {
+        "Name": "杨超",
+        "Job": "执行董事"
+      }
+    ],
+    "ActualControllerList": [
+      {
+        "Name": "杨超"
+      }
+    ],
+    "StockInfo": {
+      "StockType": "未上市",
+      "StockNumber": ""
+    },
+    "OriginalName": [
+      {
+        "Name": "无"
+      }
+    ],
+    "BankInfo": {
+      "Bank": "当地商业银行",
+      "BankAccount": "10203075536002"
+    }
+  },
+  {
+    "keywords": [
+      "远大塑胶"
+    ],
+    "Name": "远大塑胶有限公司",
+    "OperName": "周强",
+    "StartDate": "2020-08-18",
+    "Status": "存续",
+    "No": "110109467695674",
+    "CreditCode": "913189524701030715L",
+    "RegistCapi": "308万元人民币",
+    "RealCapi": "已实缴",
+    "EconKind": "有限责任公司",
+    "Address": "江苏省南京市建邺区街道46号",
+    "Scope": "远大塑胶相关的技术开发、咨询、服务；销售商品等。",
+    "PersonScope": "30人",
+    "InsuredCount": "25",
+    "TaxpayerType": "一般纳税人",
+    "IsSmall": "1",
+    "Scale": "小型企业",
+    "Area": {
+      "Province": "江苏省",
+      "City": "南京市",
+      "County": "建邺区"
+    },
+    "ContactInfo": {
+      "Tel": "13847820603",
+      "Email": "contact@3010.com"
+    },
+    "Industry": {
+      "Industry": "各类实体与服务业",
+      "SubIndustry": "综合服务"
+    },
+    "QccIndustry": {
+      "AName": "服务业",
+      "BName": "其他"
+    },
+    "PartnerList": [
+      {
+        "StockName": "周强",
+        "StockPercent": "100%"
+      }
+    ],
+    "EmployeeList": [
+      {
+        "Name": "周强",
+        "Job": "执行董事"
+      }
+    ],
+    "ActualControllerList": [
+      {
+        "Name": "周强"
+      }
+    ],
+    "StockInfo": {
+      "StockType": "未上市",
+      "StockNumber": ""
+    },
+    "OriginalName": [
+      {
+        "Name": "无"
+      }
+    ],
+    "BankInfo": {
+      "Bank": "当地商业银行",
+      "BankAccount": "10203033825340"
+    }
+  },
+  {
+    "keywords": [
+      "通达木业"
+    ],
+    "Name": "通达木业有限公司",
+    "OperName": "周强",
+    "StartDate": "2023-08-13",
+    "Status": "存续",
+    "No": "110102815053820",
+    "CreditCode": "919963632965740933L",
+    "RegistCapi": "494万元人民币",
+    "RealCapi": "已实缴",
+    "EconKind": "有限责任公司",
+    "Address": "四川省成都市武侯区街道3号",
+    "Scope": "通达木业相关的技术开发、咨询、服务；销售商品等。",
+    "PersonScope": "38人",
+    "InsuredCount": "29",
+    "TaxpayerType": "一般纳税人",
+    "IsSmall": "1",
+    "Scale": "小型企业",
+    "Area": {
+      "Province": "四川省",
+      "City": "成都市",
+      "County": "武侯区"
+    },
+    "ContactInfo": {
+      "Tel": "13889783642",
+      "Email": "contact@6011.com"
+    },
+    "Industry": {
+      "Industry": "各类实体与服务业",
+      "SubIndustry": "综合服务"
+    },
+    "QccIndustry": {
+      "AName": "服务业",
+      "BName": "其他"
+    },
+    "PartnerList": [
+      {
+        "StockName": "周强",
+        "StockPercent": "100%"
+      }
+    ],
+    "EmployeeList": [
+      {
+        "Name": "周强",
+        "Job": "执行董事"
+      }
+    ],
+    "ActualControllerList": [
+      {
+        "Name": "周强"
+      }
+    ],
+    "StockInfo": {
+      "StockType": "未上市",
+      "StockNumber": ""
+    },
+    "OriginalName": [
+      {
+        "Name": "无"
+      }
+    ],
+    "BankInfo": {
+      "Bank": "当地商业银行",
+      "BankAccount": "10203054282903"
+    }
+  },
+  {
+    "keywords": [
+      "时代电力"
+    ],
+    "Name": "时代电力有限公司",
+    "OperName": "王涛",
+    "StartDate": "2023-03-17",
+    "Status": "存续",
+    "No": "110101084632705",
+    "CreditCode": "916121229720168442L",
+    "RegistCapi": "316万元人民币",
+    "RealCapi": "已实缴",
+    "EconKind": "有限责任公司",
+    "Address": "四川省成都市武侯区街道99号",
+    "Scope": "时代电力相关的技术开发、咨询、服务；销售商品等。",
+    "PersonScope": "35人",
+    "InsuredCount": "34",
+    "TaxpayerType": "一般纳税人",
+    "IsSmall": "1",
+    "Scale": "小型企业",
+    "Area": {
+      "Province": "四川省",
+      "City": "成都市",
+      "County": "武侯区"
+    },
+    "ContactInfo": {
+      "Tel": "13818911607",
+      "Email": "contact@5908.com"
+    },
+    "Industry": {
+      "Industry": "各类实体与服务业",
+      "SubIndustry": "综合服务"
+    },
+    "QccIndustry": {
+      "AName": "服务业",
+      "BName": "其他"
+    },
+    "PartnerList": [
+      {
+        "StockName": "王涛",
+        "StockPercent": "100%"
+      }
+    ],
+    "EmployeeList": [
+      {
+        "Name": "王涛",
+        "Job": "执行董事"
+      }
+    ],
+    "ActualControllerList": [
+      {
+        "Name": "王涛"
+      }
+    ],
+    "StockInfo": {
+      "StockType": "未上市",
+      "StockNumber": ""
+    },
+    "OriginalName": [
+      {
+        "Name": "无"
+      }
+    ],
+    "BankInfo": {
+      "Bank": "当地商业银行",
+      "BankAccount": "10203018772627"
+    }
+  },
+  {
+    "keywords": [
+      "正大生物"
+    ],
+    "Name": "正大生物有限公司",
+    "OperName": "刘洋",
+    "StartDate": "2022-07-11",
+    "Status": "存续",
+    "No": "110101476685987",
+    "CreditCode": "917168033110001381L",
+    "RegistCapi": "238万元人民币",
+    "RealCapi": "已实缴",
+    "EconKind": "有限责任公司",
+    "Address": "四川省成都市武侯区街道45号",
+    "Scope": "正大生物相关的技术开发、咨询、服务；销售商品等。",
+    "PersonScope": "29人",
+    "InsuredCount": "22",
+    "TaxpayerType": "一般纳税人",
+    "IsSmall": "1",
+    "Scale": "小型企业",
+    "Area": {
+      "Province": "四川省",
+      "City": "成都市",
+      "County": "武侯区"
+    },
+    "ContactInfo": {
+      "Tel": "13899126357",
+      "Email": "contact@7040.com"
+    },
+    "Industry": {
+      "Industry": "各类实体与服务业",
+      "SubIndustry": "综合服务"
+    },
+    "QccIndustry": {
+      "AName": "服务业",
+      "BName": "其他"
+    },
+    "PartnerList": [
+      {
+        "StockName": "刘洋",
+        "StockPercent": "100%"
+      }
+    ],
+    "EmployeeList": [
+      {
+        "Name": "刘洋",
+        "Job": "执行董事"
+      }
+    ],
+    "ActualControllerList": [
+      {
+        "Name": "刘洋"
+      }
+    ],
+    "StockInfo": {
+      "StockType": "未上市",
+      "StockNumber": ""
+    },
+    "OriginalName": [
+      {
+        "Name": "无"
+      }
+    ],
+    "BankInfo": {
+      "Bank": "当地商业银行",
+      "BankAccount": "10203017166431"
+    }
+  },
+  {
+    "keywords": [
+      "中天纺织"
+    ],
+    "Name": "中天纺织有限公司",
+    "OperName": "王涛",
+    "StartDate": "2018-05-11",
+    "Status": "存续",
+    "No": "110108177845933",
+    "CreditCode": "916978275877175174L",
+    "RegistCapi": "405万元人民币",
+    "RealCapi": "未实缴",
+    "EconKind": "有限责任公司",
+    "Address": "江苏省南京市建邺区街道97号",
+    "Scope": "中天纺织相关的技术开发、咨询、服务；销售商品等。",
+    "PersonScope": "14人",
+    "InsuredCount": "10",
+    "TaxpayerType": "小规模纳税人",
+    "IsSmall": "1",
+    "Scale": "微型企业",
+    "Area": {
+      "Province": "江苏省",
+      "City": "南京市",
+      "County": "建邺区"
+    },
+    "ContactInfo": {
+      "Tel": "13853093580",
+      "Email": "contact@7249.com"
+    },
+    "Industry": {
+      "Industry": "各类实体与服务业",
+      "SubIndustry": "综合服务"
+    },
+    "QccIndustry": {
+      "AName": "服务业",
+      "BName": "其他"
+    },
+    "PartnerList": [
+      {
+        "StockName": "王涛",
+        "StockPercent": "100%"
+      }
+    ],
+    "EmployeeList": [
+      {
+        "Name": "王涛",
+        "Job": "执行董事"
+      }
+    ],
+    "ActualControllerList": [
+      {
+        "Name": "王涛"
+      }
+    ],
+    "StockInfo": {
+      "StockType": "未上市",
+      "StockNumber": ""
+    },
+    "OriginalName": [
+      {
+        "Name": "无"
+      }
+    ],
+    "BankInfo": {
+      "Bank": "当地商业银行",
+      "BankAccount": "10203082575035"
+    }
+  },
+  {
+    "keywords": [
+      "华泰服饰"
+    ],
+    "Name": "华泰服饰有限公司",
+    "OperName": "张伟",
+    "StartDate": "2022-01-15",
+    "Status": "存续",
+    "No": "110102519486343",
+    "CreditCode": "918969606957803285L",
+    "RegistCapi": "295万元人民币",
+    "RealCapi": "已实缴",
+    "EconKind": "有限责任公司",
+    "Address": "广东省广州市天河区街道34号",
+    "Scope": "华泰服饰相关的技术开发、咨询、服务；销售商品等。",
+    "PersonScope": "37人",
+    "InsuredCount": "36",
+    "TaxpayerType": "一般纳税人",
+    "IsSmall": "1",
+    "Scale": "小型企业",
+    "Area": {
+      "Province": "广东省",
+      "City": "广州市",
+      "County": "天河区"
+    },
+    "ContactInfo": {
+      "Tel": "13827308328",
+      "Email": "contact@4702.com"
+    },
+    "Industry": {
+      "Industry": "各类实体与服务业",
+      "SubIndustry": "综合服务"
+    },
+    "QccIndustry": {
+      "AName": "服务业",
+      "BName": "其他"
+    },
+    "PartnerList": [
+      {
+        "StockName": "张伟",
+        "StockPercent": "100%"
+      }
+    ],
+    "EmployeeList": [
+      {
+        "Name": "张伟",
+        "Job": "执行董事"
+      }
+    ],
+    "ActualControllerList": [
+      {
+        "Name": "张伟"
+      }
+    ],
+    "StockInfo": {
+      "StockType": "未上市",
+      "StockNumber": ""
+    },
+    "OriginalName": [
+      {
+        "Name": "无"
+      }
+    ],
+    "BankInfo": {
+      "Bank": "当地商业银行",
+      "BankAccount": "10203024592314"
+    }
+  },
+  {
+    "keywords": [
+      "中科材料"
+    ],
+    "Name": "中科材料有限公司",
+    "OperName": "陈静",
+    "StartDate": "2023-03-19",
+    "Status": "存续",
+    "No": "110108680282628",
+    "CreditCode": "912707577562453180L",
+    "RegistCapi": "252万元人民币",
+    "RealCapi": "未实缴",
+    "EconKind": "有限责任公司",
+    "Address": "广东省广州市天河区街道10号",
+    "Scope": "中科材料相关的技术开发、咨询、服务；销售商品等。",
+    "PersonScope": "23人",
+    "InsuredCount": "20",
+    "TaxpayerType": "一般纳税人",
+    "IsSmall": "1",
+    "Scale": "小型企业",
+    "Area": {
+      "Province": "广东省",
+      "City": "广州市",
+      "County": "天河区"
+    },
+    "ContactInfo": {
+      "Tel": "13848823844",
+      "Email": "contact@4431.com"
+    },
+    "Industry": {
+      "Industry": "各类实体与服务业",
+      "SubIndustry": "综合服务"
+    },
+    "QccIndustry": {
+      "AName": "服务业",
+      "BName": "其他"
+    },
+    "PartnerList": [
+      {
+        "StockName": "陈静",
+        "StockPercent": "100%"
+      }
+    ],
+    "EmployeeList": [
+      {
+        "Name": "陈静",
+        "Job": "执行董事"
+      }
+    ],
+    "ActualControllerList": [
+      {
+        "Name": "陈静"
+      }
+    ],
+    "StockInfo": {
+      "StockType": "未上市",
+      "StockNumber": ""
+    },
+    "OriginalName": [
+      {
+        "Name": "无"
+      }
+    ],
+    "BankInfo": {
+      "Bank": "当地商业银行",
+      "BankAccount": "10203065853026"
+    }
+  }
+]

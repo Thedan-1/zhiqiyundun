@@ -277,7 +277,7 @@ async function updateRecentAssessmentsTable() {
                 <td>${record.companyName}</td>
                 <td><span style="color: ${record.riskColor};">${record.riskLevel}</span></td>
                 <td>${record.time}</td>
-                <td><a href="/report/${record.id}" class="case-link">查看报告</a></td> <!-- Added view report link -->
+                <td><a href="/report/${record.id}" target="_blank" class="case-link">查看报告</a></td> <!-- Added view report link -->
             `;
         });
     } catch (error) {
@@ -408,36 +408,8 @@ document.getElementById('analyzeBtn')?.addEventListener('click', async function(
 });
 
 
-// Initialize map (only exists on index.html)
-let mapInstance = null;
-let markerClusterGroup = null;
-
-function initializeMap() {
-    const mapDom = document.getElementById('map');
-    if (!mapDom) {
-        console.error("Map element not found!");
-        return;
-    }
-
-    if (mapInstance) {
-        mapInstance.remove();
-        mapInstance = null;
-    }
-
-    mapInstance = L.map(mapDom, {
-        zoomSnap: 0.5,
-        zoomDelta: 0.5,
-        maxBounds: [[15, 75], [45, 135]],
-        minZoom: 4,
-        maxZoom: 10
-    }).setView([35, 110], 5);
-
-    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-        attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
-        maxZoom: 18
-    }).addTo(mapInstance);
-
-    const companies = [
+// Dashboard risk board data (replace legacy map view)
+const riskBoardCompanies = [
         { name: "涧石科技有限公司", lat: 39.9042, lng: 116.4074, city: "北京", risk: "low", description: "财务健康状况良好，现金流充裕，负债率低，市场份额稳步增长，管理团队稳定且具备创新能力。" },
         { name: "云岫商贸有限公司", lat: 31.2304, lng: 121.4737, city: "上海", risk: "medium", description: "市场竞争激烈，客户流失率略高，但管理层积极应对，正在探索新的市场策略和产品线。" },
         { name: "磐石基建有限公司", lat: 23.1291, lng: 113.2644, city: "广州", risk: "high", description: "项目回款周期长，资金压力大，负债率高，且面临行业政策收紧的外部风险，需警惕现金流断裂风险。" },
@@ -455,116 +427,63 @@ function initializeMap() {
         { name: "东北重工", lat: 41.7922, lng: 123.4328, city: "沈阳", risk: "high", description: "产能过剩，市场需求不足，订单量持续下滑，利润空间被压缩，企业面临较大的经营风险和转型压力。" }
     ];
 
-    const colorMapping = {
-        high: 'var(--danger-color)',
-        medium: 'var(--warning-color)',
-        low: 'var(--success-color)'
+function getRiskLabel(risk) {
+    if (risk === 'high') return '高风险';
+    if (risk === 'medium') return '中风险';
+    return '低风险';
+}
+
+function renderRiskBoard(companies) {
+    const listDom = document.getElementById('riskCompaniesList');
+    if (!listDom) {
+        return;
+    }
+
+    if (!companies.length) {
+        listDom.innerHTML = '<div class="risk-company-empty">没有匹配到企业，请调整筛选条件或关键词。</div>';
+        return;
+    }
+
+    const cards = companies.map(company => `
+        <div class="risk-company-card">
+            <div class="risk-company-head">
+                <div class="risk-company-name">${company.name}</div>
+                <div class="risk-company-level level-${company.risk}">${getRiskLabel(company.risk)}</div>
+            </div>
+            <div class="risk-company-city"><i class="fas fa-location-dot"></i> ${company.city}</div>
+            <div class="risk-company-desc">${company.description}</div>
+        </div>
+    `).join('');
+
+    listDom.innerHTML = cards;
+}
+
+function initializeRiskBoard() {
+    if (!document.getElementById('riskOverviewPanel')) {
+        return;
+    }
+
+    const searchInput = document.getElementById('searchInput');
+    const riskFilter = document.getElementById('riskFilter');
+
+    const applyFilters = () => {
+        const searchTerm = (searchInput?.value || '').toLowerCase().trim();
+        const selectedRisk = riskFilter?.value || 'all';
+
+        const filtered = riskBoardCompanies.filter(company => {
+            const matchText = !searchTerm ||
+                company.name.toLowerCase().includes(searchTerm) ||
+                company.city.toLowerCase().includes(searchTerm);
+            const matchRisk = selectedRisk === 'all' || company.risk === selectedRisk;
+            return matchText && matchRisk;
+        });
+
+        renderRiskBoard(filtered);
     };
 
-    if (markerClusterGroup) {
-        mapInstance.removeLayer(markerClusterGroup);
-    }
-    markerClusterGroup = L.markerClusterGroup({
-        spiderfyOnMaxZoom: true,
-        showCoverageOnHover: true,
-        maxClusterRadius: 40,
-        zoomToBoundsOnClick: true
-    });
-
-    companies.forEach(company => {
-        const marker = L.circleMarker([company.lat, company.lng], {
-            color: colorMapping[company.risk],
-            fillColor: colorMapping[company.risk],
-            radius: 8,
-            fillOpacity: 0.8,
-            weight: 1,
-            opacity: 1,
-            className: 'risk-marker'
-        }).bindPopup(`
-            <div style="font-family: 'Segoe UI', Arial, sans-serif; font-size: 14px; color: var(--text-color);">
-                <b>${company.name}</b><br>
-                城市: ${company.city}<br>
-                风险等级: <span style="color: ${colorMapping[company.risk]}; font-weight: bold;">${company.risk === 'high' ? '高风险' : company.risk === 'medium' ? '中风险' : '低风险'}</span><br>
-                风险原因: ${company.description}
-            </div>
-        `);
-        markerClusterGroup.addLayer(marker);
-    });
-
-    mapInstance.addLayer(markerClusterGroup);
-
-    if (markerClusterGroup.getLayers().length > 0) {
-        mapInstance.fitBounds(markerClusterGroup.getBounds(), { padding: [50, 50], maxZoom: 8 });
-    } else {
-        mapInstance.setView([35, 110], 5);
-    }
-
-    document.getElementById('searchInput')?.addEventListener('input', function() {
-        const searchTerm = this.value.toLowerCase().trim();
-        markerClusterGroup.clearLayers();
-
-        companies.forEach(company => {
-            if (company.name.toLowerCase().includes(searchTerm) || company.city.toLowerCase().includes(searchTerm)) {
-                const marker = L.circleMarker([company.lat, company.lng], {
-                    color: colorMapping[company.risk],
-                    fillColor: colorMapping[company.risk],
-                    radius: 8,
-                    fillOpacity: 0.8,
-                    weight: 1,
-                    opacity: 1,
-                    className: 'risk-marker'
-                }).bindPopup(`
-                    <div style="font-family: 'Segoe UI', Arial, sans-serif; font-size: 14px; color: var(--text-color);">
-                        <b>${company.name}</b><br>
-                        城市: ${company.city}<br>
-                        风险等级: <span style="color: ${colorMapping[company.risk]}; font-weight: bold;">${company.risk === 'high' ? '高风险' : company.risk === 'medium' ? '中风险' : '低风险'}</span><br>
-                        风险原因: ${company.description}
-                    </div>
-                `);
-                markerClusterGroup.addLayer(marker);
-            }
-        });
-
-        if (markerClusterGroup.getLayers().length > 0) {
-            mapInstance.fitBounds(markerClusterGroup.getBounds(), { padding: [50, 50], maxZoom: 8 });
-        } else {
-            mapInstance.setView([35, 110], 5);
-        }
-    });
-
-    document.getElementById('riskFilter')?.addEventListener('change', function() {
-        const selectedRisk = this.value;
-        markerClusterGroup.clearLayers();
-
-        companies.forEach(company => {
-            if (selectedRisk === 'all' || company.risk === selectedRisk) {
-                const marker = L.circleMarker([company.lat, company.lng], {
-                    color: colorMapping[company.risk],
-                    fillColor: colorMapping[company.risk],
-                    radius: 8,
-                    fillOpacity: 0.8,
-                    weight: 1,
-                    opacity: 1,
-                    className: 'risk-marker'
-                }).bindPopup(`
-                    <div style="font-family: 'Segoe UI', Arial, sans-serif; font-size: 14px; color: var(--text-color);">
-                        <b>${company.name}</b><br>
-                        城市: ${company.city}<br>
-                        风险等级: <span style="color: ${colorMapping[company.risk]}; font-weight: bold;">${company.risk === 'high' ? '高风险' : company.risk === 'medium' ? '中风险' : '低风险'}</span><br>
-                        风险原因: ${company.description}
-                    </div>
-                `);
-                markerClusterGroup.addLayer(marker);
-            }
-        });
-
-        if (markerClusterGroup.getLayers().length > 0) {
-            mapInstance.fitBounds(markerClusterGroup.getBounds(), { padding: [50, 50], maxZoom: 8 });
-        } else {
-            mapInstance.setView([35, 110], 5);
-        }
-    });
-    riskDistributionChart.resize();
+    renderRiskBoard(riskBoardCompanies);
+    searchInput?.addEventListener('input', applyFilters);
+    riskFilter?.addEventListener('change', applyFilters);
 }
 
 
@@ -653,9 +572,7 @@ window.addEventListener('load', function() {
             updateRecentAssessmentsTable();
         }
 
-        if (document.getElementById('map')) { // Only for index.html
-            initializeMap();
-        }
+        initializeRiskBoard();
         if (document.getElementById('radarChart')) { // Only for index.html
             initRadarChart();
         }
