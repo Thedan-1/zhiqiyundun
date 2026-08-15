@@ -23,17 +23,17 @@
 
 ### 2. 下载与依赖安装
 克隆此仓库并安装必要的 Python 依赖包：
-`ash
+```bash
 git clone https://github.com/Thedan-1/zhiqiyundun.git
 cd zhiqiyundun
 pip install -r requirements.txt
-`
+```
 
 ### 3. 配置环境变量
 为了保护您的 API 密钥安全，项目中已剔除了所有硬编码敏感信息。
 请在项目根目录找到 .env.example 文件，将其复制一份并重命名为 .env。随后打开该文件填入您的真实密钥：
 
-`env
+```env
 # Flask 安全密钥
 SECRET_KEY=您的高强度随机密钥
 
@@ -45,17 +45,17 @@ BLUE_LM_MODEL_NAME=vivo-BlueLM-TB-Pro
 # 内部数据库 API 密钥配置
 QICHACHA_APPKEY=your_qcc_key
 QICHACHA_SECRETKEY=your_qcc_secret
-`
+```
 
 ### 4. 运行服务
 执行以下命令启动 Flask 后端程序：
-`ash
+```bash
 python app.py
-`
+```
 如无报错，系统将运行在 http://127.0.0.1:5013。
 
 **预置测试账号：**
-- 网站管理员：账号 dmin，密码 dmin123
+- 网站管理员：账号 admin，密码 admin123
 - 普通用户：账号 user，密码 user123
 
 ## 🔒 隐私与安全声明
