@@ -4063,22 +4063,31 @@ if __name__ == '__main__':
             db.session.commit()
             print("User role updated with basic permissions.")
 
-        # 检查并创建默认管理员用户
+        # Only seed accounts when explicit bootstrap credentials are supplied.
+        # Shared credentials in source code make every fresh deployment
+        # immediately accessible with the same well-known password.
+        initial_admin_password = os.getenv('INITIAL_ADMIN_PASSWORD', '').strip()
         if not User.query.filter_by(username='admin').first():
-            admin_user = User(username='admin', email='admin@example.com', role=admin_role)
-            admin_user.set_password('admin123')  # 默认密码，生产环境请修改！
-            db.session.add(admin_user)
-            db.session.commit()
-            print("Default admin user created: admin/admin123")
+            if initial_admin_password:
+                admin_user = User(username='admin', email='admin@example.com', role=admin_role)
+                admin_user.set_password(initial_admin_password)
+                db.session.add(admin_user)
+                db.session.commit()
+                print("Initial admin user created from INITIAL_ADMIN_PASSWORD.")
+            else:
+                print("No admin user created. Set INITIAL_ADMIN_PASSWORD before first startup.")
 
-        # 检查并创建默认普通用户
+        initial_user_password = os.getenv('INITIAL_USER_PASSWORD', '').strip()
         if not User.query.filter_by(username='user').first():
-            user_role = Role.query.filter_by(name='User').first()
-            normal_user = User(username='user', email='user@example.com', role=user_role)
-            normal_user.set_password('user123')  # 默认密码，生产环境请修改！
-            db.session.add(normal_user)
-            db.session.commit()
-            print("Default normal user created: user/user123")
+            if initial_user_password:
+                user_role = Role.query.filter_by(name='User').first()
+                normal_user = User(username='user', email='user@example.com', role=user_role)
+                normal_user.set_password(initial_user_password)
+                db.session.add(normal_user)
+                db.session.commit()
+                print("Initial normal user created from INITIAL_USER_PASSWORD.")
+            else:
+                print("No default user created. Set INITIAL_USER_PASSWORD to seed one.")
 
         # 检查并创建默认系统设置 (例如内部数据库API密钥)
         qcc_appkey_setting = SystemSetting.query.filter_by(key='QICHACHA_APPKEY').first()
