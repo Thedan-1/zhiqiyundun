@@ -37,6 +37,10 @@ pip install -r requirements.txt
 # Flask 安全密钥
 SECRET_KEY=您的高强度随机密钥
 
+# 首次启动时可选：仅用于创建初始账号，设置后请妥善保存并在部署后轮换
+INITIAL_ADMIN_PASSWORD=您的唯一管理员密码
+INITIAL_USER_PASSWORD=您的唯一普通用户密码
+
 # 蓝心大模型 API 密钥配置
 BLUE_LM_APP_ID=your_blue_lm_id
 BLUE_LM_APP_KEY=your_blue_lm_key
@@ -54,9 +58,8 @@ python app.py
 ```
 如无报错，系统将运行在 http://127.0.0.1:5013。
 
-**预置测试账号：**
-- 网站管理员：账号 admin，密码 admin123
-- 普通用户：账号 user，密码 user123
+**初始账号：**
+首次启动只有在配置 `INITIAL_ADMIN_PASSWORD` 或 `INITIAL_USER_PASSWORD` 时才会创建对应账号。项目不再内置共享的 `admin123` / `user123` 密码；已有数据库中的账号不会被自动修改。
 
 ## 🔒 隐私与安全声明
-本项目专为 GitHub 进行了敏感数据脱敏处理，去除了所有明文存放的第三方商用 API 凭证。强烈建议配置 .gitignore 保护 .env 与数据库文件 site.db 免受意外上传的风险。
+本项目专为 GitHub 进行了敏感数据脱敏处理，去除了所有明文存放的第三方商用 API 凭证。生产环境必须配置 `SECRET_KEY`；开发环境缺失时会生成一次性随机密钥。强烈建议配置 .gitignore 保护 .env 与数据库文件 site.db 免受意外上传的风险。

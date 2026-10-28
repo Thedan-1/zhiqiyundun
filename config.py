@@ -1,6 +1,7 @@
 # config.py
 
 import os # 导入 os 模块
+import secrets
 
 from dotenv import load_dotenv
 
@@ -12,7 +13,12 @@ QICHACHA_SECRETKEY = os.getenv('QICHACHA_SECRETKEY', '') # 从环境变量读取
 QICHACHA_API_BASE_URL = 'https://api.qichacha.com'
 
 # Flask 应用配置
-SECRET_KEY = os.getenv('SECRET_KEY', 'change-me-before-deploy') # 从环境变量读取
+SECRET_KEY = os.getenv('SECRET_KEY', '').strip()
+if not SECRET_KEY:
+    if os.getenv('FLASK_ENV', 'development').lower() == 'production':
+        raise RuntimeError('SECRET_KEY must be configured in production')
+    # Keep local development usable without shipping a shared signing key.
+    SECRET_KEY = secrets.token_urlsafe(32)
 
 # 蓝心大模型配置
 BLUE_LM_APP_ID = os.getenv('BLUE_LM_APP_ID', '')
